@@ -1,12 +1,10 @@
 import React, { useEffect } from "react";
-import ImgRegister from "../../assets/img/illustration/register.png";
 import { useNavigate } from "react-router-dom";
-import InputComponent from "../../components/auth/input";
-import ButtonComponent from "../../components/auth/button";
+import ImgRegister from "../../assets/img/illustration/register.png";
+import ButtonComponent from "../../components/button";
 import InfoComponent from "../../components/auth/info";
+import TextInputComponent from "../../components/textinput";
 import TitleComponent from "../../components/auth/title";
-import InputPassComponent from "../../components/auth/pass";
-import { CiSearch } from "react-icons/ci";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -43,7 +41,7 @@ const RegisterPage = () => {
         />
         <form onSubmit={handleSubmit}>
           <div className="mb-5 mt-10">
-            <InputComponent
+            <TextInputComponent
               htmlfor="namaLengkap"
               label="Nama Lengkap"
               type="text"
@@ -53,7 +51,7 @@ const RegisterPage = () => {
             />
           </div>
           <div className="mb-5">
-            <InputComponent
+            <TextInputComponent
               htmlfor="email"
               label="Emal"
               type="email"
@@ -63,7 +61,7 @@ const RegisterPage = () => {
             />
           </div>
           <div className="mb-5">
-            <InputComponent
+            <TextInputComponent
               htmlfor="namaPengguna"
               label="Nama Pengguna"
               type="text"
@@ -73,7 +71,7 @@ const RegisterPage = () => {
             />
           </div>
           <div className="mb-5">
-            <InputComponent
+            <TextInputComponent
               htmlfor="noTelp"
               label="No Telp"
               type="number"
@@ -83,53 +81,37 @@ const RegisterPage = () => {
             />
           </div>
           <div className="mb-5">
-            <div className="relative">
-              <label
-                htmlFor="univ"
-                className="text-[14px] font-medium text-[#334054]"
-              >
-                Universitas
-              </label>
-              <div className="absolute inset-y-0 left-0 top-8 flex items-center pl-3">
-                <CiSearch className="h-6 w-6 stroke-[#D0D5DD]" />
-              </div>
-              <input
-                type="text"
-                placeholder="Masukan Universitas"
-                name="univ"
-                id="univ"
-                className="w-full pl-10 border-2 border-[#D0D5DD] rounded-[8px] px-[14px] py-[10px] mt-[6px] focus:outline-none focus:ring-2 focus:ring-[#1470EF] shadow-sm"
-              />
-            </div>
+            <TextInputComponent
+              htmlFor="univ"
+              label="Universitas"
+              type="text"
+              placeholder="Masukkan Universitas"
+              name="univ"
+              id="univ"
+              searchInput={true}
+            />
           </div>
           {/* Kurang ini untuk multi selection input*/}
           <div className="mb-5">
-            <div className="relative">
-              <label
-                htmlFor="skill"
-                className="text-[14px] font-medium text-[#334054]"
-              >
-                Ketertarikan Skill
-              </label>
-              <div className="absolute inset-y-0 left-0 top-8 flex items-center pl-3">
-                <CiSearch className="h-6 w-6 stroke-[#D0D5DD]" />
-              </div>
-              <input
-                type="search"
-                placeholder="Masukan Ketertarikan Skill"
-                name="skill"
-                id="skill"
-                className="w-full pl-10 border-2 border-[#D0D5DD] rounded-[8px] px-[14px] py-[10px] mt-[6px] focus:outline-none focus:ring-2 focus:ring-[#1470EF] shadow-sm"
-              />
-            </div>
+            <TextInputComponent
+              htmlFor="skill"
+              label="Ketertarikan Skill"
+              type="text"
+              placeholder="Masukan Ketertarikan Skill"
+              name="skill"
+              id="skill"
+              searchInput={true}
+            />
           </div>
           <div className="mb-[11px]">
-            <InputPassComponent
+            <TextInputComponent
               htmlFor="password"
-              titlePass="Kata Sandi"
-              placeholderPass="Masukan Kata Sandi"
-              namePass="password"
-              idPass="password"
+              label="Password"
+              type="password"
+              placeholder="Masukan Kata Sandi"
+              name="password"
+              id="password"
+              passwordInput={true}
             />
           </div>
           <div className="flex items-center">

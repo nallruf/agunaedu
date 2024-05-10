@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import ImgForgot from "../../assets/img/illustration/forgot.png";
 import InfoComponent from "../../components/auth/info";
-import { useNavigate } from "react-router-dom";
-import InputComponent from "../../components/auth/input";
-import ButtonComponent from "../../components/auth/button";
+import ButtonComponent from "../../components/button";
 import TitleComponent from "../../components/auth/title";
+import TextInputComponent from "../../components/textinput";
 
 const ForgotPage = () => {
   const navigate = useNavigate();
@@ -39,13 +39,13 @@ const ForgotPage = () => {
           />
           <form onSubmit={handleSubmit}>
             <div className="mb-6 mt-10">
-              <InputComponent
-                htmlfor="email"
+              <TextInputComponent
+                htmlFor="email"
                 label="Email"
                 type="email"
                 placeholder="Masukan Email yang terdaftar"
-                id="email"
                 name="email"
+                id="email"
               />
             </div>
             <ButtonComponent nameButton="Kirim Link Reset Ulang" />

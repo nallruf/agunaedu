@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
-import Imglogin from "../../assets/img/illustration/login.png";
 import { useNavigate } from "react-router-dom";
-import InputComponent from "../../components/auth/input";
-import ButtonComponent from "../../components/auth/button";
+import Imglogin from "../../assets/img/illustration/login.png";
+import ButtonComponent from "../../components/button";
 import InfoComponent from "../../components/auth/info";
 import TitleComponent from "../../components/auth/title";
-import InputPassComponent from "../../components/auth/pass";
+import TextInputComponent from "../../components/textinput";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -42,21 +41,23 @@ const LoginPage = () => {
         />
         <form onSubmit={handleSubmit}>
           <div className="mb-6 mt-10">
-            <InputComponent
-              htmlfor="email"
+            <TextInputComponent
+              htmlFor="email"
               label="Email"
               type="email"
               placeholder="Masukan Email"
-              id="email"
               name="email"
+              id="email"
             />
           </div>
-          <InputPassComponent
+          <TextInputComponent
             htmlFor="password"
-            titlePass="Kata Sandi"
-            placeholderPass="Masukan Kata Sandi"
-            namePass="password"
-            idPass="password"
+            label="Password"
+            type="password"
+            placeholder="Masukan Kata Sandi"
+            name="password"
+            id="password"
+            passwordInput={true}
           />
           <div className="flex justify-between items-center">
             <div className="flex items-center">
