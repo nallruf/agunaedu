@@ -4,11 +4,11 @@ const NotFoundPage = () => {
   useEffect(() => {
     document.title = "Aguna Edu | Not Found";
 
-    const timeout = setTimeout(() => {
-      window.location.href = "/";
-    }, 5000);
+    // const timeout = setTimeout(() => {
+    //   window.location.href = "/";
+    // }, 5000);
 
-    return () => clearTimeout(timeout);
+    // return () => clearTimeout(timeout);
   }, []);
 
   return (

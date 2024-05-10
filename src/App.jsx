@@ -1,9 +1,13 @@
 import React from "react";
 import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 import NotFoundPage from "./pages/notfound";
-import HomePage from "./pages/home/home";
-import NavBar from "./components/navbar";
-import Footer from "./components/footer";
+import HomePage from "./pages/main/home";
+import NavBar from "./components/main/navbar";
+import Footer from "./components/main/footer";
+import LoginPage from "./pages/auth/login";
+import ForgotPage from "./pages/auth/forgot";
+import ResetPage from "./pages/auth/reset";
+import RegisterPage from "./pages/auth/register";
 
 const DefaultLayout = ({ children }) => (
   <div>
@@ -29,6 +33,14 @@ function App() {
             </DefaultLayout>
           }
         />
+        <Route path="/auth/login" element={<LoginPage />} />
+        <Route path="/auth/register" element={<RegisterPage />} />
+        <Route path="/auth/forgot" element={<ForgotPage />} />
+        <Route path="/auth/reset" element={<ResetPage />} />
+
+        {/* <Route path="/admin" element={<PrivateRoute />}>
+          <Route path="dashboard" element={<DashboardPage />} />
+        </Route> */}
       </Routes>
     </>
   );
