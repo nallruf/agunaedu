@@ -3,7 +3,9 @@ import React from "react";
 const HomePage = () => {
   return (
     <>
-      <div className="text-blue-700">Ini Home Page</div>
+      <div className="text-blue-700 h-screen flex justify-center items-center">
+        Ini Home Page
+      </div>
     </>
   );
 };
