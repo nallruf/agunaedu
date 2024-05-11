@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 import NotFoundPage from "./pages/notfound";
-import HomePage from "./pages/main/home";
-import NavBar from "./components/main/navbar";
+import HomePage from "./pages/main/Home/home";
+import NavBar from "./components/main/Navbar/navbar";
 import Footer from "./components/main/footer";
 import LoginPage from "./pages/auth/login";
 import ForgotPage from "./pages/auth/forgot";
