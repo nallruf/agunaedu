@@ -10,6 +10,8 @@ const InfoComponent = ({
   text = "",
   people = "",
 }) => {
+  const show = starCount && quotes && text && people;
+
   return (
     <>
       <div className="text-white">
@@ -19,7 +21,7 @@ const InfoComponent = ({
       <div className="w-2/3">
         <img src={img} alt="img-auth" draggable="false" className="my-2" />
       </div>
-      {starCount && quotes && text && people && (
+      {show && (
         <>
           <div className="flex pb-6 gap-1">
             {[...Array(starCount)].map((_, index) => (
