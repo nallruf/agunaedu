@@ -1,59 +1,18 @@
 import React from "react";
-import { RiHomeLine } from "react-icons/ri";
-import { IoBookOutline } from "react-icons/io5";
-import { CiCalendar } from "react-icons/ci";
-import { FiAward } from "react-icons/fi";
-import { IoIosArrowDown } from "react-icons/io";
 import { Link } from "react-router-dom";
+import { dataNav } from "../../../dummydata/datanav";
 
-const NavLinks = () => {
-  const links = [
-    {
-      id: 1,
-      name: "Beranda",
-      icon: <RiHomeLine />,
-    },
-    {
-      id: 2,
-      name: "Course",
-      submenu: true,
-      icon: <IoBookOutline />,
-      icon2: <IoIosArrowDown />,
-      sublinks: [
-        {
-          Head: "Course",
-          sublink: [
-            { name: "Web-Dev", link: "/" },
-            { name: "Mobile-Dev", link: "/" },
-            { name: "UI/IX", link: "/" },
-            { name: "Front-End", link: "/" },
-            { name: "Back-End", link: "/" },
-          ],
-        },
-      ],
-    },
-    {
-      id: 3,
-      name: "Event",
-      icon: <CiCalendar />,
-    },
-    {
-      id: 4,
-      name: "Challenge",
-      icon: <FiAward />,
-    },
-  ];
-
+const Menu = () => {
   return (
     <>
-      {links.map((link) => (
+      {dataNav.map((link) => (
         <div key={link.id}>
-          <div className="flex items-center text-left md:cursor-pointer group">
+          <div className="flex items-center text-left md:cursor-pointer group hover:scale-105 duration-200">
             {link.icon}
             <div className="flex items-center">
               <h1
                 className="py-5 px-2 cursor-pointer capitalize font-medium
-         text-gray-800 hover:scale-105 duration-200"
+         text-gray-800"
               >
                 {link.name}
               </h1>
@@ -95,4 +54,4 @@ const NavLinks = () => {
   );
 };
 
-export default NavLinks;
+export default Menu;

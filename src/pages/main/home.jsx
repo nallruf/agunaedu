@@ -1,12 +1,16 @@
 import React from "react";
 import FaqSection from "./faq/faq";
 import TestiSection from "./testimoni/testi";
-import ShareTag from "./sharetag/sharetag";
+import ShareTagSection from "./sharetag/sharetag";
+import HeroSection from "./hero/hero";
+import ToolsSection from "./tool/tools";
 
 const HomePage = () => {
   return (
     <div>
-      <ShareTag />
+      <HeroSection />
+      <ToolsSection />
+      <ShareTagSection />
       <TestiSection />
       <FaqSection />
     </div>

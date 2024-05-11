@@ -14,9 +14,9 @@ const HeroSection = () => {
     },
   ];
   return (
-    <div className="flex items-center justify-between">
+    <div className="container mx-auto px-10 my-20">
       <div className="grid md:grid-cols-2">
-        <div className="flex flex-col px-6 sm:px-12 md:px-20 lg:px-32 xl:px-40 md:block my-auto">
+        <div className="my-auto">
           <h1 className="text-5xl text-blue-500 font-semibold mb-4">
             Temukan Course yang Tepat dan Raih Potensimu!
           </h1>
@@ -24,6 +24,7 @@ const HeroSection = () => {
             Bergabunglah dan temukan bimbingan dari para ahli di bidang IT dari
             berbagai role!
           </span>
+          {/* buat button baru untuk bisa onclick (dipisah aja gaperlu component) */}
           <div className="space-y-2 ">
             {buttons.map(({ id, button }) => (
               <button
@@ -50,8 +51,8 @@ const HeroSection = () => {
             </div>
           </div>
         </div>
-        <div className="lg:w-full">
-          <img src={Hero} alt="Hero" className="w-full lg:max-w-3/4 mx-auto" />
+        <div className="flex md:justify-end justify-center mt-20 md:mt-0">
+          <img src={Hero} alt="Hero" className="md:w-3/4 sm:w-2/3" />
         </div>
       </div>
     </div>

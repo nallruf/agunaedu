@@ -5,11 +5,12 @@ import { dataTag } from "../../../dummydata/datatag";
 import { motion } from "framer-motion";
 import Marquee from "react-fast-marquee";
 
-const ShareTag = () => {
+const ShareTagSection = () => {
   return (
     <>
       <section className="container mx-auto px-10 my-20">
         <div className="grid md:grid-cols-2">
+          {/* kiri */}
           <div className="my-auto overflow-hidden">
             <h1 className="text-[#101828] font-bold text-3xl mb-4">
               Berbagai Keahlian Mentor Kami!
@@ -35,6 +36,7 @@ const ShareTag = () => {
               <span className="text-[14px] font-semibold">Mulai Belajar</span>
             </motion.button>
           </div>
+          {/* kanan */}
           <div className="flex md:justify-end justify-center mt-20 md:mt-0">
             <img
               src={ImgShare}
@@ -49,4 +51,4 @@ const ShareTag = () => {
   );
 };
 
-export default ShareTag;
+export default ShareTagSection;
