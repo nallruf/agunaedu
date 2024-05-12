@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import Logo from "../../assets/img/logo/logo-name-biru.png";
-import { Link } from "react-router-dom";
 import Menu from "./navbar/menu";
-import Tombol from "./navbar/tombol";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
@@ -11,75 +9,73 @@ const NavBar = () => {
   const navigate = useNavigate();
 
   return (
-    <nav className="bg-white border">
-      <div className="md:flex hidden">
-        <div className="grid grid-cols-2 mx-[32px] ">
-          <div className="flex justify-between">
-            <div className="z-50 p-5 md:w-auto w-full">
-              <img src={Logo} alt="logo" />
-            </div>
-            <div className="flex gap-10 pr-10 ">
-              <Menu />
-            </div>
+    <nav className="bg-white border-b-2">
+      <div className="grid grid-cols-2 mx-[32px] py-2">
+        <div className="flex items-center justify-between">
+          <div className="z-50 md:w-auto w-full pt-2">
+            <img src={Logo} alt="logo" className="md:cursor-pointer h-9" />
           </div>
-
-          <div className="flex justify-end gap-4 p-4">
-            <div>
-              <button
-                className="items-center rounded-xl font-semibold  px-4 py-2 bg-white text-primary"
-                onClick={() => navigate("/auth/login")}
-              >
-                Masuk
-              </button>
-            </div>
-            <div>
-              <button
-                className="items-center rounded-xl font-semibold  px-4 py-2
-              bg-primaryBlue text-white"
-                onClick={() => navigate("/auth/register")}
-              >
-                Daftar
-              </button>
-            </div>
+          <div className="hidden md:flex items-center gap-5 pr-10">
+            <Menu />
           </div>
         </div>
-      </div>
-
-      {/* Mobile */}
-      <div
-        onClick={() => setNav(!nav)}
-        className="cursor-pointer pr-4 z-10 md:hidden flex flex-col items-center"
-      >
-        {nav ? <FaTimes size={30} /> : <FaBars size={30} />}
-      </div>
-      {nav && (
-        <ul
-          className={`
-            md:hidden bg-white absolute w-full h-full bottom-0 py-24 pl-4
-          `}
-        >
-          <Menu />
-          <div className="py-5 flex items-center">
-            <div>
-              <button
-                className="items-center rounded-xl font-semibold  px-4 py-2 bg-white text-primary"
-                onClick={() => navigate("/auth/login")}
-              >
-                Masuk
-              </button>
-            </div>
-            <div>
-              <button
-                className="items-center rounded-xl font-semibold  px-4 py-2
-              bg-primaryBlue text-white"
-                onClick={() => navigate("/auth/register")}
-              >
-                Daftar
-              </button>
-            </div>
+        <div className="hidden md:flex justify-end gap-4 p-4">
+          <div>
+            <button
+              className="items-center rounded-xl font-semibold px-4 py-2 bg-white text-primary"
+              onClick={() => navigate("/auth/login")}
+            >
+              Masuk
+            </button>
           </div>
-        </ul>
-      )}
+          <div>
+            <button
+              className="items-center rounded-xl font-semibold px-4 py-2 bg-primaryBlue text-white"
+              onClick={() => navigate("/auth/register")}
+            >
+              Daftar
+            </button>
+          </div>
+        </div>
+
+        <div
+          onClick={() => setNav(!nav)}
+          className="cursor-pointer z-10 md:hidden flex items-center justify-end text-primaryBlue"
+        >
+          {nav ? <FaTimes size={30} /> : <FaBars size={30} />}
+        </div>
+      </div>
+      <div>
+        {nav && (
+          <ul
+            className={`
+            md:hidden bg-white absolute w-full py-10
+          `}
+          >
+            <li className="mx-[32px]">
+              <Menu />
+              <div className="py-5 flex gap-3">
+                <div>
+                  <button
+                    className="items-center rounded-xl font-semibold px-4 py-2 border-borderSecondary border"
+                    onClick={() => navigate("/auth/login")}
+                  >
+                    Masuk
+                  </button>
+                </div>
+                <div>
+                  <button
+                    className="items-center rounded-xl font-semibold px-4 py-[9px] bg-primaryBlue text-white"
+                    onClick={() => navigate("/auth/register")}
+                  >
+                    Daftar
+                  </button>
+                </div>
+              </div>
+            </li>
+          </ul>
+        )}
+      </div>
     </nav>
   );
 };

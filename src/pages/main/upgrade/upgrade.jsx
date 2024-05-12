@@ -5,9 +5,6 @@ import { PiMedal } from "react-icons/pi";
 import CardCat from "../../../components/main/upgrade/cardcat";
 import SideCat from "../../../components/main/upgrade/sidecat";
 import { dataUpgrade, dataSide } from "../../../dummydata/dataupgrade";
-import { MdKeyboardDoubleArrowRight } from "react-icons/md";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
 
 const UpgradeSection = () => {
   const [activeCategory, setActiveCategory] = useState("Event");

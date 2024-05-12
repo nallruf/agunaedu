@@ -1,12 +1,12 @@
 import React from "react";
 
-const tombolalur = ({ icon, alur1, alur2 }) => {
+const TombolAlur = ({ icon, alur1, alur2 }) => {
   return (
-    <section className="container mx-auto flex justify-between">
-      <div className="flex   items-center">
-        <div className="flex items-center rounded-full border-2 border-primaryBlue p-4">
-          <div className="  bg-primaryBlue rounded-full p-8 text-white mr-6">
-            <div className="text-3xl">{icon}</div>
+    <div className="container mx-auto flex justify-between">
+      <div className="flex items-center">
+        <div className="flex items-center rounded-full border-2 border-primaryBlue p-4 gap-4">
+          <div className="bg-secondaryBlue rounded-full p-5 text-white">
+            <div className="text-2xl">{icon}</div>
           </div>
           <div className="flex flex-col">
             <h1 className="text-xl text-primaryBlue font-bold">{alur1}</h1>
@@ -14,8 +14,8 @@ const tombolalur = ({ icon, alur1, alur2 }) => {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
-export default tombolalur;
+export default TombolAlur;

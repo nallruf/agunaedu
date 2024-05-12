@@ -19,13 +19,10 @@ export const dataNav = [
     icon2: <IoIosArrowDown />,
     sublinks: [
       {
-        Head: "Course",
         sublink: [
-          { name: "Web-Dev", link: "/" },
-          { name: "Mobile-Dev", link: "/" },
-          { name: "UI/IX", link: "/" },
-          { name: "Front-End", link: "/" },
-          { name: "Back-End", link: "/" },
+          { name: "Hustler", link: "/" },
+          { name: "Hipster", link: "/" },
+          { name: "Hacker", link: "/" },
         ],
       },
     ],

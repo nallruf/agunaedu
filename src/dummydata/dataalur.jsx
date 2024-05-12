@@ -4,6 +4,7 @@ import { HiOutlineBookOpen } from "react-icons/hi";
 import ImgHacker from "../assets/img/role/Hacker.png";
 import ImgHustler from "../assets/img/role/Hustler.png";
 import ImgHipster from "../assets/img/role/Hipster.png";
+
 export const dataAlur = [
   {
     id: 1,
@@ -37,7 +38,7 @@ export const dataRole = [
     role: "Hustler",
   },
   {
-    id: 1,
+    id: 3,
     gambar: ImgHipster,
     role: "Hipster",
   },

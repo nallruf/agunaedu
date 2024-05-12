@@ -12,7 +12,7 @@ const ToolCard = ({ img, nameTool, kelas, role }) => (
       <div className="font-inter font-normal text-gray-700 text-base">
         {kelas}
       </div>
-      <div className="font-size-[12px] mt-2  px-2 bg-gray-200 rounded-full border border-gray-400">
+      <div className="font-size-[12px] mt-2 px-2 bg-gray-200 rounded-full border border-borderPrimary">
         {role}
       </div>
     </div>
@@ -20,26 +20,3 @@ const ToolCard = ({ img, nameTool, kelas, role }) => (
 );
 
 export default ToolCard;
-
-{
-  /* <div className="grid grid-cols-1">
-      <div className="bg-white rounded-md">
-        <div className="flex items-center justify-center">
-          <img src={img} className="w-97 h-90" />
-        </div>
-        <div className="flex-col justify-start items-start inline-flex">
-          <div className="font-inter font-semibold text-lg text-blue-900 ">
-            {nameTool}
-          </div>
-          <div className="font-inter font-normal text-gray-700 text-base ">
-            {kelas}
-          </div>
-          <div className="p-2 bg-gray-200 rounded-full border border-gray-400 justify-center items-center flex">
-            <div className="font-inter font-medium text-gray-700 text-sm leading-5 break-words">
-              {role}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> */
-}
