@@ -20,7 +20,7 @@ const LoginPage = () => {
   return (
     <>
       <div className="flex w-full h-screen">
-        <div className="hidden bg-[#1470EF] md:flex justify-center items-center w-1/2 relative overflow-hidden">
+        <div className="hidden bg-primaryBlue md:flex justify-center items-center w-1/2 relative overflow-hidden">
           <div className="absolute top-0 left-0 transform translate-x-[-70%] translate-y-[-70%] w-[420px] h-[490px] rotate-[32deg] border-4 border-white border-opacity-10 rounded-full" />
           <div className="w-2/3">
             <InfoComponent
@@ -68,16 +68,16 @@ const LoginPage = () => {
                 <input
                   type="checkbox"
                   id="ingat"
-                  className="appearance-none w-5 h-5 border cursor-pointer rounded-md border-[#94A3B8] checked:bg-[#175CD3]"
+                  className="appearance-none w-5 h-5 border cursor-pointer rounded-md border-borderTertiary checked:bg-textSecondary"
                 />
                 <label
                   htmlFor="ingat"
-                  className="ml-2 text-[12px] text-[#334054]"
+                  className="ml-2 text-[12px] text-textLabel"
                 >
                   Ingat Saya
                 </label>
               </div>
-              <a href="/auth/forgot" className="text-[#175CD3] text-xs">
+              <a href="/auth/forgot" className="text-textSecondary text-xs">
                 Lupa Password?
               </a>
             </div>

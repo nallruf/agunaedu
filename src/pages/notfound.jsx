@@ -13,7 +13,7 @@ const NotFoundPage = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center h-screen bg-[#1470EF] text-white">
+      <div className="flex flex-col items-center justify-center h-screen bg-textSecondary text-white">
         <h1 className="mb-1 text-4xl text-title-color font-semibold">404</h1>
         <h2 className="mb-4 text-3xl text-title-color font-semibold">
           Page Not Found

@@ -9,10 +9,10 @@ const FaqSection = () => {
     <>
       <section className="container mx-auto space-y-16 mb-[140px] mt-[70px] px-10 md:px-52">
         <div className="flex flex-col gap-5">
-          <h1 className="text-4xl font-medium text-[#101828] text-center">
+          <h1 className="text-4xl font-medium text-textPrimary text-center">
             Frequently Asked Questions
           </h1>
-          <h3 className="text-xl text-[#465467] text-center ">
+          <h3 className="text-xl text-textTertiary text-center ">
             Berbagai Pertanyaan yang sering di ajukan
           </h3>
         </div>

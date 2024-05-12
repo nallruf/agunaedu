@@ -17,10 +17,10 @@ const HeroSection = () => {
     <div className="container mx-auto px-10 my-20">
       <div className="grid md:grid-cols-2">
         <div className="my-auto">
-          <h1 className="text-5xl text-blue-500 font-semibold mb-4">
+          <h1 className="text-5xl text-primaryBlue font-semibold mb-4">
             Temukan Course yang Tepat dan Raih Potensimu!
           </h1>
-          <span className="text-xl text-gray-600 mb-6">
+          <span className="text-xl text-textTertiary mb-6">
             Bergabunglah dan temukan bimbingan dari para ahli di bidang IT dari
             berbagai role!
           </span>
@@ -30,7 +30,7 @@ const HeroSection = () => {
               <button
                 key={id}
                 className={`items-center rounded-lg font-semibold ${
-                  id === 1 ? "bg-blue-500 text-white" : "bg-white text-blue-500"
+                  id === 1 ? "bg-primaryBlue text-white" : "bg-white text-primaryBlue"
                 }   px-6 py-2 `}
               >
                 {button}
@@ -45,8 +45,8 @@ const HeroSection = () => {
                 Never knew how much this was needed until it was here.”
               </span>
               <span className="text-semibold">
-                <span className="text-black">Filled a Huge Cap</span>
-                <span className="text-gray-500"> - Jrobyutk</span>
+                <span className="text-[#33333] font-semibold">Filled a Huge Cap</span>
+                <span className="text-textQuote2"> - Jrobyutk</span>
               </span>
             </div>
           </div>

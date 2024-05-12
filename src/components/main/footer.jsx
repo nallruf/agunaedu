@@ -11,7 +11,7 @@ const Footer = () => {
 
   return (
     <>
-      <footer className="bg-[#EFF8FF]">
+      <footer className="bg-quatenaryBlue">
         <div className="mx-[50px]">
           <div className="pt-14 pb-[45px] md:flex md:justify-between">
             <div className="flex flex-col sm:justify-between sm:flex-row md:justify-start md:flex-col gap-4">
@@ -19,7 +19,7 @@ const Footer = () => {
                 <img src={ImgFooter} alt="img-footer" draggable="false" />
               </div>
               <div>
-                <h3 className="text-[#334054] text-xl">
+                <h3 className="text-textLabel text-xl">
                   Mulai lakukan mentoring <br />
                   menjelajahi dunia IT
                 </h3>
@@ -28,7 +28,7 @@ const Footer = () => {
                 <motion.button
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.8 }}
-                  className="w-40 bg-[#1470EF] text-white rounded-[8px] py-[10px] text-xl font-semibold"
+                  className="w-40 bg-primaryBlue text-white rounded-[8px] py-[10px] text-xl font-semibold"
                   onClick={() =>
                     (window.location.href = "mailto:agunaeduaja@gmail.com")
                   }
@@ -53,8 +53,8 @@ const Footer = () => {
             </div>
           </div>
           <div className="pb-5">
-            <div className="border-[1.5px] border-[#D0D5DD]" />
-            <div className="pt-10 pb-4 flex flex-col sm:flex-row justify-between items-center text-[#175CD3]">
+            <div className="border-[1.5px] border-borderPrimary" />
+            <div className="pt-10 pb-4 flex flex-col sm:flex-row justify-between items-center text-textSecondary">
               <div>
                 <p className="text-lg font-semibold ">
                   &copy; Aguna Edu {year}, PT Aguna

@@ -28,13 +28,13 @@ const TextInputComponent = ({
       >
         <label
           htmlFor={htmlFor}
-          className="text-[14px] font-medium text-[#334054]"
+          className="text-[14px] font-medium text-textLabel"
         >
           {label}
         </label>
         {searchInput && (
           <div className="absolute inset-y-0 left-0 top-8 flex items-center pl-3">
-            <CiSearch className="h-6 w-6 stroke-[#D0D5DD]" />
+            <CiSearch className="h-6 w-6 stroke-iconInput" />
           </div>
         )}
         <input
@@ -43,7 +43,7 @@ const TextInputComponent = ({
           name={name}
           id={id}
           autoComplete={passwordInput ? "current-password" : "off"}
-          className={`w-full border-2 border-[#D0D5DD] rounded-[8px] px-[14px] py-[10px] mt-[6px] focus:outline-none focus:ring-2 focus:ring-[#1470EF] shadow-sm ${
+          className={`w-full border-2 border-borderPrimary rounded-[8px] px-[14px] py-[10px] mt-[6px] focus:outline-none focus:ring-2 focus:ring-primaryBlue shadow-sm ${
             searchInput ? "pl-10" : ""
           }`}
         />

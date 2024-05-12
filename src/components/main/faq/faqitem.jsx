@@ -15,17 +15,17 @@ const FaqItem = ({ id, title, answer, openFaq, setOpenFaq }) => {
           className="flex justify-between w-full pt-6"
           onClick={toggleFaq}
         >
-          <span className="text-lg font-medium text-[#101828] text-start sm:pr-10">
+          <span className="text-lg font-medium text-textPrimary text-start sm:pr-10">
             {title}
           </span>
           {isFaqOpen ? (
-            <AiOutlineMinusCircle className="hidden sm:block text-[#175CD3] text-2xl" />
+            <AiOutlineMinusCircle className="hidden sm:block text-textSecondary text-2xl" />
           ) : (
-            <AiOutlinePlusCircle className="hidden sm:block text-[#175CD3] text-2xl" />
+            <AiOutlinePlusCircle className="hidden sm:block text-textSecondary text-2xl" />
           )}
         </button>
         <div
-          className={`grid overflow-hidden transition-all duration-300 ease-in-out text-base text-[#465467] ${
+          className={`grid overflow-hidden transition-all duration-300 ease-in-out text-base text-textTertiary ${
             isFaqOpen
               ? "grid-rows-[1fr] opacity-100"
               : "grid-rows-[0fr] opacity-0"

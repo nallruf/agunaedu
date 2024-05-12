@@ -25,14 +25,14 @@ const InfoComponent = ({
         <>
           <div className="flex pb-6 gap-1">
             {[...Array(starCount)].map((_, index) => (
-              <FaStar key={index} className="text-yellow-300 w-4" />
+              <FaStar key={index} className="text-textYellow w-4" />
             ))}
           </div>
           <div className="text-white">
             <h3 className="mb-3">{quotes}</h3>
             <h3 className="text-lg font-semibold">
               {text}
-              <span className="text-[#B2DDFF]"> {people}</span>
+              <span className="text-textQuote"> {people}</span>
             </h3>
           </div>
         </>

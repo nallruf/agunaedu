@@ -12,7 +12,7 @@ const ShareTagSection = () => {
         <div className="grid md:grid-cols-2">
           {/* kiri */}
           <div className="my-auto overflow-hidden">
-            <h1 className="text-[#101828] font-bold text-3xl mb-4">
+            <h1 className="text-textPrimary font-bold text-3xl mb-4">
               Berbagai Keahlian Mentor Kami!
             </h1>
             {[...Array(2)].map((_, index) => (
@@ -31,7 +31,7 @@ const ShareTagSection = () => {
             <motion.button
               transition={{ duration: 0.8 }}
               whileHover={{ scale: 1.2 }}
-              className="text-white bg-[#1470EF] mt-9 gap-1 px-8 py-2 rounded-lg flex items-center"
+              className="text-white bg-primaryBlue mt-9 gap-1 px-8 py-2 rounded-lg flex items-center"
             >
               <span className="text-[14px] font-semibold">Mulai Belajar</span>
             </motion.button>

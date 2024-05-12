@@ -21,7 +21,7 @@ const ForgotPage = () => {
   return (
     <>
       <div className="flex w-full h-screen">
-        <div className="hidden bg-[#1470EF] md:flex justify-center items-center w-1/2 relative overflow-hidden">
+        <div className="hidden bg-primaryBlue md:flex justify-center items-center w-1/2 relative overflow-hidden">
           <div className="absolute top-0 left-0 transform translate-x-[-70%] translate-y-[-70%] w-[420px] h-[490px] rotate-[32deg] border-4 border-white border-opacity-10 rounded-full" />
           <div className="w-2/3">
             <InfoComponent

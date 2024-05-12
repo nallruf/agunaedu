@@ -12,7 +12,7 @@ const TestiCard = ({ starCount, feedback, img, namePerson, job }) => (
       <div className="space-y-5">
         <div className="flex gap-1">
           {[...Array(starCount)].map((_, index) => (
-            <FaStar key={index} className="text-yellow-300 w-4" />
+            <FaStar key={index} className="text-textYellow w-4" />
           ))}
         </div>
         <div className="text-lg font-medium max-h-28 overflow-y-auto">
@@ -28,10 +28,10 @@ const TestiCard = ({ starCount, feedback, img, namePerson, job }) => (
             />
           </div>
           <div className="flex flex-col">
-            <h1 className="font-semibold text-base text-[#101828]">
+            <h1 className="font-semibold text-base text-textPrimary">
               {namePerson}
             </h1>
-            <h4 className="text-[#334054] text-sm">{job}</h4>
+            <h4 className="text-textLabel text-sm">{job}</h4>
           </div>
         </div>
       </div>
