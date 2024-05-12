@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import ImgForgot from "../../assets/img/illustration/forgot.png";
 import InfoComponent from "../../components/auth/info";
-import { useNavigate } from "react-router-dom";
-import InputComponent from "../../components/auth/input";
 import ButtonComponent from "../../components/auth/button";
 import TitleComponent from "../../components/auth/title";
+import TextInputComponent from "../../components/auth/textinput";
 
 const ForgotPage = () => {
   const navigate = useNavigate();
@@ -21,7 +21,8 @@ const ForgotPage = () => {
   return (
     <>
       <div className="flex w-full h-screen">
-        <div className="hidden bg-[#1470EF] md:flex justify-center items-center w-1/2">
+        <div className="hidden bg-primaryBlue md:flex justify-center items-center w-1/2 relative overflow-hidden">
+          <div className="absolute top-0 left-0 transform translate-x-[-70%] translate-y-[-70%] w-[420px] h-[490px] rotate-[32deg] border-4 border-white border-opacity-10 rounded-full" />
           <div className="w-2/3">
             <InfoComponent
               title="Lupa Kata Sandi"
@@ -29,6 +30,7 @@ const ForgotPage = () => {
               img={ImgForgot}
             />
           </div>
+          <div className="absolute bottom-0 left-2/3 transform -translate-x-[15%] translate-y-[80%] w-[569px] h-[560px] border-4 border-white rounded-full" />
         </div>
         <div className="w-full p-8 sm:p-32 md:w-3/5 md:p-36">
           <TitleComponent
@@ -39,13 +41,13 @@ const ForgotPage = () => {
           />
           <form onSubmit={handleSubmit}>
             <div className="mb-6 mt-10">
-              <InputComponent
-                htmlfor="email"
+              <TextInputComponent
+                htmlFor="email"
                 label="Email"
                 type="email"
                 placeholder="Masukan Email yang terdaftar"
-                id="email"
                 name="email"
+                id="email"
               />
             </div>
             <ButtonComponent nameButton="Kirim Link Reset Ulang" />
