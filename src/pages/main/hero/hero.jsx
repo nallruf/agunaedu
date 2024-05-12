@@ -1,18 +1,11 @@
 import React from "react";
 import Hero from "../../../assets/img/illustration/hero.png";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
-
+import { useNavigate } from "react-router-dom";
+import { IoIosArrowForward } from "react-icons/io";
 const HeroSection = () => {
-  const buttons = [
-    {
-      id: 1,
-      button: "Cari Course Sekarang",
-    },
-    {
-      id: 2,
-      button: "Pelajari Lebih Lanjut",
-    },
-  ];
+  const navigate = useNavigate();
+
   return (
     <div className="container mx-auto px-10 my-20">
       <div className="grid md:grid-cols-2">
@@ -25,17 +18,25 @@ const HeroSection = () => {
             berbagai role!
           </span>
           {/* buat button baru untuk bisa onclick (dipisah aja gaperlu component) */}
-          <div className="space-y-2 ">
-            {buttons.map(({ id, button }) => (
+          <div className="py-5 md:flex items-center">
+            <div>
               <button
-                key={id}
-                className={`items-center rounded-lg font-semibold ${
-                  id === 1 ? "bg-primaryBlue text-white" : "bg-white text-primaryBlue"
-                }   px-6 py-2 `}
+                className="items-center rounded-xl font-semibold  px-12 py-2 bg-primaryBlue text-white"
+                onClick={() => navigate("/auth/login")}
               >
-                {button}
+                Cari Course Sekarang
               </button>
-            ))}
+            </div>
+            <div>
+              <button
+                className="items-center rounded-xl font-semibold flex px-12 py-2
+              bg-white text-primaryBlue"
+                onClick={() => navigate("/auth/register")}
+              >
+                Pelajari Lebih Lanjut
+                <IoIosArrowForward />
+              </button>
+            </div>
           </div>
           <div className="flex items-center space-x-4">
             <IoChatbubbleEllipsesOutline className="text-4xl" />
@@ -45,7 +46,9 @@ const HeroSection = () => {
                 Never knew how much this was needed until it was here.”
               </span>
               <span className="text-semibold">
-                <span className="text-[#33333] font-semibold">Filled a Huge Cap</span>
+                <span className="text-[#33333] font-semibold">
+                  Filled a Huge Cap
+                </span>
                 <span className="text-textQuote2"> - Jrobyutk</span>
               </span>
             </div>

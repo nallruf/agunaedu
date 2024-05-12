@@ -35,7 +35,7 @@ const Menu = () => {
                           >
                             <Link
                               to={slink.link}
-                              className="hover:text-gray-500"
+                              className="hover:text-primaryBlue"
                             >
                               {slink.name}
                             </Link>

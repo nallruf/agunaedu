@@ -4,6 +4,7 @@ import TestiSection from "./testimoni/testi";
 import ShareTagSection from "./sharetag/sharetag";
 import HeroSection from "./hero/hero";
 import ToolsSection from "./tool/tools";
+import AlurSection from "./alur/alur";
 import UpgradeSection from "./upgrade/upgrade";
 
 const HomePage = () => {
@@ -11,6 +12,7 @@ const HomePage = () => {
     <div>
       <HeroSection />
       <ToolsSection />
+      <AlurSection />
       <UpgradeSection />
       <ShareTagSection />
       <TestiSection />

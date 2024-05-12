@@ -6,9 +6,15 @@ const ToolCard = ({ img, nameTool, kelas, role }) => (
       <img src={img} alt="tool-img" />
     </div>
     <div className="flex flex-col justify-center items-start">
-      <div>{nameTool}</div>
-      <div>{kelas}</div>
-      <div>{role}</div>
+      <div className="font-inter font-semibold text-lg text-black">
+        {nameTool}
+      </div>
+      <div className="font-inter font-normal text-gray-700 text-base">
+        {kelas}
+      </div>
+      <div className="font-size-[12px] mt-2  px-2 bg-gray-200 rounded-full border border-gray-400">
+        {role}
+      </div>
     </div>
   </div>
 );
