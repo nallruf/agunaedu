@@ -1,12 +1,85 @@
-import React from "react";
+import React, { useState } from "react";
+import Category from "../../../components/main/upgrade/category";
+import { BsCalendar4Event } from "react-icons/bs";
+import { PiMedal } from "react-icons/pi";
+import CardCat from "../../../components/main/upgrade/cardcat";
+import SideCat from "../../../components/main/upgrade/sidecat";
+import { dataUpgrade, dataSide } from "../../../dummydata/dataupgrade";
+import { MdKeyboardDoubleArrowRight } from "react-icons/md";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
 const UpgradeSection = () => {
+  const [activeCategory, setActiveCategory] = useState("Event");
+
+  const handleCategoryClick = (category) => {
+    setActiveCategory(category);
+  };
+
+  const filteredDataCard = dataUpgrade.filter((item) =>
+    item.subs.some((sub) =>
+      sub.toLowerCase().includes(activeCategory.toLowerCase())
+    )
+  );
+
+  const filteredDataSide = dataSide.filter((item) =>
+    item.button.toLowerCase().includes(activeCategory.toLowerCase())
+  );
+
   return (
     <>
-      <section className="container mx-auto px-10 py-28">
-        <div>
-          <h1>Tingkatkan lebih dalam lagi kemampuanmu!</h1>
-          <h3>Ikuti berbagai kegiatan lainnya dari kami!</h3>
+      <div className="flex flex-col gap-3 container mx-auto px-10 pt-20 pb-10">
+        <h1 className="text-textPrimary text-3xl font-semibold">
+          Tingkatkan lebih dalam lagi kemampuanmu!
+        </h1>
+        <h3 className="text-textTertiary text-xl ">
+          Ikuti berbagai kegiatan lainnya dari kami!
+        </h3>
+      </div>
+
+      <section className="bg-primaryBlue relative overflow-hidden">
+        <div className="absolute bottom-0 left-0 transform translate-x-[-50%] translate-y-[50%] w-[600px] h-[600px] rounded-full bg-secondaryBlue" />
+        <div className="container mx-auto px-10 z-10 relative">
+          <div className="top-0 translate-y-[-8px]">
+            <Category
+              icon={<BsCalendar4Event />}
+              upgrade="Event"
+              isActive={activeCategory === "Event"}
+              onClick={() => handleCategoryClick("Event")}
+            />
+            <Category
+              icon={<PiMedal />}
+              upgrade="Challenge"
+              isActive={activeCategory === "Challenge"}
+              onClick={() => handleCategoryClick("Challenge")}
+            />
+          </div>
+          <div className="flex justify-between md:flex-row flex-col">
+            <div className="my-12 sm:my-20 md:my-[150px] md:w-[40%]">
+              {filteredDataSide.map((item, index) => (
+                <SideCat
+                  key={index}
+                  title={item.title}
+                  desc={item.desc}
+                  onclick={item.onclick}
+                  button={item.button}
+                />
+              ))}
+            </div>
+
+            <div className="grid md:grid-cols-2 mt-10 gap-3 justify-end">
+              {filteredDataCard.map((item, index) => (
+                <div key={index}>
+                  <CardCat
+                    imgPath={item.imgPath}
+                    title={item.title}
+                    text={item.text}
+                    subs={item.subs}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
     </>
