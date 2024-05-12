@@ -11,70 +11,76 @@ const NavBar = () => {
   const navigate = useNavigate();
 
   return (
-    // <nav className="bg-white">
-    //   <div className="flex items-center font-medium justify-between mx-auto">
-    //     <div className="z-50 p-5 md:w-auto w-full flex justify-between ">
-    //       <img src={Logo} alt="logo" className="md:cursor-pointer h-9 " />
-    //     </div>
-    //     <div className="mx-auto justify-between">
-    //       <ul className="md:flex hidden uppercase items-center gap-8  ">
-    //         <Menu />
-    //         <div className="space-x-12 hidden lg:flex items-center">
-    //           <Tombol />
-    //         </div>
-    //       </ul>
-    //     </div>
-    //     {/*Mobile*/}
-    //     <div
-    //       onClick={() => setNav(!nav)}
-    //       className="cursor-pointer pr-4 z-10 md:hidden flex flex-col items-center"
-    //     >
-    //       {nav ? <FaTimes size={30} /> : <FaBars size={30} />}
-    //     </div>
-
-    //     {nav && (
-    //       <ul
-    //         className={`
-    //   md:hidden bg-white absolute w-full h-full bottom-0 py-24 pl-4
-    // `}
-    //       >
-    //         <li>
-    //           <Link to="/" className="py-7 px-3 inline-block">
-    //             Home
-    //           </Link>
-    //         </li>
-    //         <Menu />
-    //         <div className="py-5">
-    //           <Tombol />
-    //         </div>
-    //       </ul>
-    //     )}
-    //   </div>
-    // </nav>
-    <>
-      <nav className="bg-primaryBlue">
-        <div className="grid grid-cols-2 mx-[32px]">
+    <nav className="bg-white border">
+      <div className="md:flex hidden">
+        <div className="grid grid-cols-2 mx-[32px] ">
           <div className="flex justify-between">
-            <div>logo</div>
-            <div className="flex gap-10 pr-10">
-              <a href="">beranda</a>
-              <a href="">course</a>
-              <a href="">event</a>
-              <a href="">challeng</a>
+            <div className="z-50 p-5 md:w-auto w-full">
+              <img src={Logo} alt="logo" />
+            </div>
+            <div className="flex gap-10 pr-10 ">
+              <Menu />
             </div>
           </div>
 
-          <div className="flex justify-end gap-4">
+          <div className="flex justify-end gap-4 p-4">
             <div>
-              <button onClick={() => navigate("/auth/login")}>Masuk</button>
+              <button
+                className="items-center rounded-xl font-semibold  px-4 py-2 bg-white text-primary"
+                onClick={() => navigate("/auth/login")}
+              >
+                Masuk
+              </button>
             </div>
             <div>
-              <button onClick={() => navigate("/auth/register")}>Daftar</button>
+              <button
+                className="items-center rounded-xl font-semibold  px-4 py-2
+              bg-primaryBlue text-white"
+                onClick={() => navigate("/auth/register")}
+              >
+                Daftar
+              </button>
             </div>
           </div>
         </div>
-      </nav>
-    </>
+      </div>
+
+      {/* Mobile */}
+      <div
+        onClick={() => setNav(!nav)}
+        className="cursor-pointer pr-4 z-10 md:hidden flex flex-col items-center"
+      >
+        {nav ? <FaTimes size={30} /> : <FaBars size={30} />}
+      </div>
+      {nav && (
+        <ul
+          className={`
+            md:hidden bg-white absolute w-full h-full bottom-0 py-24 pl-4
+          `}
+        >
+          <Menu />
+          <div className="py-5 flex items-center">
+            <div>
+              <button
+                className="items-center rounded-xl font-semibold  px-4 py-2 bg-white text-primary"
+                onClick={() => navigate("/auth/login")}
+              >
+                Masuk
+              </button>
+            </div>
+            <div>
+              <button
+                className="items-center rounded-xl font-semibold  px-4 py-2
+              bg-primaryBlue text-white"
+                onClick={() => navigate("/auth/register")}
+              >
+                Daftar
+              </button>
+            </div>
+          </div>
+        </ul>
+      )}
+    </nav>
   );
 };
 
