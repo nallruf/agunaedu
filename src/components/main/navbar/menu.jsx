@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { dataNav } from "../../../dummydata/datanav";
+import { dataNav } from "../../../dummydata/main/datanav";
 
 const Menu = () => {
   return (

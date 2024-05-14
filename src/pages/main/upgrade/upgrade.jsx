@@ -4,7 +4,7 @@ import { BsCalendar4Event } from "react-icons/bs";
 import { PiMedal } from "react-icons/pi";
 import CardCat from "../../../components/main/upgrade/cardcat";
 import SideCat from "../../../components/main/upgrade/sidecat";
-import { dataUpgrade, dataSide } from "../../../dummydata/dataupgrade";
+import { dataUpgrade, dataSide } from "../../../dummydata/main/dataupgrade";
 
 const UpgradeSection = () => {
   const [activeCategory, setActiveCategory] = useState("Event");

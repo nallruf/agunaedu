@@ -27,7 +27,10 @@ const CardRole = ({
             <div className="bg-white md:w-[330px] translate-y-[-50px] sm:translate-y-[-70px] md:translate-y-[-110px] px-6 py-5 rounded-b-2xl">
               <div className="flex flex-col gap-[6px] ">
                 <div className="flex items-center border-2 p-1 text-sm gap-1 rounded-lg ">
-                  {icon1} {tes}
+                  {icon1}
+                  {tes.map((test, index) => (
+                    <p key={index}>{test}</p>
+                  ))}
                 </div>
                 <h2 className="text-2xl font-semibold text-textSecondary">
                   {titlecard}
@@ -52,4 +55,4 @@ const CardRole = ({
   );
 };
 
-export default CR;
+export default CardRole;

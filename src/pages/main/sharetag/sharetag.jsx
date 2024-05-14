@@ -1,7 +1,7 @@
 import React from "react";
 import ImgShare from "../../../assets/img/illustration/course.png";
 import Tag from "../../../components/main/sharetag/tag";
-import { dataTag } from "../../../dummydata/datatag";
+import { dataTag } from "../../../dummydata/main/datatag";
 import { motion } from "framer-motion";
 import Marquee from "react-fast-marquee";
 

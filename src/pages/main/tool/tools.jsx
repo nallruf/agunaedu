@@ -1,8 +1,7 @@
 import React from "react";
 import Marquee from "react-fast-marquee";
 import ToolCard from "../../../components/main/tool/toolcard";
-import { dataTool } from "../../../dummydata/datatool";
-import Logo from "../../../assets/img/logo/logo-name-putih.png";
+import { dataTool } from "../../../dummydata/main/datatool";
 
 const ToolsSection = () => {
   return (

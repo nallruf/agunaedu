@@ -5,17 +5,10 @@ import {
   dataRole,
   dataPilih,
   dataCard,
-} from "../../../dummydata/dataalur";
-import ImgHacker from "../../../assets/img/gambarcard/hackeralgo.png";
+} from "../../../dummydata/main/dataalur";
 import RoleImg from "../../../components/main/alur/roleimg";
-import { FiBook } from "react-icons/fi";
-import { HiOutlineBookOpen } from "react-icons/hi";
-import { FiUsers } from "react-icons/fi";
-import { FaLaptop } from "react-icons/fa";
-import { LuBarChart } from "react-icons/lu";
-import { GoStarFill } from "react-icons/go";
-import { IoIosArrowForward } from "react-icons/io";
 import SideRole from "../../../components/main/alur/siderole";
+import CardRole from "../../../components/main/alur/cardrole";
 
 const AlurSection = () => {
   const [activeRole, setActiveRole] = useState("Hacker");
@@ -24,8 +17,21 @@ const AlurSection = () => {
     setActiveRole(role);
   };
 
+  const filteredDataPilih = dataPilih.filter((item) =>
+    item.title.toLowerCase().includes(activeRole.toLowerCase())
+  );
+
+  const filteredDataCard = dataCard.filter((item) =>
+    item.tes.some((test) =>
+      test.toLowerCase().includes(activeRole.toLowerCase())
+    )
+  );
+
   return (
-    <section className="container mx-auto px-10 space-y-16 mb-[140px] mt-[70px]" id="alur">
+    <section
+      className="container mx-auto px-10 space-y-16 mb-[140px] mt-[70px]"
+      id="alur"
+    >
       <div className="flex flex-col justify-center text-center">
         <h1 className="text-4xl font-semibold text-textPrimary">
           Alur pengembangan kami!
@@ -55,24 +61,31 @@ const AlurSection = () => {
       </div>
 
       <div className="flex justify-between border-4 p-5">
-        {dataPilih.map(() => (
+        {filteredDataPilih.map((item) => (
           <SideRole
-            key={dataPilih.id}
+            key={item.id}
             title={item.title}
             desc={item.desc}
             icon1={item.icon1}
             icon2={item.icon2}
             icon3={item.icon3}
+            jmlalur={item.jmlalur}
+            jmlkelas={item.jmlkelas}
+            jmlsiswa={item.jmlsiswa}
           />
         ))}
-        {CardRole.map((item) => (
+        {filteredDataCard.map((item) => (
           <CardRole
             key={item.id}
-            title={item.titlecard}
-            desc={item.desccard}
+            titlecard={item.titlecard}
+            desccard={item.desccard}
             icon1={item.icon1}
             icon2={item.icon2}
             icon3={item.icon3}
+            tes={item.tes}
+            img={item.img}
+            level={item.level}
+            rating={item.rating}
           />
         ))}
       </div>

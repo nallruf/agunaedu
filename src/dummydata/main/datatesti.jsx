@@ -1,6 +1,6 @@
-import img1 from "../assets/img/illustration/avatar1.jpg";
-import img2 from "../assets/img/illustration/avatar2.jpg";
-import img3 from "../assets/img/illustration/avatar3.jpg";
+import img1 from "../../assets/img/illustration/avatar1.jpg";
+import img2 from "../../assets/img/illustration/avatar2.jpg";
+import img3 from "../../assets/img/illustration/avatar3.jpg";
 
 export const dataTesti = [
   {

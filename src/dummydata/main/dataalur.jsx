@@ -1,25 +1,23 @@
 import { FaRegUser } from "react-icons/fa6";
 import { LuPencilLine } from "react-icons/lu";
 import { HiOutlineBookOpen } from "react-icons/hi";
-import ImgHacker from "../assets/img/role/Hacker.png";
-import ImgHustler from "../assets/img/role/Hustler.png";
-import ImgHipster from "../assets/img/role/Hipster.png";
 import { FiBook } from "react-icons/fi";
 import { FiUsers } from "react-icons/fi";
 import { FaLaptop } from "react-icons/fa";
 import { LuBarChart } from "react-icons/lu";
 import { GoStarFill } from "react-icons/go";
-import ImgHackerWeb from "../assets/img/gambarcard/hacker_web.jpg";
-import ImgHackerMobile from "../assets/img/gambarcard/hacker_mobile.jpg";
-import ImgHackerAlgo from "../assets/img/gambarcard/hackeralgo.png";
-import ImgHustlerLead from "../assets/img/gambarcard/hustler_leadership.jpg";
-import ImgHustlerPM from "../assets/img/gambarcard/hustler_PM.jpg";
-import ImgHustlerPublic from "../assets/img/gambarcard/hustler_publicspeaking.jpg";
-import ImgHipsterUI from "../assets/img/gambarcard/hipster_UI.jpg";
-import ImgHipsterUX from "../assets/img/gambarcard/hipster_UX.jpg";
-import ImgHipsterUIUX from "../assets/img/gambarcard/hipster_UIUX.jpg";
-
-import { IoIosArrowForward } from "react-icons/io";
+import ImgHacker from "../../assets/img/role/Hacker.png";
+import ImgHustler from "../../assets/img/role/Hustler.png";
+import ImgHipster from "../../assets/img/role/Hipster.png";
+import ImgHackerWeb from "../../assets/img/gambarcard/hacker_web.jpg";
+import ImgHackerMobile from "../../assets/img/gambarcard/hacker_mobile.jpg";
+import ImgHackerAlgo from "../../assets/img/gambarcard/hackeralgo.jpg";
+import ImgHustlerLead from "../../assets/img/gambarcard/hustler_leadership.jpg";
+import ImgHustlerPM from "../../assets/img/gambarcard/hustler_PM.jpg";
+import ImgHustlerPublic from "../../assets/img/gambarcard/hustler_publicspeaking.jpg";
+import ImgHipsterUI from "../../assets/img/gambarcard/hipster_UI.jpg";
+import ImgHipsterUX from "../../assets/img/gambarcard/hipster_UX.jpg";
+import ImgHipsterUIUX from "../../assets/img/gambarcard/hipster_UIUX.jpg";
 
 export const dataAlur = [
   {
@@ -101,7 +99,7 @@ export const dataCard = [
     id: 1,
     img: ImgHackerAlgo,
     icon1: <FaLaptop />,
-    tes: "Tes Dasar",
+    tes: ["Tes Dasar", "Hacker"],
     titlecard: "Algoritma Pemrograman",
     desccard: "Tes Dasar untuk membuka kelas hacker",
     icon2: <LuBarChart className="text-primaryBlue" />,
@@ -113,7 +111,7 @@ export const dataCard = [
     id: 2,
     img: ImgHackerWeb,
     icon1: <FaLaptop />,
-    tes: "Tes Level",
+    tes: ["Tes Level", "Hacker"],
     titlecard: "Dasar Web",
     desccard: "Tes Dasar untuk membuka path web",
     icon2: <LuBarChart className="text-primaryBlue" />,
@@ -125,7 +123,7 @@ export const dataCard = [
     id: 3,
     img: ImgHackerMobile,
     icon1: <FaLaptop />,
-    tes: "Tes Dasar",
+    tes: ["Tes Dasar", "Hacker"],
     titlecard: "Dasar Mobile",
     desccard: "Tes Dasar untuk membuka path mobile",
     icon2: <LuBarChart className="text-primaryBlue" />,
@@ -137,7 +135,7 @@ export const dataCard = [
     id: 4,
     img: ImgHustlerLead,
     icon1: <FaLaptop />,
-    tes: "Tes Dasar",
+    tes: ["Tes Dasar", "Hustler"],
     titlecard: "Leadership",
     desccard: "Tes Dasar untuk membuka kelas hustler",
     icon2: <LuBarChart className="text-primaryBlue" />,
@@ -149,7 +147,7 @@ export const dataCard = [
     id: 5,
     img: ImgHustlerPM,
     icon1: <FaLaptop />,
-    tes: "Tes Level",
+    tes: ["Tes Level", "Hustler"],
     titlecard: "Project Management",
     desccard: "Tes Level untuk membuka path PM",
     icon2: <LuBarChart className="text-primaryBlue" />,
@@ -161,7 +159,7 @@ export const dataCard = [
     id: 6,
     icon1: <FaLaptop />,
     img: ImgHustlerPublic,
-    tes: "Tes Dasar",
+    tes: ["Tes Dasar", "Hustler"],
     titlecard: "Public Speaking",
     desccard: "Tes Dasar untuk membuka path speaking",
     icon2: <LuBarChart className="text-primaryBlue" />,
@@ -173,7 +171,7 @@ export const dataCard = [
     id: 7,
     img: ImgHipsterUIUX,
     icon1: <FaLaptop />,
-    tes: "Tes Dasar",
+    tes: ["Tes Dasar", "Hipster"],
     titlecard: "UI/UX Designer",
     desccard: "Tes Dasar untuk membuka kelas hipster",
     icon2: <LuBarChart className="text-primaryBlue" />,
@@ -185,7 +183,7 @@ export const dataCard = [
     id: 8,
     img: ImgHipsterUI,
     icon1: <FaLaptop />,
-    tes: "Tes Level",
+    tes: ["Tes Level", "Hipster"],
     titlecard: "UI Designer",
     desccard: "Tes Level untuk membuka path UI Design",
     icon2: <LuBarChart className="text-primaryBlue" />,
@@ -197,7 +195,7 @@ export const dataCard = [
     id: 9,
     img: ImgHipsterUX,
     icon1: <FaLaptop />,
-    tes: "Tes Level",
+    tes: ["Tes Level", "Hipster"],
     titlecard: "UX Designer",
     desccard: "Tes Dasar untuk membuka path UX Design ",
     icon2: <LuBarChart className="text-primaryBlue" />,
