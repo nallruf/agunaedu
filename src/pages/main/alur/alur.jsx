@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import TombolAlur from "../../../components/main/alur/tombolalur";
-import { dataAlur, dataRole } from "../../../dummydata/dataalur";
-import ImgHacker from "../../../assets/img/role/Hacker.png";
+import {
+  dataAlur,
+  dataRole,
+  dataPilih,
+  dataCard,
+} from "../../../dummydata/dataalur";
+import ImgHacker from "../../../assets/img/gambarcard/hackeralgo.png";
 import RoleImg from "../../../components/main/alur/roleimg";
 import { FiBook } from "react-icons/fi";
 import { HiOutlineBookOpen } from "react-icons/hi";
@@ -9,6 +14,8 @@ import { FiUsers } from "react-icons/fi";
 import { FaLaptop } from "react-icons/fa";
 import { LuBarChart } from "react-icons/lu";
 import { GoStarFill } from "react-icons/go";
+import { IoIosArrowForward } from "react-icons/io";
+import SideRole from "../../../components/main/alur/siderole";
 
 const AlurSection = () => {
   const [activeRole, setActiveRole] = useState("Hacker");
@@ -47,54 +54,27 @@ const AlurSection = () => {
         ))}
       </div>
 
-      <div className="flex justify-between border-4">
-        <div className="flex flex-col gap-4">
-          <h1>Role Hacker</h1>
-          <p>Mempelajari pemrograman yang sesuai dengan Industri saat ini</p>
-          <hr className="mt-8" />
-          <div>
-            <div className="flex items-center gap-2 mt-4">
-              <FiBook />
-              <p>2 Alur Pembelajaran</p>
-            </div>
-            <div className="flex items-center gap-2 mt-4">
-              <HiOutlineBookOpen />
-              <p>30 Kelas Self Learning & Mentoring</p>
-            </div>
-            <div className="flex items-center gap-2 mt-4">
-              <FiUsers />
-              <p>210 Siswa</p>
-            </div>
-          </div>
-          <div className="mt-8">
-            <button className="rounded-lg text-primaryBlue bg-white p-2 border">
-              Pilih Role
-            </button>
-          </div>
-        </div>
-        <div className="flex justify-end items-center mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2">
-            <div className="rounded-lg border p-4 shadow-lg">
-              <div className="p 5 flex flex-col">
-                <div className="rounded-lg overflow-hidden">
-                  <img src={ImgHacker} alt="" />
-                </div>
-                <div className="flex flex-col">
-                  <div className="flex border rounded-lg items-center mx-auto">
-                    <FaLaptop /> Tes Dasar
-                  </div>
-                  <h1>Pemrogaman dasar</h1>
-                  <h1>Tes dasar</h1>
-                  <div className="flex items-center">
-                    <LuBarChart /> Level Pemula
-                    <GoStarFill />
-                    4.9 (2k)
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div className="flex justify-between border-4 p-5">
+        {dataPilih.map(() => (
+          <SideRole
+            key={dataPilih.id}
+            title={item.title}
+            desc={item.desc}
+            icon1={item.icon1}
+            icon2={item.icon2}
+            icon3={item.icon3}
+          />
+        ))}
+        {CardRole.map((item) => (
+          <CardRole
+            key={item.id}
+            title={item.titlecard}
+            desc={item.desccard}
+            icon1={item.icon1}
+            icon2={item.icon2}
+            icon3={item.icon3}
+          />
+        ))}
       </div>
     </section>
   );
