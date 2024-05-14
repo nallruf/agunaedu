@@ -34,7 +34,7 @@ const ResetPage = () => {
         </div>
         <div className="w-full p-8 sm:p-32 md:w-3/5 md:p-36">
           <TitleComponent
-            onclick={() => navigate(-1)}
+            onclick={() => navigate("/auth/login")}
             back="Kembali"
             title="Kata Sandi Baru"
             desc="Kata sandi harus berbeda dengan yang sebelumnya!"

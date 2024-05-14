@@ -1,6 +1,7 @@
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const SideCat = ({ desc, title, onclick, button }) => {
   const navigate = useNavigate();
@@ -12,13 +13,15 @@ const SideCat = ({ desc, title, onclick, button }) => {
         <h4 className="text-base sm:text-xl">{desc}</h4>
       </div>
       <div className="mt-8">
-        <button
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          transition={{ duration: 0.8 }}
           className="flex items-center gap-2 bg-white text-textSecondary py-[10px] px-[30px] rounded-lg font-semibold text-sm"
           onClick={() => navigate(onclick)}
         >
           <span>{button}</span>
           <FaArrowRight />
-        </button>
+        </motion.button>
       </div>
     </>
   );

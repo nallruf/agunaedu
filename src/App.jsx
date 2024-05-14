@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 import NotFoundPage from "./pages/notfound";
 import HomePage from "./pages/main/home";
@@ -9,6 +9,8 @@ import ForgotPage from "./pages/auth/forgot";
 import ResetPage from "./pages/auth/reset";
 import RegisterPage from "./pages/auth/register";
 import { AnimatePresence } from "framer-motion";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const DefaultLayout = ({ children }) => (
   <div>
@@ -20,6 +22,10 @@ const DefaultLayout = ({ children }) => (
 
 function App() {
   const location = useLocation();
+
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
   return (
     <>

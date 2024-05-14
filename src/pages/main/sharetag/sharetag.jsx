@@ -10,9 +10,11 @@ const ShareTagSection = () => {
     <>
       <section className="container mx-auto px-10 my-20">
         <div className="grid md:grid-cols-2">
-          {/* kiri */}
           <div className="my-auto overflow-hidden">
-            <h1 className="text-textPrimary font-bold text-3xl mb-4">
+            <h1
+              className="text-textPrimary font-bold text-3xl mb-4"
+              data-aos="zoom-in"
+            >
               Berbagai Keahlian Mentor Kami!
             </h1>
             {[...Array(2)].map((_, index) => (
@@ -36,8 +38,10 @@ const ShareTagSection = () => {
               <span className="text-[14px] font-semibold">Mulai Belajar</span>
             </motion.button>
           </div>
-          {/* kanan */}
-          <div className="flex md:justify-end justify-center mt-20 md:mt-0">
+          <div
+            className="flex md:justify-end justify-center mt-20 md:mt-0"
+            data-aos="zoom-in"
+          >
             <img
               src={ImgShare}
               alt="img-keahlian"

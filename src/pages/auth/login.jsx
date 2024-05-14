@@ -38,7 +38,7 @@ const LoginPage = () => {
 
         <div className="w-full p-8 sm:p-32 md:w-3/5 md:p-36">
           <TitleComponent
-            onclick={() => navigate(-1)}
+            onclick={() => navigate("/")}
             back="Kembali"
             title="Masuk ke Akun mu"
             desc="Yuk, lanjutin pembelajaran bersama mentormu!"

@@ -1,79 +1,118 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-scroll";
+import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import Logo from "../../assets/img/logo/logo-name-biru.png";
 import Menu from "./navbar/menu";
-import { FaBars, FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const NavBar = () => {
-  const [nav, setNav] = useState(false);
+  const [menu, setMenu] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    document.addEventListener("scroll", handleScroll);
+    return () => {
+      document.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const handleMenu = () => {
+    setMenu(!menu);
+  };
+
   return (
-    <nav className="bg-white border-b-2">
-      <div className="grid grid-cols-2 mx-[32px] py-2">
-        <div className="flex items-center justify-between">
-          <div className="z-50 md:w-auto w-full pt-2">
-            <img src={Logo} alt="logo" className="md:cursor-pointer h-9" />
-          </div>
-          <div className="hidden md:flex items-center gap-5 pr-10">
-            <Menu />
-          </div>
-        </div>
-        <div className="hidden md:flex justify-end gap-4 p-4">
-          <div>
-            <button
-              className="items-center rounded-xl font-semibold px-4 py-2 bg-white text-primary"
-              onClick={() => navigate("/auth/login")}
+    <nav
+      className={`fixed top-0 left-0 w-full bg-white ${
+        scrolled ? "shadow-md" : ""
+      } z-50`}
+    >
+      <div className="mx-[32px] py-2">
+        <div className="grid grid-cols-2 items-center h-16">
+          <div className="flex items-center justify-between">
+            <Link
+              to="hero"
+              className="flex-shrink-0 cursor-pointer pt-2"
+              spy={true}
+              smooth={true}
+              offset={-70}
             >
-              Masuk
-            </button>
+              <img
+                src={Logo}
+                alt="logo-aguna"
+                draggable="false"
+                className="h-9"
+              />
+            </Link>
+            <div className="hidden md:block pr-10">
+              <ul className="flex space-x-6">
+                <Menu />
+              </ul>
+            </div>
           </div>
-          <div>
-            <button
-              className="items-center rounded-xl font-semibold px-4 py-2 bg-primaryBlue text-white"
-              onClick={() => navigate("/auth/register")}
-            >
-              Daftar
-            </button>
+          <div className="hidden md:flex justify-end gap-4 p-4">
+            <div>
+              <motion.button
+                transition={{ duration: 0.8 }}
+                whileHover={{ scale: 1.2 }}
+                className="items-center rounded-xl font-semibold px-4 py-2 bg-white text-textTertiary"
+                onClick={() => navigate("/auth/login")}
+              >
+                Masuk
+              </motion.button>
+            </div>
+            <div>
+              <motion.button
+                transition={{ duration: 0.8 }}
+                whileHover={{ scale: 1.2 }}
+                className="items-center rounded-xl font-semibold px-4 py-2 bg-primaryBlue text-white"
+                onClick={() => navigate("/auth/register")}
+              >
+                Daftar
+              </motion.button>
+            </div>
+          </div>
+
+          <div
+            onClick={handleMenu}
+            className="md:hidden cursor-pointer text-primaryBlue top-10 z-50 justify-end flex"
+          >
+            {menu ? <AiOutlineClose size={30} /> : <AiOutlineMenu size={30} />}
           </div>
         </div>
 
-        <div
-          onClick={() => setNav(!nav)}
-          className="cursor-pointer z-10 md:hidden flex items-center justify-end text-primaryBlue"
-        >
-          {nav ? <FaTimes size={30} /> : <FaBars size={30} />}
-        </div>
-      </div>
-      <div>
-        {nav && (
-          <ul
-            className={`
-            md:hidden bg-white absolute w-full py-10
-          `}
-          >
-            <li className="mx-[32px]">
+        {menu && (
+          <div className="md:hidden">
+            <ul className="py-5 text-lg space-y-3">
               <Menu />
-              <div className="py-5 flex gap-3">
-                <div>
-                  <button
-                    className="items-center rounded-xl font-semibold px-4 py-2 border-borderSecondary border"
-                    onClick={() => navigate("/auth/login")}
-                  >
-                    Masuk
-                  </button>
-                </div>
-                <div>
-                  <button
-                    className="items-center rounded-xl font-semibold px-4 py-[9px] bg-primaryBlue text-white"
-                    onClick={() => navigate("/auth/register")}
-                  >
-                    Daftar
-                  </button>
-                </div>
+            </ul>
+            <div className="py-5 flex gap-3">
+              <div>
+                <motion.button
+                  transition={{ duration: 0.8 }}
+                  whileHover={{ scale: 1.2 }}
+                  className="items-center rounded-xl font-semibold px-4 py-2 text-iconInput"
+                  onClick={() => navigate("/auth/login")}
+                >
+                  Masuk
+                </motion.button>
               </div>
-            </li>
-          </ul>
+              <div>
+                <motion.button
+                  transition={{ duration: 0.8 }}
+                  whileHover={{ scale: 1.2 }}
+                  className="items-center rounded-xl font-semibold px-4 py-[9px] bg-primaryBlue text-white"
+                  onClick={() => navigate("/auth/register")}
+                >
+                  Daftar
+                </motion.button>
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </nav>

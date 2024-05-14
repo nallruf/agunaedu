@@ -18,7 +18,7 @@ const AlurSection = () => {
   };
 
   return (
-    <section className="container mx-auto px-10 space-y-16 mb-[140px] mt-[70px]">
+    <section className="container mx-auto px-10 space-y-16 mb-[140px] mt-[70px]" id="alur">
       <div className="flex flex-col justify-center text-center">
         <h1 className="text-4xl font-semibold text-textPrimary">
           Alur pengembangan kami!
@@ -29,8 +29,8 @@ const AlurSection = () => {
         </h1>
       </div>
 
-      <div class="border-dashed border-black border" />
-      <div className="flex">
+      {/* <div className="border-dashed border-black border" /> */}
+      <div className="grid md:grid-cols-3 gap-4 md:gap-0">
         {dataAlur.map((alur) => (
           <TombolAlur key={alur.id} {...alur} />
         ))}

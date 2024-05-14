@@ -7,24 +7,18 @@ import Logo from "../../../assets/img/logo/logo-name-putih.png";
 const ToolsSection = () => {
   return (
     <section className="bg-primaryBlue">
-      <div className="container mx-auto px-10 py-28">
+      <div className="container mx-auto px-10 py-20">
         <div className="flex flex-col space-y-4 text-center">
-          <span className="text-4xl text-white font-semibold">
+          <span className="text-4xl text-white font-semibold" data-aos="zoom-in">
             Pelajari berbagai Tools yang sesuai dengan Industri!
           </span>
-          <span className="text-white text-2xl font-semibold">Mulai kembangkan skill mu bersama kami</span>
-          <div className="flex justify-center">
-            <img
-              src={Logo}
-              alt="logo-aguna"
-              draggable="false"
-              className="w-[15%]"
-            />
-          </div>
+          <span className="text-white text-2xl" data-aos="zoom-in">
+            Mulai kembangkan skill mu bersama kami
+          </span>
         </div>
       </div>
 
-      <div className="overflow-hidden pb-40">
+      <div className="overflow-hidden pb-32">
         {[...Array(2)].map((_, index) => (
           <Marquee
             key={index}

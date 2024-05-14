@@ -25,7 +25,10 @@ const UpgradeSection = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-3 container mx-auto px-10 pt-20 pb-10">
+      <div
+        className="flex flex-col gap-3 container mx-auto px-10 pt-20 pb-10"
+        data-aos="fade-right"
+      >
         <h1 className="text-textPrimary text-3xl font-semibold">
           Tingkatkan lebih dalam lagi kemampuanmu!
         </h1>
@@ -52,7 +55,10 @@ const UpgradeSection = () => {
             />
           </div>
           <div className="flex justify-between md:flex-row flex-col">
-            <div className="my-12 sm:my-20 md:my-[150px] md:w-[40%]">
+            <div
+              className="my-12 sm:my-20 md:my-[150px] md:w-[40%]"
+              data-aos="fade-right"
+            >
               {filteredDataSide.map((item, index) => (
                 <SideCat
                   key={index}
@@ -64,7 +70,10 @@ const UpgradeSection = () => {
               ))}
             </div>
 
-            <div className="grid md:grid-cols-2 mt-10 gap-3 justify-end">
+            <div
+              className="grid md:grid-cols-2 mt-10 gap-3 justify-end"
+              data-aos="zoom-in"
+            >
               {filteredDataCard.map((item, index) => (
                 <div key={index}>
                   <CardCat
