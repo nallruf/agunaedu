@@ -19,26 +19,49 @@ const HeaderCourse = ({ buttonBack, role, desc, imgRole, skills, goto }) => {
                 <MdOutlineKeyboardArrowLeft className="text-2xl" />
                 <h3>{buttonBack}</h3>
               </Link>
-              <h1 className="text-6xl font-semibold pt-20 pb-3">{role}</h1>
-              <span className="text-lg">{desc}</span>
+              <motion.h1
+                initial={{ x: -300, scale: 0.5 }}
+                animate={{ x: 0, scale: 1 }}
+                transition={{ duration: 0.8 }}
+                className="text-6xl font-semibold pt-20 pb-3"
+              >
+                {role}
+              </motion.h1>
+              <motion.h3
+                initial={{ x: 300, scale: 0.5 }}
+                animate={{ x: 0, scale: 1 }}
+                transition={{ duration: 0.8 }}
+                className="text-lg"
+              >
+                {desc}
+              </motion.h3>
               <div className="flex mt-5 gap-3">
                 {skills.map((skill) => (
                   <motion.div
                     whileHover={{ scale: 1.1 }}
-                    className="border-[1.5px] border-borderPrimary bg-[#F9FAFB] text-textLabel text-[14px] font-medium inline-flex items-center px-3 py-[6px] rounded-[6px] mr-2 my-2 cursor-pointer gap-2 "
+                    initial={{ x: -100, scale: 0.5 }}
+                    animate={{ x: 0, scale: 1 }}
+                    transition={{ duration: 0.8 }}
+                    className="border-[1.5px] border-borderPrimary bg-[#F9FAFB] text-textLabel text-[14px] font-medium inline-flex items-center px-3 py-[6px] rounded-[6px] my-2 cursor-pointer gap-2"
                   >
                     {skill}
                   </motion.div>
                 ))}
               </div>
             </div>
-            <div className="flex justify-center md:justify-end">
+            <motion.div
+              className="flex justify-center md:justify-end"
+              initial={{ x: 100, scale: 0.5 }}
+              animate={{ x: 0, scale: 1 }}
+              transition={{ duration: 0.8 }}
+            >
               <img
                 src={imgRole}
                 alt="img-role"
+                draggable="false"
                 className="md:w-[90%] sm:w-2/3"
               />
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

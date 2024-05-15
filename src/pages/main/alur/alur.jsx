@@ -99,6 +99,7 @@ const AlurSection = () => {
               img={item.img}
               level={item.level}
               rating={item.rating}
+              isLocked={item.isLocked}
             />
           ))}
         </div>
