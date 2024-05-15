@@ -11,7 +11,7 @@ const HeroSection = () => {
 
   return (
     <div
-      className="container mx-auto px-10 sm:my-[150px] md:my-[200px]"
+      className="container mx-auto px-10 my-[100px] sm:my-[150px] md:my-[200px]"
       id="hero"
     >
       <div className="grid md:grid-cols-2">
@@ -60,12 +60,12 @@ const HeroSection = () => {
             </div>
           </div>
           <motion.div
-            className="flex mt-6 space-x-6"
+            className="flex mt-6 sm:space-x-6"
             initial={{ x: -300, scale: 0.5 }}
             animate={{ x: 0, scale: 1 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="flex items-center">
+            <div className="hidden sm:flex items-center">
               <IoChatbubbleEllipsesOutline className="text-5xl text-textQuote" />
             </div>
             <div className="flex flex-col">

@@ -37,7 +37,10 @@ const UpgradeSection = () => {
         </h3>
       </div>
 
-      <section className="bg-primaryBlue relative overflow-hidden">
+      <section
+        className="bg-primaryBlue relative overflow-hidden"
+        data-aos="fade-right"
+      >
         <div className="absolute bottom-0 left-0 transform translate-x-[-50%] translate-y-[50%] w-[600px] h-[600px] rounded-full bg-secondaryBlue" />
         <div className="container mx-auto px-10 z-10 relative">
           <div className="top-0 translate-y-[-8px]">

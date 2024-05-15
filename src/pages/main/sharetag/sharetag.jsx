@@ -10,11 +10,8 @@ const ShareTagSection = () => {
     <>
       <section className="container mx-auto px-10 my-20">
         <div className="grid md:grid-cols-2">
-          <div className="my-auto overflow-hidden">
-            <h1
-              className="text-textPrimary font-bold text-3xl mb-4"
-              data-aos="zoom-in"
-            >
+          <div className="my-auto overflow-hidden" data-aos="zoom-in">
+            <h1 className="text-textPrimary font-bold text-3xl mb-4">
               Berbagai Keahlian Mentor Kami!
             </h1>
             {[...Array(2)].map((_, index) => (

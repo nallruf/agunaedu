@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import TombolAlur from "../../../components/main/alur/tombolalur";
-import Slider from "react-slick";
 import {
   dataAlur,
   dataRole,
@@ -27,37 +26,35 @@ const AlurSection = () => {
       test.toLowerCase().includes(activeRole.toLowerCase())
     )
   );
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 2,
-    slidesToScroll: 1,
-  };
 
   return (
     <section
-      className="container mx-auto px-10 space-y-16 mb-[140px] mt-[70px]"
+      className="container mx-auto px-10 space-y-16 mb-[80px] mt-[70px]"
       id="alur"
     >
       <div className="flex flex-col justify-center text-center">
-        <h1 className="text-4xl font-semibold text-textPrimary">
+        <h1
+          className="text-2xl sm:text-4xl font-semibold text-textPrimary"
+          data-aos="zoom-in"
+        >
           Alur pengembangan kami!
         </h1>
-        <h1 className="text-[22px] text-textTertiary mt-4">
+        <h1
+          className="text-base sm:text-[22px] text-textTertiary mt-4"
+          data-aos="zoom-in"
+        >
           Kembangkan satu skill secara bertahap <br />
           dengan konsisten melalui alur pembelajaran kami!
         </h1>
       </div>
 
-      {/* <div className="border-dashed border-black border" /> */}
-      <div className="grid md:grid-cols-3 gap-5 md:gap-0">
+      <div className="grid md:grid-cols-3 gap-5 md:gap-0" data-aos="fade-right">
         {dataAlur.map((alur) => (
           <TombolAlur key={alur.id} {...alur} />
         ))}
       </div>
 
-      <div className="flex gap-5">
+      <div className="flex gap-5" data-aos="fade-right">
         {dataRole.map((roleimg) => (
           <RoleImg
             key={roleimg.id}
@@ -67,8 +64,9 @@ const AlurSection = () => {
           />
         ))}
       </div>
-      <div className="flex justify-between md:flex-row flex-col items-center">
-        <div className="my-12 sm:my-20 md:my-[150px] md:w-[40%] ">
+
+      <div className="flex justify-between md:flex-row flex-col">
+        <div className="md:w-[40%]" data-aos="fade-right">
           {filteredDataPilih.map((item) => (
             <SideRole
               key={item.id}
@@ -80,12 +78,13 @@ const AlurSection = () => {
               jmlalur={item.jmlalur}
               jmlkelas={item.jmlkelas}
               jmlsiswa={item.jmlsiswa}
+              goto={item.goto}
             />
           ))}
         </div>
-        {/* <Slider {...settings}> */}
+
         <div
-          className="grid md:grid-cols-2 mt-10 gap-10 justify-end md:py-[70px]"
+          className="grid md:grid-cols-2 gap-10 md:justify-end justify-start"
           data-aos="zoom-in"
         >
           {filteredDataCard.slice(0, 2).map((item) => (
@@ -103,7 +102,6 @@ const AlurSection = () => {
             />
           ))}
         </div>
-        {/* </Slider> */}
       </div>
     </section>
   );

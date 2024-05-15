@@ -5,10 +5,13 @@ import Logo from "../../assets/img/logo/logo-name-biru.png";
 import Menu from "./navbar/menu";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import ImgAvatar from "../../assets/img/team/ulum.png";
+import { toast } from "react-hot-toast";
 
 const NavBar = () => {
   const [menu, setMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,6 +26,23 @@ const NavBar = () => {
 
   const handleMenu = () => {
     setMenu(!menu);
+  };
+
+  const checkIsLoggedIn = () => {
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    return isLoggedIn === "true";
+  };
+
+  const [isLoggedIn, setIsLoggedIn] = useState(checkIsLoggedIn());
+
+  const logout = () => {
+    localStorage.setItem("isLoggedIn", "false");
+    setIsLoggedIn(false);
+    toast.success("Logout Success!");
+  };
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
   };
 
   return (
@@ -55,26 +75,65 @@ const NavBar = () => {
             </div>
           </div>
           <div className="hidden md:flex justify-end gap-4 p-4">
-            <div>
-              <motion.button
-                transition={{ duration: 0.8 }}
-                whileHover={{ scale: 1.2 }}
-                className="items-center rounded-xl font-semibold px-4 py-2 bg-white text-textTertiary"
-                onClick={() => navigate("/auth/login")}
-              >
-                Masuk
-              </motion.button>
-            </div>
-            <div>
-              <motion.button
-                transition={{ duration: 0.8 }}
-                whileHover={{ scale: 1.2 }}
-                className="items-center rounded-xl font-semibold px-4 py-2 bg-primaryBlue text-white"
-                onClick={() => navigate("/auth/register")}
-              >
-                Daftar
-              </motion.button>
-            </div>
+            {isLoggedIn ? (
+              <>
+                <div className="flex items-center gap-5">
+                  <div className="flex items-center justify-center relative">
+                    <img
+                      src={ImgAvatar}
+                      alt="img-profile"
+                      draggable="false"
+                      className="rounded-full w-8 cursor-pointer"
+                      onClick={toggleDropdown}
+                    />
+                  </div>
+                  <div>
+                    <h1 className="text-textLabel text-[14px] font-semibold">
+                      Hi, Aguna
+                    </h1>
+                  </div>
+                  {isDropdownOpen && (
+                    <div className="absolute w-[240px] top-24 right-10 bg-white border border-gray-200 shadow-md rounded-lg ">
+                      <div className="text-textTertiary text-[14px] font-semibold py-2 px-4">
+                        <div className="flex flex-col gap-4 py-2 px-3 items-start">
+                          <button
+                            onClick={() => navigate("/admin/dashboard")}
+                            className="hover:text-primaryBlue"
+                          >
+                            Dashboard
+                          </button>
+                          <button
+                            onClick={logout}
+                            className="hover:text-primaryBlue"
+                          >
+                            Keluar
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </>
+            ) : (
+              <>
+                <motion.button
+                  transition={{ duration: 0.8 }}
+                  whileHover={{ scale: 1.2 }}
+                  className="items-center rounded-xl font-semibold px-4 py-2 bg-white text-textTertiary"
+                  onClick={() => navigate("/auth/login")}
+                >
+                  Masuk
+                </motion.button>
+                <motion.button
+                  transition={{ duration: 0.8 }}
+                  whileHover={{ scale: 1.2 }}
+                  className="items-center rounded-xl font-semibold px-4 py-2 bg-primaryBlue text-white"
+                  onClick={() => navigate("/auth/register")}
+                >
+                  Daftar
+                </motion.button>
+              </>
+            )}
           </div>
 
           <div
@@ -91,26 +150,69 @@ const NavBar = () => {
               <Menu />
             </ul>
             <div className="py-5 flex gap-3">
-              <div>
-                <motion.button
-                  transition={{ duration: 0.8 }}
-                  whileHover={{ scale: 1.2 }}
-                  className="items-center rounded-xl font-semibold px-4 py-2 text-iconInput"
-                  onClick={() => navigate("/auth/login")}
-                >
-                  Masuk
-                </motion.button>
-              </div>
-              <div>
-                <motion.button
-                  transition={{ duration: 0.8 }}
-                  whileHover={{ scale: 1.2 }}
-                  className="items-center rounded-xl font-semibold px-4 py-[9px] bg-primaryBlue text-white"
-                  onClick={() => navigate("/auth/register")}
-                >
-                  Daftar
-                </motion.button>
-              </div>
+              {isLoggedIn ? (
+                <>
+                  <div className="flex items-center gap-5">
+                    <div className="flex items-center justify-center relative">
+                      <img
+                        src={ImgAvatar}
+                        alt="img-profile"
+                        draggable="false"
+                        className="rounded-full w-8 cursor-pointer"
+                        onClick={toggleDropdown}
+                      />
+                    </div>
+                    <div>
+                      <h1 className="text-textLabel text-[14px] font-semibold">
+                        Hi, Aguna
+                      </h1>
+                    </div>
+                    {isDropdownOpen && (
+                      <div className="absolute w-[240px] top-[520px] md:top-24 md:right-10 bg-white border border-gray-200 shadow-md rounded-lg ">
+                        <div className="text-textTertiary text-[14px] font-semibold py-2 px-4">
+                          <div className="flex flex-col gap-4 py-2 px-3 items-start">
+                            <button
+                              onClick={() => navigate("/admin/dashboard")}
+                              className="hover:text-primaryBlue"
+                            >
+                              Dashboard
+                            </button>
+                            <button
+                              onClick={logout}
+                              className="hover:text-primaryBlue"
+                            >
+                              Keluar
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div>
+                    <motion.button
+                      transition={{ duration: 0.8 }}
+                      whileHover={{ scale: 1.2 }}
+                      className="items-center rounded-xl font-semibold px-4 py-2 text-iconInput"
+                      onClick={() => navigate("/auth/login")}
+                    >
+                      Masuk
+                    </motion.button>
+                  </div>
+                  <div>
+                    <motion.button
+                      transition={{ duration: 0.8 }}
+                      whileHover={{ scale: 1.2 }}
+                      className="items-center rounded-xl font-semibold px-4 py-[9px] bg-primaryBlue text-white"
+                      onClick={() => navigate("/auth/register")}
+                    >
+                      Daftar
+                    </motion.button>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         )}

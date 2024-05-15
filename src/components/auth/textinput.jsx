@@ -11,6 +11,8 @@ const TextInputComponent = ({
   id,
   passwordInput = false,
   searchInput = false,
+  value = "",
+  onChange = () => {},
 }) => {
   const [openEye, setOpenEye] = useState(false);
   const togglePassword = () => {
@@ -42,6 +44,8 @@ const TextInputComponent = ({
           placeholder={placeholder}
           name={name}
           id={id}
+          value={value}
+          onChange={onChange}
           autoComplete={passwordInput ? "current-password" : "off"}
           className={`w-full border-2 border-borderPrimary rounded-[8px] px-[14px] py-[10px] mt-[6px] focus:outline-none focus:ring-2 focus:ring-primaryBlue shadow-sm ${
             searchInput ? "pl-10" : ""

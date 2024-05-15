@@ -3,7 +3,7 @@ import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
-const HeaderCourse = ({ buttonBack, role, desc, imgRole, skills }) => {
+const HeaderCourse = ({ buttonBack, role, desc, imgRole, skills, goto }) => {
   const navigate = useNavigate();
 
   return (
@@ -14,7 +14,7 @@ const HeaderCourse = ({ buttonBack, role, desc, imgRole, skills }) => {
             <div className="my-[52px] md:my-[70px]">
               <Link
                 className="flex items-center text-lg gap-3"
-                to={navigate(-1)}
+                to={navigate(goto)}
               >
                 <MdOutlineKeyboardArrowLeft className="text-2xl" />
                 <h3>{buttonBack}</h3>

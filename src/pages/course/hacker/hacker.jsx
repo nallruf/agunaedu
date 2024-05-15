@@ -11,6 +11,7 @@ const HackerPage = () => {
     <>
       <div>
         <HeaderCourse
+          goto="/"
           buttonBack="Kembali"
           role="Role Hacker"
           desc="Mulai belajar pemrograman yang sesuai dengan industri saat ini agar dapat berkembang menjadi seorang developer handal."

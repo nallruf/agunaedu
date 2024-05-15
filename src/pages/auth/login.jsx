@@ -1,20 +1,50 @@
-import React, { useEffect } from "react";
+// LoginPage.js
+
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Imglogin from "../../assets/img/illustration/login.png";
 import ButtonComponent from "../../components/auth/button";
 import InfoComponent from "../../components/auth/info";
 import TitleComponent from "../../components/auth/title";
 import TextInputComponent from "../../components/auth/textinput";
+import { toast } from "react-hot-toast";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const checkIsLoggedIn = () => {
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    return isLoggedIn === "true";
+  };
+  const [isLoggedIn, setIsLoggedIn] = useState(checkIsLoggedIn());
 
   useEffect(() => {
     document.title = "Aguna Edu | Login";
   }, []);
 
-  const handleSubmit = () => {
-    navigate("/");
+  const login = () => {
+    localStorage.setItem("isLoggedIn", "true");
+    setIsLoggedIn(true);
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { email, password } = formData;
+    const dummyUser = { email: "agunaedu@gmail.com", password: "12345678" };
+    if (email === dummyUser.email && password === dummyUser.password) {
+      toast.success("Login Success!");
+      login();
+      navigate("/");
+    } else {
+      toast.error("Email atau password salah. Silakan coba lagi.");
+    }
   };
 
   return (
@@ -52,6 +82,8 @@ const LoginPage = () => {
                 placeholder="Masukan Email"
                 name="email"
                 id="email"
+                value={formData.email}
+                onChange={handleChange}
               />
             </div>
             <TextInputComponent
@@ -61,6 +93,8 @@ const LoginPage = () => {
               placeholder="Masukan Kata Sandi"
               name="password"
               id="password"
+              value={formData.password}
+              onChange={handleChange}
               passwordInput={true}
             />
             <div className="flex justify-between items-center">

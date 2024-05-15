@@ -13,6 +13,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import HackerPage from "./pages/course/hacker/hacker";
 import PathWebPage from "./pages/course/hacker/path/pathweb";
+import { Toaster } from "react-hot-toast";
 
 const DefaultLayout = ({ children }) => (
   <div>
@@ -39,6 +40,13 @@ function App() {
   return (
     <>
       <AnimatePresence>
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            duration: 3000,
+            style: { background: "#1470EF", color: "#ffff" },
+          }}
+        />
         <Routes location={location} key={location.pathname}>
           <Route path="*" element={<Navigate to="/404" replace />} />
           <Route path="/404" element={<NotFoundPage />} />

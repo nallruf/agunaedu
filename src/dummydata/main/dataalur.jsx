@@ -69,6 +69,7 @@ export const dataPilih = [
     jmlalur: "2 Alur Pembelajaran",
     jmlkelas: "30 Kelas Self Learning & Mentoring",
     jmlsiswa: "210 Siswa",
+    goto: "/course/hacker",
   },
   {
     id: 2,
@@ -80,6 +81,7 @@ export const dataPilih = [
     jmlalur: "2 Alur Pembelajaran",
     jmlkelas: "30 Kelas Self Learning & Mentoring",
     jmlsiswa: "210 Siswa",
+    goto: "/course/hustler",
   },
   {
     id: 3,
@@ -91,6 +93,7 @@ export const dataPilih = [
     jmlalur: "2 Alur Pembelajaran",
     jmlkelas: "30 Kelas Self Learning & Mentoring",
     jmlsiswa: "210 Siswa",
+    goto: "/course/hipster",
   },
 ];
 

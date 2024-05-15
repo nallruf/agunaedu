@@ -12,7 +12,10 @@ const TestiSection = () => {
   };
   return (
     <>
-      <section className="bg-primaryBlue relative overflow-hidden">
+      <section
+        className="bg-primaryBlue relative overflow-hidden"
+        data-aos="zoom-in"
+      >
         <div className="absolute bottom-0 left-0 transform translate-x-[-45%] w-[350px] h-[350px] rounded-full bg-secondaryBlue" />
         <div className="absolute top-0 right-0 transform translate-x-1/2 w-[200px] h-[200px] rounded-full bg-secondaryBlue" />
         <div className="container mx-auto pt-[90px] pb-[128px] px-10 z-10 relative">
