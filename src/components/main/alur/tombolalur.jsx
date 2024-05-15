@@ -2,7 +2,7 @@ import React from "react";
 
 const TombolAlur = ({ iconbtn, alur1, alur2 }) => {
   return (
-    <div className="container mx-auto flex justify-between">
+    <div className="container flex justify-between relative">
       <div className="flex items-center">
         <div className="flex items-center rounded-full border-2 border-primaryBlue p-4 gap-4">
           <div className="bg-secondaryBlue rounded-full p-5 text-white">
