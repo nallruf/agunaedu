@@ -11,10 +11,19 @@ import RegisterPage from "./pages/auth/register";
 import { AnimatePresence } from "framer-motion";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import HackerPage from "./pages/course/hacker/hacker";
+import PathWebPage from "./pages/course/hacker/path/pathweb";
 
 const DefaultLayout = ({ children }) => (
   <div>
     <NavBar />
+    {children}
+    <Footer />
+  </div>
+);
+
+const CourseLayout = ({ children }) => (
+  <div>
     {children}
     <Footer />
   </div>
@@ -46,9 +55,24 @@ function App() {
           <Route path="/auth/forgot" element={<ForgotPage />} />
           <Route path="/auth/reset" element={<ResetPage />} />
 
-          {/* <Route path="/admin" element={<PrivateRoute />}>
-          <Route path="dashboard" element={<DashboardPage />} />
-        </Route> */}
+          <Route path="/course">
+            <Route
+              path="hacker"
+              element={
+                <CourseLayout>
+                  <HackerPage />
+                </CourseLayout>
+              }
+            />
+            <Route
+              path="hacker/path-web"
+              element={
+                <CourseLayout>
+                  <PathWebPage />
+                </CourseLayout>
+              }
+            />
+          </Route>
         </Routes>
       </AnimatePresence>
     </>

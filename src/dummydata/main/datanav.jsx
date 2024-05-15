@@ -24,9 +24,9 @@ export const dataNav = [
     sublinks: [
       {
         sublink: [
-          { name: "Hustler", link: "/course", icon3: <FiUser /> },
-          { name: "Hipster", link: "/course", icon3: <PiPenNib /> },
-          { name: "Hacker", link: "/course", icon3: <RiCodeView /> },
+          { name: "Hustler", link: "/course/hustler", icon3: <FiUser /> },
+          { name: "Hipster", link: "/course/hipster", icon3: <PiPenNib /> },
+          { name: "Hacker", link: "/course/hacker", icon3: <RiCodeView /> },
         ],
       },
     ],
