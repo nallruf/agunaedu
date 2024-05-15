@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import TombolAlur from "../../../components/main/alur/tombolalur";
+import Slider from "react-slick";
 import {
   dataAlur,
   dataRole,
@@ -26,6 +27,13 @@ const AlurSection = () => {
       test.toLowerCase().includes(activeRole.toLowerCase())
     )
   );
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+  };
 
   return (
     <section
@@ -43,7 +51,7 @@ const AlurSection = () => {
       </div>
 
       {/* <div className="border-dashed border-black border" /> */}
-      <div className="grid md:grid-cols-3 gap-4 md:gap-0">
+      <div className="grid md:grid-cols-3 gap-5 md:gap-0">
         {dataAlur.map((alur) => (
           <TombolAlur key={alur.id} {...alur} />
         ))}
@@ -59,35 +67,43 @@ const AlurSection = () => {
           />
         ))}
       </div>
-
-      <div className="flex justify-between border-4 p-5">
-        {filteredDataPilih.map((item) => (
-          <SideRole
-            key={item.id}
-            title={item.title}
-            desc={item.desc}
-            icon1={item.icon1}
-            icon2={item.icon2}
-            icon3={item.icon3}
-            jmlalur={item.jmlalur}
-            jmlkelas={item.jmlkelas}
-            jmlsiswa={item.jmlsiswa}
-          />
-        ))}
-        {filteredDataCard.map((item) => (
-          <CardRole
-            key={item.id}
-            titlecard={item.titlecard}
-            desccard={item.desccard}
-            icon1={item.icon1}
-            icon2={item.icon2}
-            icon3={item.icon3}
-            tes={item.tes}
-            img={item.img}
-            level={item.level}
-            rating={item.rating}
-          />
-        ))}
+      <div className="flex justify-between md:flex-row flex-col items-center">
+        <div className="my-12 sm:my-20 md:my-[150px] md:w-[40%] ">
+          {filteredDataPilih.map((item) => (
+            <SideRole
+              key={item.id}
+              title={item.title}
+              desc={item.desc}
+              icon1={item.icon1}
+              icon2={item.icon2}
+              icon3={item.icon3}
+              jmlalur={item.jmlalur}
+              jmlkelas={item.jmlkelas}
+              jmlsiswa={item.jmlsiswa}
+            />
+          ))}
+        </div>
+        {/* <Slider {...settings}> */}
+        <div
+          className="grid md:grid-cols-2 mt-10 gap-10 justify-end md:py-[70px]"
+          data-aos="zoom-in"
+        >
+          {filteredDataCard.slice(0, 2).map((item) => (
+            <CardRole
+              key={item.id}
+              titlecard={item.titlecard}
+              desccard={item.desccard}
+              icon1={item.icon1}
+              icon2={item.icon2}
+              icon3={item.icon3}
+              tes={item.tes}
+              img={item.img}
+              level={item.level}
+              rating={item.rating}
+            />
+          ))}
+        </div>
+        {/* </Slider> */}
       </div>
     </section>
   );
