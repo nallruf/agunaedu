@@ -42,8 +42,9 @@ const CardRole = ({
         <div className="bg-white p-6 flex flex-col rounded-b-2xl shadow-lg">
           <div className="flex flex-col gap-3">
             <div className="flex gap-3">
-              {tes.map((test) => (
+              {tes.map((test, index) => (
                 <div
+                  key={index}
                   className={`flex items-center border-2 px-3 py-1 text-sm gap-2 font-medium rounded-lg ${
                     isLocked ? "text-iconInput" : "text-textLabel"
                   } border-borderPrimary`}
