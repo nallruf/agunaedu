@@ -12,7 +12,7 @@ const PathWebPage = () => {
     <>
       <div>
         <HeaderCourse
-          goto="/course/hacker"
+          goto="/course/hacker/"
           buttonBack="Hacker"
           role="Web Development"
           desc="Mulai belajar pemrograman web development dan berkembang menjadi seorang web developer handal."

@@ -11,7 +11,7 @@ export const dataCardWeb = [
     id: 1,
     img: ImgHackerAlgo,
     icon1: <FaLaptop />,
-    tes: "Front End Web Development",
+    tes: ["Front End Web"],
     titlecard: "Front End Web with HTML CSS ",
     desccard:
       "Tes Dasar Mempelajari Front End web dengan HTML dan CSS membuka kelas hacker",
@@ -25,7 +25,7 @@ export const dataCardWeb = [
     id: 2,
     img: ImgHackerWeb,
     icon1: <FaLaptop />,
-    tes: "Front End Web Development",
+    tes: ["Front End Web", "Web"],
     titlecard: "Modern Website Tailwind CSS ",
     desccard:
       "Mempelajari Tailwind css pada website modern dengan design trend terbaru",
@@ -39,7 +39,7 @@ export const dataCardWeb = [
     id: 3,
     img: ImgHackerMobile,
     icon1: <FaLaptop />,
-    tes: "Front End Web Development",
+    tes: ["Front End Web", "Web"],
     titlecard: "React JS & Tailwind CSS",
     desccard: "Mengimplementasikan Tailwind CSS ke dalam React JS",
     icon2: <LuBarChart />,
@@ -52,7 +52,7 @@ export const dataCardWeb = [
     id: 4,
     img: ImgHustlerLead,
     icon1: <FaLaptop />,
-    tes: "Front End Web Development",
+    tes: ["Front End Web", "Web"],
     titlecard: " Front End dengan Laravel",
     desccard: "Mempelajari cara front end dengan laravel",
     icon2: <LuBarChart />,
@@ -60,5 +60,20 @@ export const dataCardWeb = [
     level: "Level Tinggi",
     rating: "4.9 (2k)",
     isLocked: false,
+  },
+];
+
+export const dataSideWeb = [
+  {
+    title: "Front End Web Development",
+    desc: "Berbagai course khusus front-end web yang bisa kamu pelajari!",
+  },
+  {
+    title: "Back End Web Development",
+    desc: "Berbagai course khusus back-end web yang bisa kamu pelajari!",
+  },
+  {
+    title: "Full Stack Web Development",
+    desc: "Berbagai course khusus full stack web yang bisa kamu pelajari!",
   },
 ];

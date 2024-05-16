@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import CardRole from "../../main/alur/cardrole";
-import { dataCardWeb } from "../../../dummydata/course/datacardweb";
-import CategoryWeb from "./categoryweb";
+import {
+  dataCardWeb,
+  dataSideWeb,
+} from "../../../dummydata/course/datacardweb";
+import { FaLaptop } from "react-icons/fa";
+import Category from "../../main/upgrade/category";
+import TitleSkill from "./titleskill";
 
 const SkillWeb = () => {
   const [activeCategory, setActiveCategory] = useState("Front End Web");
@@ -9,52 +14,52 @@ const SkillWeb = () => {
     setActiveCategory(category);
   };
 
-  const DataCardWeb = dataCardWeb.filter((tes) =>
-    tes.toLowerCase().includes(activeCategory.toLowerCase())
+  const filteredDataCardWeb = dataCardWeb.filter(({ tes }) =>
+    tes.some((test) =>
+      test.toLowerCase().includes(activeCategory.toLowerCase())
+    )
+  );
+
+  const filteredDataTitle = dataSideWeb.filter(({ title }) =>
+    title.toLowerCase().includes(activeCategory.toLowerCase())
   );
 
   return (
-    <section>
+    <section
+      className="bg-primaryBlue relative overflow-hidden h-screen"
+      data-aos="fade-right"
+    >
       <div className="absolute bottom-0 left-0 transform translate-x-[-50%] translate-y-[50%] w-[600px] h-[600px] rounded-full bg-secondaryBlue" />
       <div className="container mx-auto px-10 z-10 relative">
         <div className="top-0 translate-y-[-8px]">
-          <CategoryWeb
+          <Category
             icon={<FaLaptop />}
-            skill="Front End Web"
+            upgrade="Front End Web"
             isActive={activeCategory === "Front End Web"}
             onClick={() => handleCategoryClick("Front End Web")}
           />
-          <CategoryWeb
+          <Category
             icon={<FaLaptop />}
-            upgrade="Back-End Web"
-            isActive={activeCategory === "Back-End Web"}
-            onClick={() => handleCategoryClick("Back-End Web")}
+            upgrade="Back End Web"
+            isActive={activeCategory === "Back End Web"}
+            onClick={() => handleCategoryClick("Back End Web")}
           />
-          <CategoryWeb
+          <Category
             icon={<FaLaptop />}
             upgrade="Full Stack Web"
             isActive={activeCategory === "Full Stack Web"}
             onClick={() => handleCategoryClick("Full Stack Web")}
           />
         </div>
-        <div className="flex justify-between md:flex-row ">
-          <div
-            className="grid md:grid-cols-2 mt-10 gap-3 justify-end"
-            data-aos="zoom-in"
-          >
-            {DataCardWeb.map((item) => (
-              <CardRole
-                key={item.id}
-                titlecard={item.titlecard}
-                desccard={item.desccard}
-                icon1={item.icon1}
-                icon2={item.icon2}
-                icon3={item.icon3}
-                tes={item.tes}
-                img={item.img}
-                level={item.level}
-                rating={item.rating}
-              />
+        <div className="flex flex-col gap-10">
+          <div className="mt-10">
+            {filteredDataTitle.map((item, index) => (
+              <TitleSkill key={index} {...item} />
+            ))}
+          </div>
+          <div className="flex gap-10">
+            {filteredDataCardWeb.map((item) => (
+              <CardRole key={item.id} {...item} />
             ))}
           </div>
         </div>

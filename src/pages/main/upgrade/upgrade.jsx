@@ -1,8 +1,7 @@
+import React, { useState } from "react";
 import Category from "../../../components/main/upgrade/category";
 import { BsCalendar4Event } from "react-icons/bs";
 import { PiMedal } from "react-icons/pi";
-import React, { useState } from "react";
-
 import CardCat from "../../../components/main/upgrade/cardcat";
 import SideCat from "../../../components/main/upgrade/sidecat";
 import { dataUpgrade, dataSide } from "../../../dummydata/main/dataupgrade";
@@ -21,7 +20,7 @@ const UpgradeSection = () => {
   const filteredDataCard = dataUpgrade.filter(({ subs }) =>
     subs.some((sub) => sub.toLowerCase().includes(activeCategory.toLowerCase()))
   );
-  
+
   return (
     <>
       <div
@@ -72,7 +71,7 @@ const UpgradeSection = () => {
             >
               {filteredDataCard.map((item, index) => (
                 <div key={index}>
-                  <CardCat imgPath={item.imgPath} {...item} />
+                  <CardCat {...item} />
                 </div>
               ))}
             </div>

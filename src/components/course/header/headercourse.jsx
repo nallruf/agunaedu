@@ -1,6 +1,6 @@
 import React from "react";
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const HeaderCourse = ({ buttonBack, role, desc, imgRole, skills, goto }) => {
@@ -12,13 +12,13 @@ const HeaderCourse = ({ buttonBack, role, desc, imgRole, skills, goto }) => {
         <div className="container mx-auto px-10">
           <div className="grid md:grid-cols-2">
             <div className="my-[52px] md:my-[70px]">
-              <Link
+              <button
                 className="flex items-center text-lg gap-3"
-                to={navigate(goto)}
+                onClick={() => navigate(goto)}
               >
                 <MdOutlineKeyboardArrowLeft className="text-2xl" />
                 <h3>{buttonBack}</h3>
-              </Link>
+              </button>
               <motion.h1
                 initial={{ x: -300, scale: 0.5 }}
                 animate={{ x: 0, scale: 1 }}

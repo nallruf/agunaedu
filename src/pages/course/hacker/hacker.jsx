@@ -32,6 +32,7 @@ const HackerPage = () => {
         title="Ikut Tes Dulu, Yuk!"
         desc="Ikuti tes dasar dulu yuk sebelum membuka kelas hacker! Eitss, jangan khawatir, cuma yang simple simple aja kok!"
         button="Ikuti Tes"
+        gonjay="/course/hacker/path-web"
       />
 
       <ClassCourse kelas="Kelas Pemula" data={dataHacker} />
