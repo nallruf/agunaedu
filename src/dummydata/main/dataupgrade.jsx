@@ -1,7 +1,7 @@
-import ImgEvent from "../assets/img/gambarcard/event1.jpg";
-import ImgEvent2 from "../assets/img/gambarcard/event2.jpg";
-import ImgChallenge from "../assets/img/gambarcard/challenge1.jpg";
-import ImgChallenge2 from "../assets/img/gambarcard/challenge2.jpg";
+import ImgEvent from "../../assets/img/gambarcard/event1.jpg";
+import ImgEvent2 from "../../assets/img/gambarcard/event2.jpg";
+import ImgChallenge from "../../assets/img/gambarcard/challenge1.jpg";
+import ImgChallenge2 from "../../assets/img/gambarcard/challenge2.jpg";
 
 export const dataUpgrade = [
   {

@@ -1,7 +1,7 @@
 import React from "react";
 
 const ToolCard = ({ img, nameTool, kelas, role }) => (
-  <div className="bg-white rounded-[20px] px-2 py-3 mb-3 mx-2 flex pr-10">
+  <div className="bg-white rounded-[20px] px-2 py-3 mb-3 mx-2 flex pr-10 border border-borderPrimary">
     <div className="flex items-center">
       <img src={img} alt="tool-img" />
     </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const CardCat = ({ imgPath, title, subs, text }) => {
   return (
@@ -27,9 +28,13 @@ const CardCat = ({ imgPath, title, subs, text }) => {
           </div>
         </div>
         <div>
-          <button className="text-white bg-primaryBlue text-base font-medium inline-flex items-center justify-center py-[10px] rounded-lg mt-6 mb-2 gap-3 w-full">
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.8 }}
+            className="text-white bg-primaryBlue text-base font-medium inline-flex items-center justify-center py-[10px] rounded-lg mt-6 mb-2 gap-3 w-full"
+          >
             Lihat Detail
-          </button>
+          </motion.button>
         </div>
       </div>
     </div>

@@ -5,6 +5,7 @@ import ButtonComponent from "../../components/auth/button";
 import InfoComponent from "../../components/auth/info";
 import TextInputComponent from "../../components/auth/textinput";
 import TitleComponent from "../../components/auth/title";
+import { toast } from "react-hot-toast";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -14,7 +15,8 @@ const RegisterPage = () => {
   }, []);
 
   const handleSubmit = () => {
-    navigate("/");
+    toast.success("Pendaftaran Berhasil!");
+    navigate("/auth/login");
   };
 
   return (
@@ -37,7 +39,7 @@ const RegisterPage = () => {
         </div>
         <div className="w-full p-8 sm:p-20 md:w-3/5">
           <TitleComponent
-            onclick={() => navigate(-1)}
+            onclick={() => navigate("/")}
             back="Kembali"
             title="Pendaftaran Akun"
             desc="Yuk, buat akun mu terlebih dahulu"

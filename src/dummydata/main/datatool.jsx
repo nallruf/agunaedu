@@ -1,9 +1,9 @@
-import JavaScript from "../assets/img/tools/JS.png";
-import Figma from "../assets/img/tools/Figma.png";
-import Dart from "../assets/img/tools/Dart.png";
-import Tailwind from "../assets/img/tools/Tailwind.png";
-import Trello from "../assets/img/tools/Trello.png";
-import Html from "../assets/img/tools/HTML.png";
+import JavaScript from "../../assets/img/tools/JS.png";
+import Figma from "../../assets/img/tools/Figma.png";
+import Dart from "../../assets/img/tools/Dart.png";
+import Tailwind from "../../assets/img/tools/Tailwind.png";
+import Trello from "../../assets/img/tools/Trello.png";
+import Html from "../../assets/img/tools/HTML.png";
 
 export const dataTool = [
   {

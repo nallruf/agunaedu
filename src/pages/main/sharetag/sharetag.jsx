@@ -1,7 +1,7 @@
 import React from "react";
 import ImgShare from "../../../assets/img/illustration/course.png";
 import Tag from "../../../components/main/sharetag/tag";
-import { dataTag } from "../../../dummydata/datatag";
+import { dataTag } from "../../../dummydata/main/datatag";
 import { motion } from "framer-motion";
 import Marquee from "react-fast-marquee";
 
@@ -10,8 +10,7 @@ const ShareTagSection = () => {
     <>
       <section className="container mx-auto px-10 my-20">
         <div className="grid md:grid-cols-2">
-          {/* kiri */}
-          <div className="my-auto overflow-hidden">
+          <div className="my-auto overflow-hidden" data-aos="zoom-in">
             <h1 className="text-textPrimary font-bold text-3xl mb-4">
               Berbagai Keahlian Mentor Kami!
             </h1>
@@ -36,8 +35,10 @@ const ShareTagSection = () => {
               <span className="text-[14px] font-semibold">Mulai Belajar</span>
             </motion.button>
           </div>
-          {/* kanan */}
-          <div className="flex md:justify-end justify-center mt-20 md:mt-0">
+          <div
+            className="flex md:justify-end justify-center mt-20 md:mt-0"
+            data-aos="zoom-in"
+          >
             <img
               src={ImgShare}
               alt="img-keahlian"
