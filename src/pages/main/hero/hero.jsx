@@ -52,7 +52,7 @@ const HeroSection = () => {
                 animate={{ y: 0, scale: 1 }}
                 transition={{ duration: 0.8 }}
                 whileHover={{ scale: 1.2 }}
-                onClick={() => navigate("/auth/register")}
+                // onClick={() => navigate("/auth/register")}
               >
                 Pelajari lebih lanjut
                 <IoIosArrowForward />

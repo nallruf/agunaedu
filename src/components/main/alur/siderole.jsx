@@ -12,9 +12,16 @@ const SideRole = ({
   jmlalur,
   jmlkelas,
   jmlsiswa,
-  goto
+  goto,
 }) => {
   const navigate = useNavigate();
+
+  const InfoRow = ({ icon, text }) => (
+    <div className="flex items-center gap-2 ">
+      {icon}
+      <p className="text-base font-semibold text-textLabel">{text}</p>
+    </div>
+  );
 
   return (
     <div>
@@ -23,25 +30,12 @@ const SideRole = ({
         <p className="text-lg font-semibold text-textLabel">{desc}</p>
         <hr />
         <div className="space-y-[14px]">
-          <div className="flex items-center gap-2 ">
-            {icon1}
-
-            <p className="text-base font-semibold text-textLabel">{jmlalur}</p>
-          </div>
-          <div className="flex items-center gap-2">
-            {icon2}
-            <p className="text-base font-semibold text-textLabel">{jmlkelas}</p>
-          </div>
-          <div className="flex items-center gap-2 ">
-            {icon3}
-            <p className="text-base font-semibold text-textLabel">{jmlsiswa}</p>
-          </div>
+          <InfoRow icon={icon1} text={jmlalur} />
+          <InfoRow icon={icon2} text={jmlkelas} />
+          <InfoRow icon={icon3} text={jmlsiswa} />
         </div>
         <div className="py-8">
           <motion.button
-            initial={{ y: 100, scale: 0.5 }}
-            animate={{ y: 0, scale: 1 }}
-            transition={{ duration: 0.8 }}
             whileHover={{ scale: 1.2 }}
             className="rounded-lg text-primaryBlue bg-white px-6 py-1 border-2 flex items-center font-semibold gap-2"
             onClick={() => navigate(goto)}

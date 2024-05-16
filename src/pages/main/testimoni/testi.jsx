@@ -7,9 +7,11 @@ import { motion } from "framer-motion";
 
 const TestiSection = () => {
   const navigate = useNavigate();
+  
   const handleButton = () => {
     navigate("/auth/login");
   };
+
   return (
     <>
       <section
@@ -35,14 +37,7 @@ const TestiSection = () => {
             data-aos="zoom-in"
           >
             {dataTesti.map((testi, index) => (
-              <TestiCard
-                key={index}
-                starCount={testi.starCount}
-                feedback={testi.feedback}
-                img={testi.img}
-                namePerson={testi.namePerson}
-                job={testi.job}
-              />
+              <TestiCard key={index} {...testi} />
             ))}
           </div>
           <div className="flex justify-end mt-8">

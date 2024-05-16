@@ -14,6 +14,17 @@ const CardRole = ({
   rating,
   isLocked,
 }) => {
+  const lockedOverlay = (
+    <div className="absolute inset-0 flex items-center justify-center top-0 translate-y-[-100px] md:translate-y-[-20px]">
+      <div className="rounded-lg text-white text-center">
+        <div className="flex flex-col items-center md:gap-5">
+          <SlLock className="text-6xl" />
+          <p>Selesaikan tes terlebih dahulu</p>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <motion.div
       transition={{ duration: 0.8 }}
@@ -22,16 +33,7 @@ const CardRole = ({
         isLocked ? "opacity-50 pointer-events-none relative" : ""
       }`}
     >
-      {isLocked && (
-        <div className="absolute inset-0 flex items-center justify-center top-0 translate-y-[-100px] md:translate-y-[-20px]">
-          <div className="rounded-lg text-white text-center">
-            <div className="flex flex-col items-center md:gap-5">
-              <SlLock className="text-6xl" />
-              <p>Selesaikan tes terlebih dahulu</p>
-            </div>
-          </div>
-        </div>
-      )}
+      {isLocked && lockedOverlay}
       <div className="md:h-[250px] md:w-[336px]">
         <img
           src={img}
@@ -42,8 +44,9 @@ const CardRole = ({
         <div className="bg-white p-6 flex flex-col rounded-b-2xl shadow-lg">
           <div className="flex flex-col gap-3">
             <div className="flex gap-3">
-              {tes.map((test) => (
+              {tes.map((test, index) => (
                 <div
+                  key={index}
                   className={`flex items-center border-2 px-3 py-1 text-sm gap-2 font-medium rounded-lg ${
                     isLocked ? "text-iconInput" : "text-textLabel"
                   } border-borderPrimary`}

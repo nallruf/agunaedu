@@ -17,14 +17,12 @@ const AlurSection = () => {
     setActiveRole(role);
   };
 
-  const filteredDataPilih = dataPilih.filter((item) =>
-    item.title.toLowerCase().includes(activeRole.toLowerCase())
+  const filteredDataPilih = dataPilih.filter(({ title }) =>
+    title.toLowerCase().includes(activeRole.toLowerCase())
   );
 
-  const filteredDataCard = dataCard.filter((item) =>
-    item.tes.some((test) =>
-      test.toLowerCase().includes(activeRole.toLowerCase())
-    )
+  const filteredDataCard = dataCard.filter(({ tes }) =>
+    tes.some((test) => test.toLowerCase().includes(activeRole.toLowerCase()))
   );
 
   return (
@@ -48,9 +46,22 @@ const AlurSection = () => {
         </h1>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-5 md:gap-0" data-aos="fade-right">
+      <div
+        className="grid md:grid-cols-3 gap-5 md:gap-0 relative"
+        data-aos="fade-right"
+      >
         {dataAlur.map((alur) => (
-          <TombolAlur key={alur.id} {...alur} />
+          <div
+            key={alur.id}
+            className="flex md:justify-center items-center relative"
+          >
+            {/* {alur.id !== 1 && (
+              <div className="border-dashed border-primaryBlue border absolute w-full right-2/4" />
+            )} */}
+            <div className="relative z-50">
+              <TombolAlur {...alur} />
+            </div>
+          </div>
         ))}
       </div>
 
@@ -68,18 +79,7 @@ const AlurSection = () => {
       <div className="flex justify-between md:flex-row flex-col">
         <div className="md:w-[40%]" data-aos="fade-right">
           {filteredDataPilih.map((item) => (
-            <SideRole
-              key={item.id}
-              title={item.title}
-              desc={item.desc}
-              icon1={item.icon1}
-              icon2={item.icon2}
-              icon3={item.icon3}
-              jmlalur={item.jmlalur}
-              jmlkelas={item.jmlkelas}
-              jmlsiswa={item.jmlsiswa}
-              goto={item.goto}
-            />
+            <SideRole key={item.id} {...item} />
           ))}
         </div>
 
@@ -88,19 +88,7 @@ const AlurSection = () => {
           data-aos="zoom-in"
         >
           {filteredDataCard.slice(0, 2).map((item) => (
-            <CardRole
-              key={item.id}
-              titlecard={item.titlecard}
-              desccard={item.desccard}
-              icon1={item.icon1}
-              icon2={item.icon2}
-              icon3={item.icon3}
-              tes={item.tes}
-              img={item.img}
-              level={item.level}
-              rating={item.rating}
-              isLocked={item.isLocked}
-            />
+            <CardRole key={item.id} {...item} />
           ))}
         </div>
       </div>

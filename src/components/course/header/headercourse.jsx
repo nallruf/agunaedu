@@ -8,7 +8,7 @@ const HeaderCourse = ({ buttonBack, role, desc, imgRole, skills, goto }) => {
 
   return (
     <>
-      <div className="bg-primaryBlue text-white">
+      <section className="bg-primaryBlue text-white">
         <div className="container mx-auto px-10">
           <div className="grid md:grid-cols-2">
             <div className="my-[52px] md:my-[70px]">
@@ -64,7 +64,7 @@ const HeaderCourse = ({ buttonBack, role, desc, imgRole, skills, goto }) => {
             </motion.div>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 };

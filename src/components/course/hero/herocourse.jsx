@@ -7,7 +7,7 @@ import ImgArah from "../../../assets/img/illustration/arah-bawah.png";
 const HeroCourse = ({ title, desc, button }) => {
   return (
     <>
-      <div className="text-textPrimary">
+      <section className="text-textPrimary">
         <div className="container mx-auto px-10 py-16">
           <div className="grid md:grid-cols-2">
             <div className="my-[52px] md:my-auto relative">
@@ -61,7 +61,7 @@ const HeroCourse = ({ title, desc, button }) => {
             </motion.div>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 };

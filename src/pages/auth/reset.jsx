@@ -5,6 +5,7 @@ import InfoComponent from "../../components/auth/info";
 import ButtonComponent from "../../components/auth/button";
 import TitleComponent from "../../components/auth/title";
 import TextInputComponent from "../../components/auth/textinput";
+import { toast } from "react-hot-toast";
 
 const ResetPage = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const ResetPage = () => {
   }, []);
 
   const handleSubmit = () => {
-    alert("Berhasil diganti");
+    toast.success("Password Terganti!");
     navigate("/auth/login");
   };
 

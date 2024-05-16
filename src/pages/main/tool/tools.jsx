@@ -29,13 +29,7 @@ const ToolsSection = () => {
             direction={index === 1 ? "right" : "left"}
           >
             {dataTool.map((tool, toolIndex) => (
-              <ToolCard
-                key={toolIndex}
-                img={tool.img}
-                nameTool={tool.name}
-                kelas={tool.kelas}
-                role={tool.role}
-              />
+              <ToolCard key={toolIndex} {...tool} />
             ))}
           </Marquee>
         ))}

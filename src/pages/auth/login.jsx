@@ -1,5 +1,3 @@
-// LoginPage.js
-
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Imglogin from "../../assets/img/illustration/login.png";
@@ -42,6 +40,7 @@ const LoginPage = () => {
       toast.success("Login Success!");
       login();
       navigate("/");
+      // window.location.reload();
     } else {
       toast.error("Email atau password salah. Silakan coba lagi.");
     }

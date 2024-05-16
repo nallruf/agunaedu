@@ -13,16 +13,14 @@ const UpgradeSection = () => {
     setActiveCategory(category);
   };
 
-  const filteredDataCard = dataUpgrade.filter((item) =>
-    item.subs.some((sub) =>
-      sub.toLowerCase().includes(activeCategory.toLowerCase())
-    )
+  const filteredDataSide = dataSide.filter(({ button }) =>
+    button.toLowerCase().includes(activeCategory.toLowerCase())
   );
 
-  const filteredDataSide = dataSide.filter((item) =>
-    item.button.toLowerCase().includes(activeCategory.toLowerCase())
+  const filteredDataCard = dataUpgrade.filter(({ subs }) =>
+    subs.some((sub) => sub.toLowerCase().includes(activeCategory.toLowerCase()))
   );
-
+  
   return (
     <>
       <div
@@ -63,13 +61,7 @@ const UpgradeSection = () => {
               data-aos="fade-right"
             >
               {filteredDataSide.map((item, index) => (
-                <SideCat
-                  key={index}
-                  title={item.title}
-                  desc={item.desc}
-                  onclick={item.onclick}
-                  button={item.button}
-                />
+                <SideCat key={index} {...item} />
               ))}
             </div>
 
@@ -79,12 +71,7 @@ const UpgradeSection = () => {
             >
               {filteredDataCard.map((item, index) => (
                 <div key={index}>
-                  <CardCat
-                    imgPath={item.imgPath}
-                    title={item.title}
-                    text={item.text}
-                    subs={item.subs}
-                  />
+                  <CardCat imgPath={item.imgPath} {...item} />
                 </div>
               ))}
             </div>
