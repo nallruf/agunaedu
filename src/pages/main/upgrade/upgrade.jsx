@@ -1,7 +1,8 @@
-import React, { useState } from "react";
 import Category from "../../../components/main/upgrade/category";
 import { BsCalendar4Event } from "react-icons/bs";
 import { PiMedal } from "react-icons/pi";
+import React, { useState } from "react";
+
 import CardCat from "../../../components/main/upgrade/cardcat";
 import SideCat from "../../../components/main/upgrade/sidecat";
 import { dataUpgrade, dataSide } from "../../../dummydata/main/dataupgrade";

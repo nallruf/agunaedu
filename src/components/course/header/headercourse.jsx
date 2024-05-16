@@ -36,8 +36,9 @@ const HeaderCourse = ({ buttonBack, role, desc, imgRole, skills, goto }) => {
                 {desc}
               </motion.h3>
               <div className="flex mt-5 gap-3">
-                {skills.map((skill) => (
+                {skills.map((skill, index) => (
                   <motion.div
+                    key={index}
                     whileHover={{ scale: 1.1 }}
                     initial={{ x: -100, scale: 0.5 }}
                     animate={{ x: 0, scale: 1 }}
