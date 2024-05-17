@@ -3,6 +3,9 @@ import HeaderCourse from "../../../../components/course/header/headercourse";
 import ImgRole from "../../../../assets/img/illustration/path-web.png";
 import ToolsWeb from "../../../../components/course/tools/toolsweb";
 import SkillWeb from "../../../../components/course/skill/skillweb";
+import TestiCourse from "../../../../components/course/testi/testicourse";
+import HeroSection2 from "../../../../components/course/hero2/hero2";
+
 const PathWebPage = () => {
   useEffect(() => {
     document.title = "Aguna Edu | Hacker - Web";
@@ -21,6 +24,8 @@ const PathWebPage = () => {
         />
         <ToolsWeb />
         <SkillWeb />
+        <TestiCourse />
+        <HeroSection2 />
       </div>
     </>
   );

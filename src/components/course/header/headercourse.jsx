@@ -23,7 +23,7 @@ const HeaderCourse = ({ buttonBack, role, desc, imgRole, skills, goto }) => {
                 initial={{ x: -300, scale: 0.5 }}
                 animate={{ x: 0, scale: 1 }}
                 transition={{ duration: 0.8 }}
-                className="text-6xl font-semibold pt-20 pb-3"
+                className="text-5xl font-semibold pt-20 pb-3"
               >
                 {role}
               </motion.h1>
