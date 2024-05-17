@@ -17,9 +17,7 @@ import "swiper/css";
 
 const SkillWeb = () => {
   const navigate = useNavigate();
-  const handleButton = () => {
-    navigate("/auth/login");
-  };
+
   const [activeCategory, setActiveCategory] = useState("Front End Web");
   const handleCategoryClick = (category) => {
     setActiveCategory(category);
@@ -108,7 +106,7 @@ const SkillWeb = () => {
           transition={{ duration: 0.8 }}
           whileHover={{ scale: 1.2 }}
           className="text-white flex items-center gap-3"
-          onClick={handleButton}
+          onClick={() => navigate("/course/hacker/path-web/fe")}
         >
           <span className="text-sm font-semibold">Lihat Detail</span>
           <FaArrowRight className="text-base" />

@@ -8,10 +8,6 @@ import { motion } from "framer-motion";
 const TestiSection = () => {
   const navigate = useNavigate();
 
-  const handleButton = () => {
-    navigate("/auth/login");
-  };
-
   return (
     <>
       <section
@@ -46,7 +42,7 @@ const TestiSection = () => {
               whileHover={{ scale: 1.2 }}
               className="text-white flex items-center gap-3"
               data-aos="fade-right"
-              onClick={handleButton}
+              onClick={() => navigate("/auth/login")}
             >
               <span className="text-xl font-semibold">Gabung Bersama Kami</span>
               <FaArrowRight className="text-base" />

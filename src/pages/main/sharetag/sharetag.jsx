@@ -4,6 +4,7 @@ import Tag from "../../../components/main/sharetag/tag";
 import { dataTag } from "../../../dummydata/main/datatag";
 import { motion } from "framer-motion";
 import Marquee from "react-fast-marquee";
+import { Link } from "react-scroll";
 
 const ShareTagSection = () => {
   return (
@@ -27,13 +28,15 @@ const ShareTagSection = () => {
                 ))}
               </Marquee>
             ))}
-            <motion.button
-              transition={{ duration: 0.8 }}
-              whileHover={{ scale: 1.2 }}
-              className="text-white bg-primaryBlue mt-9 gap-1 px-8 py-2 rounded-lg flex items-center"
-            >
-              <span className="text-[14px] font-semibold">Mulai Belajar</span>
-            </motion.button>
+            <Link to="alur" spy={true} smooth={true} offset={-70}>
+              <motion.button
+                transition={{ duration: 0.8 }}
+                whileHover={{ scale: 1.2 }}
+                className="text-white bg-primaryBlue mt-9 gap-1 px-8 py-2 rounded-lg flex items-center"
+              >
+                <span className="text-[14px] font-semibold">Mulai Belajar</span>
+              </motion.button>
+            </Link>
           </div>
           <div
             className="flex md:justify-end justify-center mt-20 md:mt-0"

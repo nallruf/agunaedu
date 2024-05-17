@@ -3,7 +3,14 @@ import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
-const HeaderCourse = ({ buttonBack, role, desc, imgRole, skills, goto }) => {
+const HeaderCourse = ({
+  buttonBack,
+  role,
+  desc,
+  imgRole,
+  skills = [],
+  goto,
+}) => {
   const navigate = useNavigate();
 
   return (

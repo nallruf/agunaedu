@@ -14,6 +14,7 @@ import "aos/dist/aos.css";
 import HackerPage from "./pages/course/hacker/hacker";
 import PathWebPage from "./pages/course/hacker/path/pathweb";
 import { Toaster } from "react-hot-toast";
+import WebFePage from "./pages/course/hacker/path/fe/webfe";
 
 const DefaultLayout = ({ children }) => (
   <div>
@@ -43,7 +44,7 @@ function App() {
         <Toaster
           position="top-right"
           toastOptions={{
-            duration: 3000,
+            duration: 5000,
             style: { background: "#1470EF", color: "#ffff" },
           }}
         />
@@ -77,6 +78,14 @@ function App() {
               element={
                 <CourseLayout>
                   <PathWebPage />
+                </CourseLayout>
+              }
+            />
+            <Route
+              path="hacker/path-web/fe"
+              element={
+                <CourseLayout>
+                  <WebFePage />
                 </CourseLayout>
               }
             />

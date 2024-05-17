@@ -1,11 +1,16 @@
 import React from "react";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 
-const TitleComponent = ({ onClick, back, title, desc }) => {
+const TitleComponent = ({
+  // onClick = () => {},
+  back,
+  title,
+  desc,
+}) => {
   return (
     <div className="flex flex-col">
       <button
-        onClick={onClick}
+        // onClick={onClick}
         className="text-primaryBlue font-semibold flex items-center gap-1 text-base"
       >
         <MdKeyboardArrowLeft />

@@ -1,13 +1,13 @@
 import React from "react";
 import Hero from "../../../assets/img/illustration/hero.png";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
 import { Link } from "react-scroll";
 import { motion } from "framer-motion";
 
 const HeroSection = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <section
@@ -34,29 +34,30 @@ const HeroSection = () => {
             berbagai role!
           </motion.h3>
           <div className="py-6 md:flex items-center gap-7">
-            <Link to="alur" spy={true} smooth={true} offset={-70}>
-              <motion.button
-                className="items-center rounded-lg font-semibold px-4 py-[10px] bg-primaryBlue text-white"
-                initial={{ y: 100, scale: 0.5 }}
-                animate={{ y: 0, scale: 1 }}
-                transition={{ duration: 0.8 }}
-                whileHover={{ scale: 1.2 }}
-              >
-                Cari Course Sekarang
-              </motion.button>
-            </Link>
+            <motion.button
+              className="items-center rounded-lg font-semibold px-4 py-[10px] bg-primaryBlue text-white"
+              initial={{ y: 100, scale: 0.5 }}
+              animate={{ y: 0, scale: 1 }}
+              transition={{ duration: 0.8 }}
+              whileHover={{ scale: 1.2 }}
+              onClick={() => navigate("/auth/login")}
+            >
+              Cari Course Sekarang
+            </motion.button>
             <div>
-              <motion.button
-                className="items-center font-semibold py-[10px] text-primaryBlue flex gap-2"
-                initial={{ y: 100, scale: 0.5 }}
-                animate={{ y: 0, scale: 1 }}
-                transition={{ duration: 0.8 }}
-                whileHover={{ scale: 1.2 }}
-                // onClick={() => navigate("/auth/register")}
-              >
-                Pelajari lebih lanjut
-                <IoIosArrowForward />
-              </motion.button>
+              <Link to="alur" spy={true} smooth={true} offset={-70}>
+                <motion.button
+                  className="items-center font-semibold py-[10px] text-primaryBlue flex gap-2"
+                  initial={{ y: 100, scale: 0.5 }}
+                  animate={{ y: 0, scale: 1 }}
+                  transition={{ duration: 0.8 }}
+                  whileHover={{ scale: 1.2 }}
+                  // onClick={() => navigate("/auth/register")}
+                >
+                  Pelajari lebih lanjut
+                  <IoIosArrowForward />
+                </motion.button>
+              </Link>
             </div>
           </div>
           <motion.div
@@ -88,7 +89,12 @@ const HeroSection = () => {
           animate={{ x: 0, scale: 1 }}
           transition={{ duration: 0.8 }}
         >
-          <img src={Hero} alt="Hero" className="md:w-[90%] sm:w-2/3" draggable="false"/>
+          <img
+            src={Hero}
+            alt="Hero"
+            className="md:w-[90%] sm:w-2/3"
+            draggable="false"
+          />
         </motion.div>
       </div>
     </section>
