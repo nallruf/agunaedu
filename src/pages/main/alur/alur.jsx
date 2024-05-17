@@ -27,7 +27,7 @@ const AlurSection = () => {
 
   return (
     <section
-      className="container mx-auto px-10 space-y-16 mb-[80px] mt-[70px]"
+      className="px-10 sm:px-20 md:px-40 space-y-16 mb-[80px] mt-[70px]"
       id="alur"
     >
       <div className="flex flex-col justify-center text-center">

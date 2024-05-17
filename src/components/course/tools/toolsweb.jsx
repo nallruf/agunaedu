@@ -2,12 +2,13 @@ import React from "react";
 import ToolCard from "../../main/tool/toolcard";
 import { dataToolsWeb } from "../../../dummydata/course/datatoolsweb";
 import Marquee from "react-fast-marquee";
-import { Swiper, SwiperSlide } from "swiper/react";
+
 import "swiper/css";
-const ToolsWeb = ({ img, nameTool, kelas, role }) => {
+
+const ToolsWeb = () => {
   return (
     <section>
-      <div className=" container  px-10  py-[80px]">
+      <div className="px-10 sm:px-20 md:px-40 py-[80px]">
         <div className=" md:grid-cols-2">
           <h1 className="text-5xl text-textPrimary font-semibold">
             Berbagai Tools di Sesi Pembelajaran!
@@ -22,13 +23,7 @@ const ToolsWeb = ({ img, nameTool, kelas, role }) => {
         {[...Array(1)].map((_, index) => (
           <Marquee key={index} pauseOnHover speed={30} direction={"left"}>
             {dataToolsWeb.map((tool, toolIndex) => (
-              <ToolCard
-                key={toolIndex}
-                img={tool.img}
-                nameTool={tool.name}
-                kelas={tool.kelas}
-                role={tool.role}
-              />
+              <ToolCard key={toolIndex} {...tool} />
             ))}
           </Marquee>
         ))}

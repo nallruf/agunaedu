@@ -9,7 +9,7 @@ import UpgradeSection from "./upgrade/upgrade";
 
 const HomePage = () => {
   return (
-    <div>
+    <>
       <HeroSection />
       <ToolsSection />
       <AlurSection />
@@ -17,7 +17,7 @@ const HomePage = () => {
       <ShareTagSection />
       <TestiSection />
       <FaqSection />
-    </div>
+    </>
   );
 };
 

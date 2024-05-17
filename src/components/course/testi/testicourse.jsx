@@ -5,7 +5,7 @@ import { dataTesti } from "../../../dummydata/main/datatesti";
 const TestiCourse = () => {
   return (
     <section className="bg-white relative overflow-hidden" data-aos="zoom-in">
-      <div className="container mx-auto pt-[90px] pb-[128px] px-10 z-10 relative">
+      <div className="px-10 sm:px-20 md:px-40 pt-[90px] pb-[128px] z-10 relative">
         <div className="flex flex-col gap-3">
           <h1
             className="text-3xl font-semibold text-textPrimary"

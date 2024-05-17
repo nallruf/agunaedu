@@ -6,7 +6,7 @@ import { dataTool } from "../../../dummydata/main/datatool";
 const ToolsSection = () => {
   return (
     <section className="bg-primaryBlue" data-aos="fade-right">
-      <div className="container mx-auto px-10 py-20">
+      <div className="px-10 sm:px-20 md:px-40 py-20">
         <div className="flex flex-col space-y-4 text-center">
           <span
             className="text-4xl text-white font-semibold"

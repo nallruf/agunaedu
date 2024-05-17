@@ -10,7 +10,7 @@ const HeroCourse = ({ title, desc, button, gonjay }) => {
   return (
     <>
       <section className="text-textPrimary">
-        <div className="container mx-auto px-10 py-16">
+        <div className="px-10 sm:px-20 md:px-40 py-16">
           <div className="grid md:grid-cols-2">
             <div className="my-[52px] md:my-auto relative">
               <motion.h1

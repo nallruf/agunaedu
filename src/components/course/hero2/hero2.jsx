@@ -6,7 +6,7 @@ import { FaArrowRight } from "react-icons/fa";
 const HeroSection2 = () => {
   return (
     <>
-      <section className="container mx-auto px-10 my-20 bg-primaryBlue">
+      <section className="px-10 sm:px-20 md:px-40 bg-primaryBlue">
         <div className="grid md:grid-cols-2">
           <div className="my-auto overflow-hidden" data-aos="zoom-in">
             <h1 className="text-white font-bold text-5xl mb-4">

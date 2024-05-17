@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa";
 import { CgDatabase } from "react-icons/cg";
-
 import { FaLaptop } from "react-icons/fa";
 import Category from "../../main/upgrade/category";
 import TitleSkill from "./titleskill";
@@ -39,7 +38,8 @@ const SkillWeb = () => {
       className="bg-primaryBlue relative overflow-hidden "
       data-aos="fade-right"
     >
-      <div className="container mx-auto px-10 z-10 relative">
+      <div className="absolute bottom-0 left-0 transform translate-x-[-50%] translate-y-[50%] w-[600px] h-[600px] rounded-full bg-secondaryBlue" />
+      <div className="px-10 sm:px-20 md:px-40 z-10 relative pb-20">
         <div className="top-0 translate-y-[-8px]">
           <Category
             icon={<FaLaptop />}
@@ -60,7 +60,7 @@ const SkillWeb = () => {
             onClick={() => handleCategoryClick("Full Stack Web")}
           />
         </div>
-        <div className=" md:flex-row">
+        <div className="md:flex-row">
           <div className="mt-10">
             {filteredDataTitle.map((item, index) => (
               <TitleSkill key={index} {...item} />
@@ -73,18 +73,18 @@ const SkillWeb = () => {
               ))}
             </div>
           </div>
-          <div className="flex justify-end md:mt-60 px-10">
-            <motion.button
-              transition={{ duration: 0.8 }}
-              whileHover={{ scale: 1.2 }}
-              className="text-white flex items-center gap-3"
-              data-aos="fade-right"
-              onClick={handleButton}
-            >
-              <span className="text-sm font-semibold">Lihat Detail</span>
-              <FaArrowRight className="text-base" />
-            </motion.button>
-          </div>
+        </div>
+        <div className="flex justify-end mt-72">
+          <motion.button
+            transition={{ duration: 0.8 }}
+            whileHover={{ scale: 1.2 }}
+            className="text-white flex items-center gap-3"
+            data-aos="fade-right"
+            onClick={handleButton}
+          >
+            <span className="text-sm font-semibold">Lihat Detail</span>
+            <FaArrowRight className="text-base" />
+          </motion.button>
         </div>
       </div>
     </section>

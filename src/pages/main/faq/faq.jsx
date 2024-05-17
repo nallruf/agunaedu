@@ -7,7 +7,7 @@ const FaqSection = () => {
 
   return (
     <>
-      <section className="container mx-auto space-y-16 mb-[140px] mt-[70px] px-10 md:px-52">
+      <section className="sm:px-20 space-y-16 mb-[140px] mt-[70px] px-10 md:px-52">
         <div className="flex flex-col gap-5">
           <h1
             className="text-4xl font-medium text-textPrimary text-center"

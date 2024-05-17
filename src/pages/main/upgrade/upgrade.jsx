@@ -24,7 +24,7 @@ const UpgradeSection = () => {
   return (
     <>
       <div
-        className="flex flex-col gap-3 container mx-auto px-10 pt-20 pb-10"
+        className="flex flex-col gap-3 px-10 sm:px-20 md:px-40 pt-20 pb-10"
         data-aos="fade-right"
       >
         <h1 className="text-textPrimary text-3xl font-semibold">
@@ -40,7 +40,7 @@ const UpgradeSection = () => {
         data-aos="fade-right"
       >
         <div className="absolute bottom-0 left-0 transform translate-x-[-50%] translate-y-[50%] w-[600px] h-[600px] rounded-full bg-secondaryBlue" />
-        <div className="container mx-auto px-10 z-10 relative">
+        <div className="px-10 sm:px-20 md:px-40 z-10 relative">
           <div className="top-0 translate-y-[-8px]">
             <Category
               icon={<BsCalendar4Event />}

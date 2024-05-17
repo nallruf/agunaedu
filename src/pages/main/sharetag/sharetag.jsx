@@ -8,7 +8,7 @@ import Marquee from "react-fast-marquee";
 const ShareTagSection = () => {
   return (
     <>
-      <section className="container mx-auto px-10 my-20">
+      <section className="px-10 sm:px-20 md:px-40 my-20">
         <div className="grid md:grid-cols-2">
           <div className="my-auto overflow-hidden" data-aos="zoom-in">
             <h1 className="text-textPrimary font-bold text-3xl mb-4">

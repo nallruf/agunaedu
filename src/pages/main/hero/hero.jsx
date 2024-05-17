@@ -1,17 +1,17 @@
 import React from "react";
 import Hero from "../../../assets/img/illustration/hero.png";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
 import { Link } from "react-scroll";
 import { motion } from "framer-motion";
 
 const HeroSection = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   return (
-    <div
-      className="container mx-auto px-10 my-[100px] sm:my-[150px] md:my-[200px]"
+    <section
+      className="px-10 sm:px-20 md:px-40 my-[100px] sm:my-[150px] md:my-[200px]"
       id="hero"
     >
       <div className="grid md:grid-cols-2">
@@ -88,10 +88,10 @@ const HeroSection = () => {
           animate={{ x: 0, scale: 1 }}
           transition={{ duration: 0.8 }}
         >
-          <img src={Hero} alt="Hero" className="md:w-[90%] sm:w-2/3" />
+          <img src={Hero} alt="Hero" className="md:w-[90%] sm:w-2/3" draggable="false"/>
         </motion.div>
       </div>
-    </div>
+    </section>
   );
 };
 
