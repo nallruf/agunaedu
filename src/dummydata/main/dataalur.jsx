@@ -99,7 +99,6 @@ export const dataPilih = [
 
 export const dataCard = [
   {
-    id: 1,
     img: ImgHackerAlgo,
     icon1: <FaLaptop />,
     tes: ["Tes Dasar", "Hacker"],
@@ -112,7 +111,6 @@ export const dataCard = [
     isLocked: false,
   },
   {
-    id: 2,
     img: ImgHackerWeb,
     icon1: <FaLaptop />,
     tes: ["Tes Level", "Hacker"],
@@ -125,7 +123,6 @@ export const dataCard = [
     isLocked: false,
   },
   {
-    id: 3,
     img: ImgHackerMobile,
     icon1: <FaLaptop />,
     tes: ["Tes Dasar", "Hacker"],
@@ -138,7 +135,20 @@ export const dataCard = [
     isLocked: false,
   },
   {
-    id: 4,
+    img: ImgHackerMobile,
+    icon1: <FaLaptop />,
+    tes: ["Tes Dasar", "Hacker"],
+    titlecard: "Dasar Mobile",
+    desccard: "Tes Dasar untuk membuka path mobile",
+    icon2: <LuBarChart />,
+    icon3: <GoStarFill />,
+    level: "Level Pemula",
+    rating: "4.9 (2k)",
+    isLocked: false,
+  },
+
+  //Hustler
+  {
     img: ImgHustlerLead,
     icon1: <FaLaptop />,
     tes: ["Tes Dasar", "Hustler"],
@@ -151,7 +161,6 @@ export const dataCard = [
     isLocked: false,
   },
   {
-    id: 5,
     img: ImgHustlerPM,
     icon1: <FaLaptop />,
     tes: ["Tes Level", "Hustler"],
@@ -164,7 +173,6 @@ export const dataCard = [
     isLocked: false,
   },
   {
-    id: 6,
     icon1: <FaLaptop />,
     img: ImgHustlerPublic,
     tes: ["Tes Dasar", "Hustler"],
@@ -177,7 +185,20 @@ export const dataCard = [
     isLocked: false,
   },
   {
-    id: 7,
+    icon1: <FaLaptop />,
+    img: ImgHustlerPublic,
+    tes: ["Tes Dasar", "Hustler"],
+    titlecard: "Public Speaking",
+    desccard: "Tes Dasar untuk membuka path speaking",
+    icon2: <LuBarChart />,
+    icon3: <GoStarFill />,
+    level: "Level Pemula",
+    rating: "4.9 (2k)",
+    isLocked: false,
+  },
+
+  //Hipster
+  {
     img: ImgHipsterUIUX,
     icon1: <FaLaptop />,
     tes: ["Tes Dasar", "Hipster"],
@@ -190,7 +211,6 @@ export const dataCard = [
     isLocked: false,
   },
   {
-    id: 8,
     img: ImgHipsterUI,
     icon1: <FaLaptop />,
     tes: ["Tes Level", "Hipster"],
@@ -203,7 +223,18 @@ export const dataCard = [
     isLocked: false,
   },
   {
-    id: 9,
+    img: ImgHipsterUX,
+    icon1: <FaLaptop />,
+    tes: ["Tes Level", "Hipster"],
+    titlecard: "UX Designer",
+    desccard: "Tes Dasar untuk membuka path UX Design ",
+    icon2: <LuBarChart />,
+    icon3: <GoStarFill />,
+    level: "Level Pemula",
+    rating: "4.9 (2k)",
+    isLocked: false,
+  },
+  {
     img: ImgHipsterUX,
     icon1: <FaLaptop />,
     tes: ["Tes Level", "Hipster"],

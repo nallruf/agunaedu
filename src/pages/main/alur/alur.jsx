@@ -9,6 +9,8 @@ import {
 import RoleImg from "../../../components/main/alur/roleimg";
 import SideRole from "../../../components/main/alur/siderole";
 import CardRole from "../../../components/main/alur/cardrole";
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import "swiper/css";
 
 const AlurSection = () => {
   const [activeRole, setActiveRole] = useState("Hacker");
@@ -87,10 +89,36 @@ const AlurSection = () => {
           className="grid md:grid-cols-2 gap-10 md:justify-end justify-start"
           data-aos="zoom-in"
         >
-          {filteredDataCard.slice(0, 2).map((item) => (
-            <CardRole key={item.id} {...item} />
+          {filteredDataCard.slice(0, 2).map((item, index) => (
+            <CardRole key={index} {...item} />
           ))}
         </div>
+        {/* note: kekurangan slide e gabisa responsive (infinite) */}
+        {/* <Swiper
+          slidesPerView={1}
+          spaceBetween={10}
+          className="md:pb-36 pb-20"
+          breakpoints={{
+            640: {
+              slidesPerView: 1,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 150,
+            },
+          }}
+        >
+          {filteredDataCard.map((item, index) => (
+            <SwiperSlide className="md:my-10 md:pl-10" key={index}>
+              <CardRole {...item} />
+            </SwiperSlide>
+          ))}
+        </Swiper> */}
       </div>
     </section>
   );

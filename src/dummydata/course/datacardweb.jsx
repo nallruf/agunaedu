@@ -11,9 +11,9 @@ import FeHtmlCss from "../../assets/img/gambarcard/fe2-fehtmlcss.jpg";
 import ReactTailwind from "../../assets/img/gambarcard/fe4-reacttailwind.jpg";
 import FeWebLaravel from "../../assets/img/gambarcard/fe5-weblaravel.jpg";
 import FullStack from "../../assets/img/gambarcard/fs1-fullstackdev.jpg";
+
 export const dataCardWeb = [
   {
-    id: 1,
     img: FeWebDev,
     icon1: <FaLaptop />,
     tes: ["Front End Web"],
@@ -26,7 +26,6 @@ export const dataCardWeb = [
     isLocked: false,
   },
   {
-    id: 2,
     img: FeHtmlCss,
     icon1: <FaLaptop />,
     tes: ["Front End Web", "Web"],
@@ -39,7 +38,6 @@ export const dataCardWeb = [
     isLocked: false,
   },
   {
-    id: 3,
     img: ReactTailwind,
     icon1: <FaLaptop />,
     tes: ["Front End Web", "Web"],
@@ -52,7 +50,6 @@ export const dataCardWeb = [
     isLocked: false,
   },
   {
-    id: 4,
     img: ModernTailwind,
     icon1: <FaLaptop />,
     tes: ["Front End Web", "Web"],
@@ -66,7 +63,6 @@ export const dataCardWeb = [
     isLocked: false,
   },
   {
-    id: 5,
     img: FeWebLaravel,
     icon1: <FaLaptop />,
     tes: ["Front End Web", "Web"],
@@ -79,7 +75,6 @@ export const dataCardWeb = [
     isLocked: false,
   },
   {
-    id: 6,
     img: ImgHustlerLead,
     icon1: <FaLaptop />,
     tes: ["Back End Web", "Web"],
@@ -92,7 +87,6 @@ export const dataCardWeb = [
     isLocked: false,
   },
   {
-    id: 7,
     img: ImgHustlerLead,
     icon1: <FaLaptop />,
     tes: ["Back End Web", "Web"],
@@ -105,7 +99,6 @@ export const dataCardWeb = [
     isLocked: false,
   },
   {
-    id: 8,
     img: ImgHustlerLead,
     icon1: <FaLaptop />,
     tes: ["Back End Web", "Web"],
@@ -118,7 +111,6 @@ export const dataCardWeb = [
     isLocked: false,
   },
   {
-    id: 9,
     img: ImgHustlerLead,
     icon1: <FaLaptop />,
     tes: ["Back End Web", "Web"],
@@ -131,7 +123,6 @@ export const dataCardWeb = [
     isLocked: false,
   },
   {
-    id: 10,
     img: FullStack,
     icon1: <FaLaptop />,
     tes: ["Back End Web", "Web"],
@@ -144,7 +135,6 @@ export const dataCardWeb = [
     isLocked: false,
   },
   {
-    id: 11,
     img: FullStack,
     icon1: <FaLaptop />,
     tes: ["Full Stack Web", "Web"],
@@ -157,7 +147,6 @@ export const dataCardWeb = [
     isLocked: false,
   },
   {
-    id: 12,
     img: ImgHustlerLead,
     icon1: <FaLaptop />,
     tes: ["Full Stack Web", "Web"],
@@ -170,7 +159,6 @@ export const dataCardWeb = [
     isLocked: false,
   },
   {
-    id: 13,
     img: ImgHustlerLead,
     icon1: <FaLaptop />,
     tes: ["Full Stack Web", "Web"],
@@ -183,7 +171,6 @@ export const dataCardWeb = [
     isLocked: false,
   },
   {
-    id: 14,
     img: ImgHustlerLead,
     icon1: <FaLaptop />,
     tes: ["Full Stack Web", "Web"],
@@ -196,7 +183,6 @@ export const dataCardWeb = [
     isLocked: false,
   },
   {
-    id: 15,
     img: ImgHustlerLead,
     icon1: <FaLaptop />,
     tes: ["Full Stack Web", "Web"],
