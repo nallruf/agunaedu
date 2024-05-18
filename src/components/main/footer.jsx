@@ -40,15 +40,26 @@ const Footer = () => {
             <div className="flex flex-col gap-10 space-x-0 sm:gap-0 sm:flex-row sm:space-x-40 mt-10 md:mt-0">
               <FooterMenu
                 title="Aguna Edu"
-                links={["Tentang Kami", "Testimonial"]}
+                links={[
+                  { name: "Tentang Kami", scrollTo: "hero" },
+                  { name: "Testimonial", scrollTo: "testi" },
+                ]}
               />
               <FooterMenu
                 title="Layanan"
-                links={["Course", "Event", "Challenge"]}
+                links={[
+                  { name: "Course", scrollTo: "alur" },
+                  { name: "Event", path: "/event" },
+                  { name: "Challenge", path: "/challenge" },
+                ]}
               />
               <FooterMenu
                 title="Bantuan"
-                links={["Kebijakan dan Privasi", "Syarat dan Ketentuan", "FaQ"]}
+                links={[
+                  { name: "Kebijakan dan Privasi", scrollTo: "hero" },
+                  { name: "Syarat dan Ketentuan", scrollTo: "hero" },
+                  { name: "FaQ", scrollTo: "faq" },
+                ]}
               />
             </div>
           </div>

@@ -19,7 +19,10 @@ const ToolsWeb = () => {
           </p>
         </div>
       </div>
-      <div className="overflow-hidden pb-32 " data-aos="zoom-in">
+      <div
+        className="overflow-hidden pb-32 "
+        // data-aos="zoom-in"
+      >
         {[...Array(1)].map((_, index) => (
           <Marquee key={index} pauseOnHover speed={30} direction={"left"}>
             {dataToolsWeb.map((tool, toolIndex) => (

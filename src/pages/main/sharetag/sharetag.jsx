@@ -11,7 +11,10 @@ const ShareTagSection = () => {
     <>
       <section className="px-10 sm:px-20 md:px-40 my-20">
         <div className="grid md:grid-cols-2">
-          <div className="my-auto overflow-hidden" data-aos="zoom-in">
+          <div
+            className="my-auto overflow-hidden"
+            // data-aos="zoom-in"
+          >
             <h1 className="text-textPrimary font-bold text-3xl mb-4">
               Berbagai Keahlian Mentor Kami!
             </h1>
@@ -40,7 +43,7 @@ const ShareTagSection = () => {
           </div>
           <div
             className="flex md:justify-end justify-center mt-20 md:mt-0"
-            data-aos="zoom-in"
+            // data-aos="zoom-in"
           >
             <img
               src={ImgShare}

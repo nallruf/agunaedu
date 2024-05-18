@@ -15,6 +15,9 @@ import HackerPage from "./pages/course/hacker/hacker";
 import PathWebPage from "./pages/course/hacker/path/pathweb";
 import { Toaster } from "react-hot-toast";
 import WebFePage from "./pages/course/hacker/path/fe/webfe";
+import EventPage from "./pages/kegiatan/event/event";
+import ChallengePage from "./pages/kegiatan/challenge/challenge";
+import DetailEventPage from "./pages/kegiatan/event/detail/detailevent";
 
 const DefaultLayout = ({ children }) => (
   <div>
@@ -56,6 +59,30 @@ function App() {
             element={
               <DefaultLayout>
                 <HomePage />
+              </DefaultLayout>
+            }
+          />
+          <Route
+            path="/event"
+            element={
+              <DefaultLayout>
+                <EventPage />
+              </DefaultLayout>
+            }
+          />
+          <Route
+            path="/event/detail/:id"
+            element={
+              <DefaultLayout>
+                <DetailEventPage />
+              </DefaultLayout>
+            }
+          />
+          <Route
+            path="/challenge"
+            element={
+              <DefaultLayout>
+                <ChallengePage />
               </DefaultLayout>
             }
           />

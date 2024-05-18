@@ -26,29 +26,29 @@ const HeaderCourse = ({
                 <MdOutlineKeyboardArrowLeft className="text-2xl" />
                 <h3>{buttonBack}</h3>
               </button>
-              <motion.h1
-                initial={{ x: -300, scale: 0.5 }}
-                animate={{ x: 0, scale: 1 }}
-                transition={{ duration: 0.8 }}
+              <h1
+                // initial={{ x: -300, scale: 0.5 }}
+                // animate={{ x: 0, scale: 1 }}
+                // transition={{ duration: 0.8 }}
                 className="text-5xl font-semibold pt-20 pb-3"
               >
                 {role}
-              </motion.h1>
-              <motion.h3
-                initial={{ x: 300, scale: 0.5 }}
-                animate={{ x: 0, scale: 1 }}
-                transition={{ duration: 0.8 }}
+              </h1>
+              <h3
+                // initial={{ x: 300, scale: 0.5 }}
+                // animate={{ x: 0, scale: 1 }}
+                // transition={{ duration: 0.8 }}
                 className="text-lg"
               >
                 {desc}
-              </motion.h3>
+              </h3>
               <div className="flex mt-5 gap-3">
                 {skills.map((skill, index) => (
                   <motion.div
                     key={index}
                     whileHover={{ scale: 1.1 }}
-                    initial={{ x: -100, scale: 0.5 }}
-                    animate={{ x: 0, scale: 1 }}
+                    // initial={{ x: -100, scale: 0.5 }}
+                    // animate={{ x: 0, scale: 1 }}
                     transition={{ duration: 0.8 }}
                     className="border-[1.5px] border-borderPrimary bg-[#F9FAFB] text-textLabel text-[14px] font-medium inline-flex items-center px-3 py-[6px] rounded-[6px] my-2 cursor-pointer gap-2"
                   >
@@ -57,11 +57,11 @@ const HeaderCourse = ({
                 ))}
               </div>
             </div>
-            <motion.div
+            <div
               className="flex justify-center md:justify-end"
-              initial={{ x: 100, scale: 0.5 }}
-              animate={{ x: 0, scale: 1 }}
-              transition={{ duration: 0.8 }}
+              // initial={{ x: 100, scale: 0.5 }}
+              // animate={{ x: 0, scale: 1 }}
+              // transition={{ duration: 0.8 }}
             >
               <img
                 src={imgRole}
@@ -69,7 +69,7 @@ const HeaderCourse = ({
                 draggable="false"
                 className="md:w-[90%] sm:w-2/3"
               />
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

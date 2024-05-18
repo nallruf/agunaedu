@@ -38,10 +38,10 @@ const LoginPage = () => {
     const { email, password } = formData;
     const dummyUser = { email: "agunaedu@gmail.com", password: "12345678" };
     if (email === dummyUser.email && password === dummyUser.password) {
-      // toast.success("Login Success!");
+      toast.success("Login Success!");
       login();
       navigate("/");
-      window.location.reload();
+      // window.location.reload();
     } else {
       toast.error("Email atau password salah. Silakan coba lagi.");
     }

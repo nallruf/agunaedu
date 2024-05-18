@@ -37,6 +37,7 @@ const SideRole = ({
         <div className="py-8">
           <motion.button
             whileHover={{ scale: 1.2 }}
+            transition={{ duration: 0.8 }}
             className="rounded-lg text-primaryBlue bg-white px-6 py-1 border-2 flex items-center font-semibold gap-2"
             onClick={() => navigate(goto)}
           >

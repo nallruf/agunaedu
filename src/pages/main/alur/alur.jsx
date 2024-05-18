@@ -35,13 +35,13 @@ const AlurSection = () => {
       <div className="flex flex-col justify-center text-center">
         <h1
           className="text-2xl sm:text-4xl font-semibold text-textPrimary"
-          data-aos="zoom-in"
+          // data-aos="zoom-in"
         >
           Alur pengembangan kami!
         </h1>
         <h1
           className="text-base sm:text-[22px] text-textTertiary mt-4"
-          data-aos="zoom-in"
+          // data-aos="zoom-in"
         >
           Kembangkan satu skill secara bertahap <br />
           dengan konsisten melalui alur pembelajaran kami!
@@ -50,7 +50,7 @@ const AlurSection = () => {
 
       <div
         className="grid md:grid-cols-3 gap-5 md:gap-0 relative"
-        data-aos="fade-right"
+        // data-aos="fade-right"
       >
         {dataAlur.map((alur) => (
           <div
@@ -60,14 +60,17 @@ const AlurSection = () => {
             {/* {alur.id !== 1 && (
               <div className="border-dashed border-primaryBlue border absolute w-full right-2/4" />
             )} */}
-            <div className="relative z-50">
+            <div className="relative z-10">
               <TombolAlur {...alur} />
             </div>
           </div>
         ))}
       </div>
 
-      <div className="flex gap-5" data-aos="fade-right">
+      <div
+        className="flex gap-5"
+        // data-aos="fade-right"
+      >
         {dataRole.map((roleimg) => (
           <RoleImg
             key={roleimg.id}
@@ -79,7 +82,10 @@ const AlurSection = () => {
       </div>
 
       <div className="flex justify-between md:flex-row flex-col">
-        <div className="md:w-[40%]" data-aos="fade-right">
+        <div
+          className="md:w-[40%]"
+          // data-aos="fade-right"
+        >
           {filteredDataPilih.map((item) => (
             <SideRole key={item.id} {...item} />
           ))}
@@ -87,7 +93,7 @@ const AlurSection = () => {
 
         <div
           className="grid md:grid-cols-2 gap-10 md:justify-end justify-start"
-          data-aos="zoom-in"
+          // data-aos="zoom-in"
         >
           {filteredDataCard.slice(0, 2).map((item, index) => (
             <CardRole key={index} {...item} />

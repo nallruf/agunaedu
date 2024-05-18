@@ -13,22 +13,22 @@ const HeroCourse = ({ title, desc, button, gonjay }) => {
         <div className="px-10 sm:px-20 md:px-40 py-16">
           <div className="grid md:grid-cols-2">
             <div className="my-[52px] md:my-auto relative">
-              <motion.h1
-                initial={{ x: -300, scale: 0.5 }}
-                animate={{ x: 0, scale: 1 }}
-                transition={{ duration: 0.8 }}
+              <h1
+                // initial={{ x: -300, scale: 0.5 }}
+                // animate={{ x: 0, scale: 1 }}
+                // transition={{ duration: 0.8 }}
                 className="text-5xl font-semibold pb-3"
               >
                 {title}
-              </motion.h1>
-              <motion.h3
-                initial={{ x: 300, scale: 0.5 }}
-                animate={{ x: 0, scale: 1 }}
-                transition={{ duration: 0.8 }}
+              </h1>
+              <h3
+                // initial={{ x: 300, scale: 0.5 }}
+                // animate={{ x: 0, scale: 1 }}
+                // transition={{ duration: 0.8 }}
                 className="text-xl text-textTertiary"
               >
                 {desc}
-              </motion.h3>
+              </h3>
               <img
                 src={ImgArah}
                 alt="img-arah"
@@ -38,8 +38,8 @@ const HeroCourse = ({ title, desc, button, gonjay }) => {
               <div className="flex mt-8 gap-3">
                 <motion.button
                   whileHover={{ scale: 1.1 }}
-                  initial={{ x: -100, scale: 0.5 }}
-                  animate={{ x: 0, scale: 1 }}
+                  // initial={{ x: -100, scale: 0.5 }}
+                  // animate={{ x: 0, scale: 1 }}
                   transition={{ duration: 0.8 }}
                   className="bg-primaryBlue text-white text-[14px] font-semibold inline-flex items-center px-12 py-[10px] rounded-lg my-2 cursor-pointer gap-2 "
                   onClick={() => navigate(gonjay)}
@@ -49,11 +49,11 @@ const HeroCourse = ({ title, desc, button, gonjay }) => {
                 </motion.button>
               </div>
             </div>
-            <motion.div
+            <div
               className="flex justify-center md:justify-end"
-              initial={{ x: 100, scale: 0.5 }}
-              animate={{ x: 0, scale: 1 }}
-              transition={{ duration: 0.8 }}
+              // initial={{ x: 100, scale: 0.5 }}
+              // animate={{ x: 0, scale: 1 }}
+              // transition={{ duration: 0.8 }}
             >
               <img
                 src={ImgHero}
@@ -61,7 +61,7 @@ const HeroCourse = ({ title, desc, button, gonjay }) => {
                 draggable="false"
                 className="md:w-[90%] sm:w-2/3"
               />
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

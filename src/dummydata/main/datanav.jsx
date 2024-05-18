@@ -40,7 +40,7 @@ export const dataNav = [
   {
     id: 4,
     name: "Challenge",
-    linkMenu: "challenge",
+    linkMenu: "/challenge",
     icon: <FiAward />,
   },
 ];

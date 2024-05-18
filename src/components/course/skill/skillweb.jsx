@@ -23,6 +23,24 @@ const SkillWeb = () => {
     setActiveCategory(category);
   };
 
+  const handleButtonClick = () => {
+    let path = "";
+    switch (activeCategory) {
+      case "Front End Web":
+        path = "/course/hacker/path-web/fe";
+        break;
+      case "Back End Web":
+        path = "/course/hacker/path-web/be";
+        break;
+      case "Full Stack Web":
+        path = "/course/hacker/path-web/fs";
+        break;
+      default:
+        path = "/course/hacker/path-web/fe";
+    }
+    navigate(path);
+  };
+
   const filteredDataCardWeb = dataCardWeb.filter(({ tes }) =>
     tes.some((test) =>
       test.toLowerCase().includes(activeCategory.toLowerCase())
@@ -36,7 +54,7 @@ const SkillWeb = () => {
   return (
     <section
       className="bg-primaryBlue relative overflow-hidden"
-      data-aos="fade-right"
+      // data-aos="fade-right"
     >
       <div className="absolute bottom-0 left-0 transform translate-x-[-50%] translate-y-[50%] w-[600px] h-[600px] rounded-full bg-secondaryBlue" />
       <div className="px-10 sm:px-20 md:px-40 z-10 relative">
@@ -106,7 +124,7 @@ const SkillWeb = () => {
           transition={{ duration: 0.8 }}
           whileHover={{ scale: 1.2 }}
           className="text-white flex items-center gap-3"
-          onClick={() => navigate("/course/hacker/path-web/fe")}
+          onClick={handleButtonClick}
         >
           <span className="text-sm font-semibold">Lihat Detail</span>
           <FaArrowRight className="text-base" />
