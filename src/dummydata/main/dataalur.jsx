@@ -29,8 +29,8 @@ export const dataAlur = [
   {
     id: 2,
     iconbtn: <LuPencilLine />,
-    alur1: "Mengikuti Tes",
-    alur2: "Kerjakan tes dasar dan tes level",
+    alur1: "Tes & Kelas Pemula",
+    alur2: "Selesaikan tes & kelas pemula",
   },
   {
     id: 3,
