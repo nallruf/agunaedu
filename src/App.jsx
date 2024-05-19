@@ -18,6 +18,7 @@ import WebFePage from "./pages/course/hacker/path/fe/webfe";
 import EventPage from "./pages/kegiatan/event/event";
 import ChallengePage from "./pages/kegiatan/challenge/challenge";
 import DetailEventPage from "./pages/kegiatan/event/detail/detailevent";
+import DetailChallengePage from "./pages/kegiatan/challenge/detail/detailchallenge";
 
 const DefaultLayout = ({ children }) => (
   <div>
@@ -83,6 +84,14 @@ function App() {
             element={
               <DefaultLayout>
                 <ChallengePage />
+              </DefaultLayout>
+            }
+          />
+          <Route
+            path="/challenge/detail/:id"
+            element={
+              <DefaultLayout>
+                <DetailChallengePage />
               </DefaultLayout>
             }
           />

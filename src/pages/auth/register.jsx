@@ -6,7 +6,6 @@ import InfoComponent from "../../components/auth/info";
 import TextInputComponent from "../../components/auth/textinput";
 import TitleComponent from "../../components/auth/title";
 import { toast } from "react-hot-toast";
-import { Link } from "react-router-dom";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -39,14 +38,12 @@ const RegisterPage = () => {
           <div className="absolute bottom-0 left-2/3 transform -translate-x-[15%] translate-y-[80%] w-[569px] h-[560px] border-4 border-white rounded-full" />
         </div>
         <div className="w-full p-8 sm:p-20 md:w-3/5">
-          <Link to="/auth/login">
-            <TitleComponent
-              // onclick={() => navigate("/")}
-              back="Kembali"
-              title="Pendaftaran Akun"
-              desc="Yuk, buat akun mu terlebih dahulu"
-            />
-          </Link>
+          <TitleComponent
+            backTo="/auth/login"
+            back="Kembali"
+            title="Pendaftaran Akun"
+            desc="Yuk, buat akun mu terlebih dahulu"
+          />
           <form onSubmit={handleSubmit}>
             <div className="mb-5 mt-10">
               <TextInputComponent

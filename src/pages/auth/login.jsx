@@ -6,7 +6,6 @@ import InfoComponent from "../../components/auth/info";
 import TitleComponent from "../../components/auth/title";
 import TextInputComponent from "../../components/auth/textinput";
 import { toast } from "react-hot-toast";
-import { Link } from "react-router-dom";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -67,14 +66,13 @@ const LoginPage = () => {
         </div>
 
         <div className="w-full p-8 sm:p-32 md:w-3/5 md:p-36">
-          <Link to="/">
-            <TitleComponent
-              // onclick={() => navigate(-1)}
-              back="Kembali"
-              title="Masuk ke Akun mu"
-              desc="Yuk, lanjutin pembelajaran bersama mentormu!"
-            />
-          </Link>
+          <TitleComponent
+            backTo="/"
+            back="Kembali"
+            title="Masuk ke Akun mu"
+            desc="Yuk, lanjutin pembelajaran bersama mentormu!"
+          />
+
           <form onSubmit={handleSubmit}>
             <div className="mb-6 mt-10">
               <TextInputComponent

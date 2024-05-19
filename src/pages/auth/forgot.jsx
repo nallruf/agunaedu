@@ -6,7 +6,6 @@ import ButtonComponent from "../../components/auth/button";
 import TitleComponent from "../../components/auth/title";
 import TextInputComponent from "../../components/auth/textinput";
 // import { toast } from "react-hot-toast";
-import { Link } from "react-router-dom";
 
 const ForgotPage = () => {
   const navigate = useNavigate();
@@ -35,14 +34,13 @@ const ForgotPage = () => {
           <div className="absolute bottom-0 left-2/3 transform -translate-x-[15%] translate-y-[80%] w-[569px] h-[560px] border-4 border-white rounded-full" />
         </div>
         <div className="w-full p-8 sm:p-32 md:w-3/5 md:p-36">
-          <Link to="/auth/login">
-            <TitleComponent
-              // onclick={() => navigate(-1)}
-              back="Kembali"
-              title="Lupa Kata Sandi"
-              desc="Pastikan email mu terdaftar ke akun Google!"
-            />
-          </Link>
+          <TitleComponent
+            backTo="/auth/login"
+            back="Kembali"
+            title="Lupa Kata Sandi"
+            desc="Pastikan email mu terdaftar ke akun Google!"
+          />
+
           <form onSubmit={handleSubmit}>
             <div className="mb-6 mt-10">
               <TextInputComponent

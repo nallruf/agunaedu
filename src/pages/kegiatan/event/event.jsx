@@ -6,7 +6,7 @@ import CardEvent from "../../../components/kegiatan/cardevent";
 import { FiUser } from "react-icons/fi";
 import { RiBookLine } from "react-icons/ri";
 import { LuTag } from "react-icons/lu";
-import { dataCardEvent } from "../../../dummydata/kegiatan/datakegiatan";
+import { dataCardEvent } from "../../../dummydata/kegiatan/dataevent";
 
 const EventPage = () => {
   useEffect(() => {
