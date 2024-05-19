@@ -15,7 +15,7 @@ const RegisterPage = () => {
   }, []);
 
   const handleSubmit = () => {
-    toast.success("Pendaftaran Berhasil!");
+    // toast.success("Pendaftaran Berhasil!");
     navigate("/auth/login");
   };
 
@@ -39,7 +39,7 @@ const RegisterPage = () => {
         </div>
         <div className="w-full p-8 sm:p-20 md:w-3/5">
           <TitleComponent
-            onclick={() => navigate("/")}
+            backTo="/auth/login"
             back="Kembali"
             title="Pendaftaran Akun"
             desc="Yuk, buat akun mu terlebih dahulu"

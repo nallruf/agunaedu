@@ -10,60 +10,61 @@ const HeroSection = () => {
   const navigate = useNavigate();
 
   return (
-    <div
-      className="container mx-auto px-10 my-[100px] sm:my-[150px] md:my-[200px]"
+    <section
+      className="px-10 sm:px-20 md:px-40 my-[100px] sm:my-[150px] md:my-[200px]"
       id="hero"
     >
       <div className="grid md:grid-cols-2">
         <div className="my-auto">
-          <motion.h1
+          <h1
             className="text-5xl text-primaryBlue font-semibold mb-4"
-            initial={{ x: -300, scale: 0.5 }}
-            animate={{ x: 0, scale: 1 }}
-            transition={{ duration: 0.8 }}
+            // initial={{ x: -300, scale: 0.5 }}
+            // animate={{ x: 0, scale: 1 }}
+            // transition={{ duration: 0.8 }}
           >
             Temukan Course yang Tepat dan Raih Potensimu!
-          </motion.h1>
-          <motion.h3
+          </h1>
+          <h3
             className="text-xl text-textTertiary mb-6"
-            initial={{ y: 300, scale: 0.5 }}
-            animate={{ y: 0, scale: 1 }}
-            transition={{ duration: 0.8 }}
+            // initial={{ y: 300, scale: 0.5 }}
+            // animate={{ y: 0, scale: 1 }}
+            // transition={{ duration: 0.8 }}
           >
             Bergabunglah dan temukan bimbingan dari para ahli di bidang IT dari
             berbagai role!
-          </motion.h3>
+          </h3>
           <div className="py-6 md:flex items-center gap-7">
-            <Link to="alur" spy={true} smooth={true} offset={-70}>
-              <motion.button
-                className="items-center rounded-lg font-semibold px-4 py-[10px] bg-primaryBlue text-white"
-                initial={{ y: 100, scale: 0.5 }}
-                animate={{ y: 0, scale: 1 }}
-                transition={{ duration: 0.8 }}
-                whileHover={{ scale: 1.2 }}
-              >
-                Cari Course Sekarang
-              </motion.button>
-            </Link>
+            <motion.button
+              className="items-center rounded-lg font-semibold px-4 py-[10px] bg-primaryBlue text-white"
+              // initial={{ y: 100, scale: 0.5 }}
+              // animate={{ y: 0, scale: 1 }}
+              transition={{ duration: 0.8 }}
+              whileHover={{ scale: 1.2 }}
+              onClick={() => navigate("/auth/login")}
+            >
+              Cari Course Sekarang
+            </motion.button>
             <div>
-              <motion.button
-                className="items-center font-semibold py-[10px] text-primaryBlue flex gap-2"
-                initial={{ y: 100, scale: 0.5 }}
-                animate={{ y: 0, scale: 1 }}
-                transition={{ duration: 0.8 }}
-                whileHover={{ scale: 1.2 }}
-                // onClick={() => navigate("/auth/register")}
-              >
-                Pelajari lebih lanjut
-                <IoIosArrowForward />
-              </motion.button>
+              <Link to="alur" spy={true} smooth={true} offset={-70}>
+                <motion.button
+                  className="items-center font-semibold py-[10px] text-primaryBlue flex gap-2"
+                  // initial={{ y: 100, scale: 0.5 }}
+                  // animate={{ y: 0, scale: 1 }}
+                  transition={{ duration: 0.8 }}
+                  whileHover={{ scale: 1.2 }}
+                  // onClick={() => navigate("/auth/register")}
+                >
+                  Pelajari lebih lanjut
+                  <IoIosArrowForward />
+                </motion.button>
+              </Link>
             </div>
           </div>
-          <motion.div
+          <div
             className="flex mt-6 sm:space-x-6"
-            initial={{ x: -300, scale: 0.5 }}
-            animate={{ x: 0, scale: 1 }}
-            transition={{ duration: 0.8 }}
+            // initial={{ x: -300, scale: 0.5 }}
+            // animate={{ x: 0, scale: 1 }}
+            // transition={{ duration: 0.8 }}
           >
             <div className="hidden sm:flex items-center">
               <IoChatbubbleEllipsesOutline className="text-5xl text-textQuote" />
@@ -80,18 +81,23 @@ const HeroSection = () => {
                 </span>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
-        <motion.div
+        <div
           className="flex md:justify-end justify-center mt-20 md:mt-0"
-          initial={{ x: 100, scale: 0.5 }}
-          animate={{ x: 0, scale: 1 }}
-          transition={{ duration: 0.8 }}
+          // initial={{ x: 100, scale: 0.5 }}
+          // animate={{ x: 0, scale: 1 }}
+          // transition={{ duration: 0.8 }}
         >
-          <img src={Hero} alt="Hero" className="md:w-[90%] sm:w-2/3" />
-        </motion.div>
+          <img
+            src={Hero}
+            alt="Hero"
+            className="md:w-[90%] sm:w-2/3"
+            draggable="false"
+          />
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

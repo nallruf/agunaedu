@@ -28,13 +28,13 @@ const CardRole = ({
   return (
     <motion.div
       transition={{ duration: 0.8 }}
-      whileHover={{ scale: 1.2 }}
-      className={`shadow-lg cursor-pointer ${
+      whileHover={{ scale: 1.03 }}
+      className={`cursor-pointer ${
         isLocked ? "opacity-50 pointer-events-none relative" : ""
       }`}
     >
       {isLocked && lockedOverlay}
-      <div className="md:h-[250px] md:w-[336px]">
+      <div className="md:h-[250px] md:w-[336px] w-[330px] shadow-lg">
         <img
           src={img}
           alt="card-image"

@@ -27,7 +27,7 @@ const SideRole = ({
     <div>
       <div className="flex flex-col gap-4 p-1 py-[15px]">
         <h1 className="text-4xl font-semibold text-textLabel">{title}</h1>
-        <p className="text-lg font-semibold text-textLabel">{desc}</p>
+        <p className="text-lg text-textLabel">{desc}</p>
         <hr />
         <div className="space-y-[14px]">
           <InfoRow icon={icon1} text={jmlalur} />
@@ -37,6 +37,7 @@ const SideRole = ({
         <div className="py-8">
           <motion.button
             whileHover={{ scale: 1.2 }}
+            transition={{ duration: 0.8 }}
             className="rounded-lg text-primaryBlue bg-white px-6 py-1 border-2 flex items-center font-semibold gap-2"
             onClick={() => navigate(goto)}
           >

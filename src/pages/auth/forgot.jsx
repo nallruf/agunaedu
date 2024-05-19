@@ -5,7 +5,7 @@ import InfoComponent from "../../components/auth/info";
 import ButtonComponent from "../../components/auth/button";
 import TitleComponent from "../../components/auth/title";
 import TextInputComponent from "../../components/auth/textinput";
-import { toast } from "react-hot-toast";
+// import { toast } from "react-hot-toast";
 
 const ForgotPage = () => {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ const ForgotPage = () => {
   }, []);
 
   const handleSubmit = () => {
-    toast.success("Success - Check Email!");
+    // toast.success("Success - Check Email!");
     navigate("/auth/reset");
   };
 
@@ -35,11 +35,12 @@ const ForgotPage = () => {
         </div>
         <div className="w-full p-8 sm:p-32 md:w-3/5 md:p-36">
           <TitleComponent
-            onclick={() => navigate(-1)}
+            backTo="/auth/login"
             back="Kembali"
             title="Lupa Kata Sandi"
             desc="Pastikan email mu terdaftar ke akun Google!"
           />
+
           <form onSubmit={handleSubmit}>
             <div className="mb-6 mt-10">
               <TextInputComponent

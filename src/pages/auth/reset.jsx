@@ -5,7 +5,7 @@ import InfoComponent from "../../components/auth/info";
 import ButtonComponent from "../../components/auth/button";
 import TitleComponent from "../../components/auth/title";
 import TextInputComponent from "../../components/auth/textinput";
-import { toast } from "react-hot-toast";
+// import { toast } from "react-hot-toast";
 
 const ResetPage = () => {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ const ResetPage = () => {
   }, []);
 
   const handleSubmit = () => {
-    toast.success("Password Terganti!");
+    // toast.success("Password Terganti!");
     navigate("/auth/login");
   };
 
@@ -35,7 +35,7 @@ const ResetPage = () => {
         </div>
         <div className="w-full p-8 sm:p-32 md:w-3/5 md:p-36">
           <TitleComponent
-            onclick={() => navigate("/auth/login")}
+            backTo="/auth/forgot"
             back="Kembali"
             title="Kata Sandi Baru"
             desc="Kata sandi harus berbeda dengan yang sebelumnya!"
@@ -61,7 +61,7 @@ const ResetPage = () => {
                 passwordInput={true}
               />
             </div>
-            <ButtonComponent nameButton="Kirim Link Reset Ulang" />
+            <ButtonComponent nameButton="Kirim" />
           </form>
         </div>
       </div>

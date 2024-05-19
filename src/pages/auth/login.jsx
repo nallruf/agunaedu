@@ -67,11 +67,12 @@ const LoginPage = () => {
 
         <div className="w-full p-8 sm:p-32 md:w-3/5 md:p-36">
           <TitleComponent
-            onclick={() => navigate("/")}
+            backTo="/"
             back="Kembali"
             title="Masuk ke Akun mu"
             desc="Yuk, lanjutin pembelajaran bersama mentormu!"
           />
+
           <form onSubmit={handleSubmit}>
             <div className="mb-6 mt-10">
               <TextInputComponent

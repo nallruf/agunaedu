@@ -5,22 +5,31 @@ import { dataTool } from "../../../dummydata/main/datatool";
 
 const ToolsSection = () => {
   return (
-    <section className="bg-primaryBlue" data-aos="fade-right">
-      <div className="container mx-auto px-10 py-20">
+    <section
+      className="bg-primaryBlue"
+      // data-aos="fade-right"
+    >
+      <div className="px-10 sm:px-20 md:px-40 py-20">
         <div className="flex flex-col space-y-4 text-center">
           <span
             className="text-4xl text-white font-semibold"
-            data-aos="zoom-in"
+            // data-aos="zoom-in"
           >
             Pelajari berbagai Tools yang sesuai dengan Industri!
           </span>
-          <span className="text-white text-2xl" data-aos="zoom-in">
+          <span
+            className="text-white text-2xl"
+            // data-aos="zoom-in"
+          >
             Mulai kembangkan skill mu bersama kami
           </span>
         </div>
       </div>
 
-      <div className="overflow-hidden pb-32" data-aos="zoom-in">
+      <div
+        className="overflow-hidden pb-32"
+        // data-aos="zoom-in"
+      >
         {[...Array(2)].map((_, index) => (
           <Marquee
             key={index}
