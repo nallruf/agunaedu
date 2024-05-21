@@ -10,7 +10,7 @@ const CardChallenge = ({ title, imgChallenge, tags, date, icons, link }) => {
 
   return (
     <>
-      <div className="border-[1.5px] border-borderPrimary py-3 pl-3 pr-6 rounded-xl">
+      <div className="border-[1.5px] border-borderPrimary py-3 pl-3 pr-3 sm:pr-6 rounded-xl">
         <div className="flex justify-between items-center flex-col sm:flex-row">
           <div className="flex items-center justify-center gap-3 flex-col sm:flex-row">
             <img

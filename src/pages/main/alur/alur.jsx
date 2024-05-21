@@ -92,7 +92,7 @@ const AlurSection = () => {
         </div>
 
         <div
-          className="grid md:grid-cols-2 gap-10 md:justify-end justify-start"
+          className="grid md:grid-cols-2 gap-10 md:justify-end"
           // data-aos="zoom-in"
         >
           {filteredDataCard.slice(0, 2).map((item, index) => (

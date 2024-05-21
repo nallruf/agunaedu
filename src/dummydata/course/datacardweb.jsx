@@ -1,9 +1,6 @@
 import { FaLaptop } from "react-icons/fa";
 import { LuBarChart } from "react-icons/lu";
 import { GoStarFill } from "react-icons/go";
-import ImgHackerAlgo from "../../assets/img/gambarcard/hackeralgo.jpg";
-import ImgHackerWeb from "../../assets/img/gambarcard/hacker_web.jpg";
-import ImgHackerMobile from "../../assets/img/gambarcard/hacker_mobile.jpg";
 import ImgHustlerLead from "../../assets/img/gambarcard/hustler_leadership.jpg";
 import ModernTailwind from "../../assets/img/gambarcard/fe3-moderntailwind.jpg";
 import FeWebDev from "../../assets/img/gambarcard/fe1-frontendweb.jpg";

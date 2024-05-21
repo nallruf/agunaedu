@@ -56,8 +56,11 @@ const ChallengePage = () => {
           </div>
         </div>
       </section>
-      <section className="bg-primaryBlue text-white">
-        <div className="px-10 sm:px-20 md:px-40 mt-[70px]">
+
+      <section className="bg-primaryBlue text-white relative overflow-hidden">
+        <div className="absolute top-0 left-0 translate-x-[-50%] translate-y-[-50%] w-[400px] h-[400px] rounded-full bg-secondaryBlue" />
+        <div className="absolute bottom-0 left-0 translate-y-[90%] w-[770px] h-[735px] rounded-full bg-secondaryBlue" />
+        <div className="px-10 sm:px-20 md:px-40 mt-[70px] z-10 relative">
           <div className="grid md:grid-cols-2">
             <div className="mt-32 md:my-auto">
               <h1 className="text-white font-semibold text-3xl sm:text-5xl">
