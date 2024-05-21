@@ -11,7 +11,7 @@ import RegisterPage from "./pages/auth/register";
 import { AnimatePresence } from "framer-motion";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import HackerPage from "./pages/course/hacker/hacker";
+// import HackerPage from "./pages/course/hacker/hacker";
 import PathWebPage from "./pages/course/hacker/path/pathweb";
 import { Toaster } from "react-hot-toast";
 import WebFePage from "./pages/course/hacker/path/fe/webfe";
@@ -19,6 +19,8 @@ import EventPage from "./pages/kegiatan/event/event";
 import ChallengePage from "./pages/kegiatan/challenge/challenge";
 import DetailEventPage from "./pages/kegiatan/event/detail/detailevent";
 import DetailChallengePage from "./pages/kegiatan/challenge/detail/detailchallenge";
+import RolePage from "./pages/course/role/role";
+import DetailFePage from "./pages/course/hacker/path/fe/detail/detailfe";
 
 const DefaultLayout = ({ children }) => (
   <div>
@@ -101,11 +103,19 @@ function App() {
           <Route path="/auth/reset" element={<ResetPage />} />
 
           <Route path="/course">
-            <Route
+            {/* <Route
               path="hacker"
               element={
                 <CourseLayout>
                   <HackerPage />
+                </CourseLayout>
+              }
+            /> */}
+            <Route
+              path=":role"
+              element={
+                <CourseLayout>
+                  <RolePage />
                 </CourseLayout>
               }
             />
@@ -122,6 +132,14 @@ function App() {
               element={
                 <CourseLayout>
                   <WebFePage />
+                </CourseLayout>
+              }
+            />
+            <Route
+              path="hacker/path-web/fe/:id"
+              element={
+                <CourseLayout>
+                  <DetailFePage />
                 </CourseLayout>
               }
             />

@@ -42,6 +42,15 @@ const ResetPage = () => {
           />
           <form onSubmit={handleSubmit}>
             <div className="mt-10">
+              <div></div>
+              <TextInputComponent
+                htmlFor="token"
+                label="Nomor Token"
+                type="text"
+                placeholder="Masukan Nomor Token"
+                name="token"
+                id="token"
+              />
               <TextInputComponent
                 htmlFor="newPass"
                 label="Kata Sandi Baru"

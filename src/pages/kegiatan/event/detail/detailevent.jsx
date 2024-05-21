@@ -120,8 +120,10 @@ const DetailItem = ({ icon, label, value }) => (
 );
 
 const SpeakerProfile = ({ speakers }) => (
-  <section className="bg-primaryBlue md:pb-40">
-    <div className="px-10 sm:px-20 md:px-40">
+  <section className="bg-primaryBlue md:pb-40 relative overflow-hidden">
+    <div className="absolute bottom-0 left-0 translate-x-[-30%] translate-y-[70%] w-[617px] h-[577px] rounded-full bg-secondaryBlue" />
+    <div className="absolute top-0 right-0 translate-x-[50%] w-[333px] h-[320px] rounded-full bg-secondaryBlue" />
+    <div className="px-10 sm:px-20 md:px-40 relative z-10">
       <div className="flex flex-col justify-center items-center text-center pt-[68px] pb-[38px] gap-[59px]">
         <div>
           <h1 className="text-4xl font-semibold text-white mb-9">

@@ -3,9 +3,11 @@ import { LuPencilLine } from "react-icons/lu";
 import { HiOutlineBookOpen } from "react-icons/hi";
 import { FiBook } from "react-icons/fi";
 import { FiUsers } from "react-icons/fi";
-import { FaLaptop } from "react-icons/fa";
+import { IoCodeSlash } from "react-icons/io5";
 import { LuBarChart } from "react-icons/lu";
 import { GoStarFill } from "react-icons/go";
+import { HiMiniPencil } from "react-icons/hi2";
+
 import ImgHacker from "../../assets/img/role/Hacker.png";
 import ImgHustler from "../../assets/img/role/Hustler.png";
 import ImgHipster from "../../assets/img/role/Hipster.png";
@@ -68,7 +70,7 @@ export const dataPilih = [
     icon3: <FiUsers className="text-borderTertiary text-lg" />,
     jmlalur: "2 Alur Pembelajaran",
     jmlkelas: "30 Kelas Self Learning & Mentoring",
-    jmlsiswa: "210 Siswa",
+    jmlsiswa: "250 Siswa",
     goto: "/course/hacker",
   },
   {
@@ -80,7 +82,7 @@ export const dataPilih = [
     icon3: <FiUsers className="text-borderTertiary text-lg" />,
     jmlalur: "2 Alur Pembelajaran",
     jmlkelas: "30 Kelas Self Learning & Mentoring",
-    jmlsiswa: "210 Siswa",
+    jmlsiswa: "150 Siswa",
     goto: "/course/hustler",
   },
   {
@@ -92,7 +94,7 @@ export const dataPilih = [
     icon3: <FiUsers className="text-borderTertiary text-lg" />,
     jmlalur: "2 Alur Pembelajaran",
     jmlkelas: "30 Kelas Self Learning & Mentoring",
-    jmlsiswa: "210 Siswa",
+    jmlsiswa: "110 Siswa",
     goto: "/course/hipster",
   },
 ];
@@ -100,8 +102,8 @@ export const dataPilih = [
 export const dataCard = [
   {
     img: ImgHackerAlgo,
-    icon1: <FaLaptop />,
-    tes: ["Tes Dasar", "Hacker"],
+    icon1: <IoCodeSlash />,
+    tes: ["Hacker"],
     titlecard: "Algoritma Pemrograman",
     desccard: "Tes Dasar untuk membuka kelas hacker",
     icon2: <LuBarChart />,
@@ -112,8 +114,8 @@ export const dataCard = [
   },
   {
     img: ImgHackerWeb,
-    icon1: <FaLaptop />,
-    tes: ["Tes Level", "Hacker"],
+    icon1: <IoCodeSlash />,
+    tes: ["Hacker"],
     titlecard: "Dasar Web",
     desccard: "Tes Dasar untuk membuka path web",
     icon2: <LuBarChart />,
@@ -124,8 +126,8 @@ export const dataCard = [
   },
   {
     img: ImgHackerMobile,
-    icon1: <FaLaptop />,
-    tes: ["Tes Dasar", "Hacker"],
+    icon1: <IoCodeSlash />,
+    tes: ["Hacker"],
     titlecard: "Dasar Mobile",
     desccard: "Tes Dasar untuk membuka path mobile",
     icon2: <LuBarChart />,
@@ -136,8 +138,8 @@ export const dataCard = [
   },
   {
     img: ImgHackerMobile,
-    icon1: <FaLaptop />,
-    tes: ["Tes Dasar", "Hacker"],
+    icon1: <IoCodeSlash />,
+    tes: ["Hacker"],
     titlecard: "Dasar Mobile",
     desccard: "Tes Dasar untuk membuka path mobile",
     icon2: <LuBarChart />,
@@ -150,8 +152,8 @@ export const dataCard = [
   //Hustler
   {
     img: ImgHustlerLead,
-    icon1: <FaLaptop />,
-    tes: ["Tes Dasar", "Hustler"],
+    icon1: <FiUsers />,
+    tes: ["Hustler"],
     titlecard: "Leadership",
     desccard: "Tes Dasar untuk membuka kelas hustler",
     icon2: <LuBarChart />,
@@ -162,8 +164,8 @@ export const dataCard = [
   },
   {
     img: ImgHustlerPM,
-    icon1: <FaLaptop />,
-    tes: ["Tes Level", "Hustler"],
+    icon1: <FiUsers />,
+    tes: ["Hustler"],
     titlecard: "Project Management",
     desccard: "Tes Level untuk membuka path PM",
     icon2: <LuBarChart />,
@@ -173,9 +175,9 @@ export const dataCard = [
     isLocked: false,
   },
   {
-    icon1: <FaLaptop />,
+    icon1: <FiUsers />,
     img: ImgHustlerPublic,
-    tes: ["Tes Dasar", "Hustler"],
+    tes: ["Hustler"],
     titlecard: "Public Speaking",
     desccard: "Tes Dasar untuk membuka path speaking",
     icon2: <LuBarChart />,
@@ -185,9 +187,9 @@ export const dataCard = [
     isLocked: false,
   },
   {
-    icon1: <FaLaptop />,
+    icon1: <FiUsers />,
     img: ImgHustlerPublic,
-    tes: ["Tes Dasar", "Hustler"],
+    tes: ["Hustler"],
     titlecard: "Public Speaking",
     desccard: "Tes Dasar untuk membuka path speaking",
     icon2: <LuBarChart />,
@@ -200,8 +202,8 @@ export const dataCard = [
   //Hipster
   {
     img: ImgHipsterUIUX,
-    icon1: <FaLaptop />,
-    tes: ["Tes Dasar", "Hipster"],
+    icon1: <HiMiniPencil />,
+    tes: ["Hipster"],
     titlecard: "UI/UX Designer",
     desccard: "Tes Dasar untuk membuka kelas hipster",
     icon2: <LuBarChart />,
@@ -212,8 +214,8 @@ export const dataCard = [
   },
   {
     img: ImgHipsterUI,
-    icon1: <FaLaptop />,
-    tes: ["Tes Level", "Hipster"],
+    icon1: <HiMiniPencil />,
+    tes: ["Hipster"],
     titlecard: "UI Designer",
     desccard: "Tes Level untuk membuka path UI Design",
     icon2: <LuBarChart />,
@@ -224,8 +226,8 @@ export const dataCard = [
   },
   {
     img: ImgHipsterUX,
-    icon1: <FaLaptop />,
-    tes: ["Tes Level", "Hipster"],
+    icon1: <HiMiniPencil />,
+    tes: ["Hipster"],
     titlecard: "UX Designer",
     desccard: "Tes Dasar untuk membuka path UX Design ",
     icon2: <LuBarChart />,
@@ -236,8 +238,8 @@ export const dataCard = [
   },
   {
     img: ImgHipsterUX,
-    icon1: <FaLaptop />,
-    tes: ["Tes Level", "Hipster"],
+    icon1: <HiMiniPencil />,
+    tes: ["Hipster"],
     titlecard: "UX Designer",
     desccard: "Tes Dasar untuk membuka path UX Design ",
     icon2: <LuBarChart />,
