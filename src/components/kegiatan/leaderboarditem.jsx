@@ -2,18 +2,14 @@ import React from "react";
 import { FaStar, FaRegStar } from "react-icons/fa";
 
 const LeaderboardItem = ({ participant, isTopThree = false, position }) => {
-  const topThreeStyles = [
-    { marginTop: "[87px]", rankSuffix: "nd" },
-    { marginTop: "[34px]", rankSuffix: "st" },
-    { marginTop: "[87px]", rankSuffix: "rd" },
-  ];
+  const topThreeClasses = ["mt-[87px]", "mt-[34px]", "mt-[87px]"];
 
-  const { marginTop, rankSuffix } = isTopThree
-    ? topThreeStyles[position]
-    : { marginTop: "[0px]", rankSuffix: "" };
+  const rankSuffixes = ["nd", "st", "rd"];
+  const marginTopClass = isTopThree ? topThreeClasses[position] : "mt-0";
+  const rankSuffix = isTopThree ? rankSuffixes[position] : "";
 
   return isTopThree ? (
-    <div className={`flex flex-col items-center mt-${marginTop} gap-2`}>
+    <div className={`flex flex-col items-center gap-2 ${marginTopClass}`}>
       <h2 className="text-2xl font-semibold">
         {participant.rank}
         <span className="text-xl font-normal">{rankSuffix}</span>

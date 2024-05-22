@@ -8,7 +8,7 @@ const MentorKelas = ({ about, skills, gambar, name, role, review }) => {
         <div className="text-white md:w-[60%] flex flex-col gap-2 my-auto">
           <h1 className="text-4xl font-semibold">Tentang Mentor</h1>
           <span>{about}</span>
-          <div className="flex flex-col">
+          <div className="flex flex-col mt-[35px]">
             <span className="text-2xl font-semibold">Keahlian</span>
             <div className="flex gap-2">
               {skills.map((skill, index) => (

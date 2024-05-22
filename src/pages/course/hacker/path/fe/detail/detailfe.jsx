@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import HeaderCourse from "../../../../../../components/course/header/headercourse";
 import { useParams, useNavigate } from "react-router-dom";
 import { dataFeWeb } from "../../../../../../dummydata/course/datadetailweb";
@@ -10,15 +10,27 @@ import { dataMentorDetail } from "../../../../../../dummydata/course/datamentor"
 
 const DetailFePage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const event = dataFeWeb.find((event) => event.id.toString() === id);
+  const [paymentConfirmed, setPaymentConfirmed] = useState(false);
 
   useEffect(() => {
     document.title = event ? `Aguna Edu | FE #${event.id}` : "Aguna Edu | FE";
-  }, []);
 
-  if (!event) {
-    return <NotFoundPage />;
-  }
+    const paymentStatus = localStorage.getItem(`paymentConfirmed_${id}`);
+    if (paymentStatus) {
+      setPaymentConfirmed(JSON.parse(paymentStatus));
+    }
+
+    // Menghapus item dari localStorage saat komponen dilepas
+    return () => {
+      localStorage.removeItem(`paymentConfirmed_${id}`);
+    };
+  }, [id, event]);
+
+  const handleDaftarClick = () => {
+    navigate(`/course/hacker/path-web/fe/transaction/${event.id}`);
+  };
 
   return (
     <>
@@ -38,7 +50,7 @@ const DetailFePage = () => {
             <span className="text-textTertiary text-xl mt-3">{event.desc}</span>
           </div>
           <div className="flex flex-col md:flex-row">
-            <div className="flex flex-col gap-5 ">
+            <div className="flex flex-col gap-5 pr-10">
               <div className="grid gap-y-5">
                 <h1 className="text-2xl text-textPrimary font-semibold">
                   Tentang Kelas
@@ -75,7 +87,7 @@ const DetailFePage = () => {
               </div>
             </div>
             <div className="flex md:justify-end items-center mt-10 md:mt-0">
-              <div className=" flex flex-col border-2 gap-5 h-[315px] w-[333px] p-8 rounded-xl">
+              <div className=" flex flex-col border-2 gap-5 w-[333px] p-8 rounded-xl">
                 <span className="text-textPrimary text-2xl font-semibold">
                   Detail Kelas
                 </span>
@@ -87,12 +99,26 @@ const DetailFePage = () => {
                   <FiBook className="text-primaryBlue" />
                   <span className="text-textTertiary">{event.modul}</span>
                 </span>
-                <span className="text-primaryBlue text-2xl font-semibold">
-                  {event.harga}
-                </span>
-                <button className="bg-primaryBlue text-white rounded-lg px-5 py-2 w-[269px] h-[36px] items-center justify-center flex">
-                  Daftar
-                </button>
+                {!paymentConfirmed ? (
+                  <>
+                    <span className="text-primaryBlue text-2xl font-semibold">
+                      {event.harga}
+                    </span>
+                    <button
+                      className="bg-primaryBlue text-white rounded-lg px-5 py-2 w-[269px] h-[36px] items-center justify-center flex"
+                      onClick={handleDaftarClick}
+                    >
+                      Daftar
+                    </button>
+                  </>
+                ) : (
+                  <button
+                    className="bg-primaryBlue text-white rounded-lg px-5 py-2 w-[269px] h-[36px] items-center justify-center flex"
+                    onClick={() => navigate(`/course/hacker/path-web/fe/${id}`)}
+                  >
+                    Lanjut Belajar
+                  </button>
+                )}
               </div>
             </div>
           </div>

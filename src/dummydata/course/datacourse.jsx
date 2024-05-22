@@ -8,6 +8,7 @@ import TestUI from "../../assets/img/gambarcard/hipster_UI.jpg";
 import { LuBarChart } from "react-icons/lu";
 import { GoStarFill } from "react-icons/go";
 import { RiSpeakFill } from "react-icons/ri";
+import { CiLaptop } from "react-icons/ci";
 
 // Hacker Data
 export const dataHacker = [
@@ -20,12 +21,17 @@ export const dataHacker = [
         icon1: <IoCodeSlash />,
         tes: ["Hacker", "Pemula"],
         titlecard: "Web Dev",
+        icons: [ <CiLaptop />, <IoCodeSlash />],
+        skill: ["Web Development", "HTML CSS"],
         desccard: "Mempelajari dasar Web Dev",
+        about:
+          "Kelas ini didesain untuk tingkat pemula, dan cocok untuk kamu yang baru belajar dan ingin memperdalam tentang web development. Output dari pembelajaran kelas pemula ini nantinya adalah siswa dapat mengerti dan memahami apa itu web development dengan mini studi kasus.",
         icon2: <LuBarChart />,
         icon3: <GoStarFill />,
         level: "Level Pemula",
         rating: "4.9 (2k)",
         isLocked: false,
+        link: "/course/hacker/pemula/web",
       },
       {
         id: 2,
@@ -39,6 +45,7 @@ export const dataHacker = [
         level: "Level Pemula",
         rating: "4.9 (2k)",
         isLocked: false,
+        link: "/course/hacker/pemula/mobile",
       },
     ],
   },
