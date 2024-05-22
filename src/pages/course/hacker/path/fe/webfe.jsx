@@ -4,6 +4,7 @@ import ImgRole from "../../../../../assets/img/illustration/path-web.png";
 import MentorSection from "../../../../../components/course/fe/mentor";
 import KelasMandiri from "../../../../../components/course/fe/kelasmandiri";
 import { dataMentor } from "../../../../../dummydata/course/datamentor";
+
 const WebFePage = () => {
   useEffect(() => {
     document.title = "Aguna Edu | Web - FE";
