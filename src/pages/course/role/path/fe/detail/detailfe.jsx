@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import HeaderCourse from "../../../../../../components/course/header/headercourse";
 import { useParams, useNavigate } from "react-router-dom";
 import { dataFeWeb } from "../../../../../../dummydata/course/datadetailweb";
-import NotFoundPage from "../../../../../notfound";
 import ImgCourse from "../../../../../../assets/img/illustration/course.png";
 import { FiBook } from "react-icons/fi";
 import MentorKelas from "../../../../../../components/course/fe/metordetail";
