@@ -10,7 +10,7 @@ const MentorKelas = ({ about, skills, gambar, name, role, review }) => {
           <span>{about}</span>
           <div className="flex flex-col mt-[35px]">
             <span className="text-2xl font-semibold">Keahlian</span>
-            <div className="flex gap-2">
+            <div className="flex gap-2 flex-wrap">
               {skills.map((skill, index) => (
                 <div
                   key={index}

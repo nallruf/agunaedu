@@ -81,7 +81,8 @@ const TransactionFePage = () => {
   }
 
   if (paymentConfirmed) {
-    navigate(`/course/hacker/path-web/fe/${id}`);
+    // navigate(`/course/hacker/path-web/fe/${id}`);
+    navigate(`/course/hacker/path-web/fe/transaction/status/${id}`);
   }
 
   return (
