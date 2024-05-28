@@ -1,30 +1,38 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import HeaderCourse from "../../../../components/course/header/headercourse";
 import ImgPemula from "../../../../assets/img/illustration/login.png";
 import { FiBook } from "react-icons/fi";
 import { dataMentorDetail } from "../../../../dummydata/course/datamentor";
 import MentorKelas from "../../../../components/course/fe/metordetail";
-import { useParams } from "react-router-dom";
 import { dataPemulaHacker } from "../../../../dummydata/course/datadetailpemula";
 import NotFoundPage from "../../../notfound";
 
 const PemulaPage = () => {
   const { path } = useParams();
+  const navigate = useNavigate();
+  const [joined, setJoined] = useState(false);
   const event = dataPemulaHacker.find(
     (event) => event.path.toLowerCase() === path
   );
 
+  useEffect(() => {
+    if (event) {
+      document.title = `Aguna Edu | Pemula - ${event.path}`;
+    }
+  }, [event]);
+
   if (!event) {
-    return (
-      <>
-        <NotFoundPage />
-      </>
-    );
+    return <NotFoundPage />;
   }
 
-  useEffect(() => {
-    document.title = `Aguna Edu | Pemula - ${event.path}`;
-  }, []);
+  const handleButtonClick = () => {
+    if (joined) {
+      navigate("/dashboard");
+    } else {
+      setJoined(true);
+    }
+  };
 
   return (
     <>
@@ -43,7 +51,7 @@ const PemulaPage = () => {
           <span className="text-textTertiary text-xl mt-3">{event.desc}</span>
         </div>
         <div className="flex flex-col md:flex-row">
-          <div className="flex flex-col gap-5 ">
+          <div className="flex flex-col gap-5">
             <div className="grid gap-y-5 pr-10">
               <h1 className="text-2xl text-textPrimary font-semibold">
                 Tentang Kelas
@@ -80,7 +88,7 @@ const PemulaPage = () => {
             </div>
           </div>
           <div className="flex md:justify-end items-center mt-10 md:mt-0">
-            <div className=" flex flex-col border-2 gap-5  w-[333px] p-8 rounded-xl">
+            <div className="flex flex-col border-2 gap-5 w-[333px] p-8 rounded-xl">
               <span className="text-textPrimary text-2xl font-semibold">
                 Detail Kelas
               </span>
@@ -94,9 +102,9 @@ const PemulaPage = () => {
               </span>
               <button
                 className="bg-primaryBlue text-white rounded-lg px-5 w-[269px] h-[36px] items-center justify-center font-semibold"
-                // onClick={handleDaftarClick}
+                onClick={handleButtonClick}
               >
-                BERGABUNG
+                {joined ? "LANJUTKAN BELAJAR" : "BERGABUNG"}
               </button>
             </div>
           </div>

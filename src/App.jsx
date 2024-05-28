@@ -21,7 +21,10 @@ import DetailChallengePage from "./pages/kegiatan/challenge/detail/detailchallen
 import RolePage from "./pages/course/role/role";
 import DetailFePage from "./pages/course/role/path/fe/detail/detailfe";
 import TransactionFePage from "./pages/course/role/path/fe/transaction/transactionfe";
+import StatusTransactionPage from "./pages/course/role/path/fe/transaction/statustransaction";
 import PemulaPage from "./pages/course/role/pemula/pemula";
+import DetailTesPage from "./pages/course/role/tesrole/detailtes/detailtes";
+import TesPage from "./pages/course/role/tesrole/tes/tes";
 
 const DefaultLayout = ({ children }) => (
   <div>
@@ -121,6 +124,15 @@ function App() {
               }
             />
             <Route
+              path=":role/tes"
+              element={
+                <CourseLayout>
+                  <DetailTesPage />
+                </CourseLayout>
+              }
+            />
+            <Route path=":role/tes/dasar" element={<TesPage />} />
+            <Route
               path="hacker/pemula/:path"
               element={
                 <CourseLayout>
@@ -147,6 +159,10 @@ function App() {
             <Route
               path="hacker/path-web/fe/transaction/:id"
               element={<TransactionFePage />}
+            />
+            <Route
+              path="hacker/path-web/fe/transaction/status/:id"
+              element={<StatusTransactionPage />}
             />
           </Route>
         </Routes>

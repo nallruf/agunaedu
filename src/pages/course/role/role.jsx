@@ -50,7 +50,7 @@ const RolePage = () => {
         title="Ikut Tes Dulu, Yuk!"
         desc={`Ikuti tes dasar dulu yuk sebelum membuka kelas ${event.role}! Eitss, jangan khawatir, cuma yang simple simple aja kok!`}
         button="Ikuti Tes"
-        // gonjay="/course/hacker/path-web"
+        gonjay={`/course/${event.role}/tes`.toLowerCase()}
       />
 
       {classData &&
