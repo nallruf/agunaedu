@@ -54,7 +54,7 @@ const StatusTransactionPage = () => {
   return (
     <section className="bg-primaryBlue h-max">
       <div className="bg-white px-[32px] py-4">
-        <img className="h-9" src={Logo} alt="logoaguna" />
+        <img className="h-9" src={Logo} alt="logoaguna" draggable="false" />
       </div>
       <div className="flex justify-center py-[70px]">
         <div className="flex flex-col">
@@ -149,20 +149,20 @@ const StatusTransactionPage = () => {
                 <div className="flex justify-center mt-[40px]">
                   {status === "waiting" ? (
                     <button
-                      className="flex justify-center items-center gap-2 border bg-[#F9FAFB] border-[#85CAFF] text-textSecondary py-[10px] px-[30px] rounded-lg font-semibold text-sm w-full"
+                      className="flex justify-center items-center gap-2 border border-[#85CAFF] text-textSecondary py-[10px] px-[30px] rounded-lg font-semibold text-sm w-full"
                       onClick={handleUpload}
                     >
                       {data.buttonIcon} {data.buttonText}
                     </button>
                   ) : status === "failed" ? (
                     <button
-                      className="flex justify-center items-center gap-2 border bg-[#F9FAFB] border-[#85CAFF] text-textSecondary py-[10px] px-[30px] rounded-lg font-semibold text-sm w-full"
+                      className="flex justify-center items-center gap-2 border border-[#85CAFF] text-textSecondary py-[10px] px-[30px] rounded-lg font-semibold text-sm w-full"
                       onClick={handleRetry}
                     >
                       {data.buttonIcon} {data.buttonText}
                     </button>
                   ) : (
-                    <button className="flex justify-center items-center gap-2 border bg-[#F9FAFB] border-[#85CAFF] text-textSecondary py-[10px] px-[30px] rounded-lg font-semibold text-sm w-full">
+                    <button className="flex justify-center items-center gap-2 border border-[#85CAFF] text-textSecondary py-[10px] px-[30px] rounded-lg font-semibold text-sm w-full">
                       {data.buttonIcon} {data.buttonText}
                     </button>
                   )}

@@ -31,7 +31,7 @@ export const transactionData = {
     waktu: new Date().toLocaleTimeString(),
     metodePembayaran: "Gopay",
     jumlah: "Rp 175.000",
-    buttonText: "Unduh Bukti Transakasi",
+    buttonText: "Unduh Bukti Transaksi",
     buttonIcon: <LuDownload />,
   },
   failed: {

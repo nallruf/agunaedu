@@ -78,11 +78,13 @@ export const dataTesHipster = [
     questionsCount: 10,
     questions: [
       {
+        id: 1,
         question: "What is the primary principle of design?",
         options: ["Balance", "Color", "Texture", "Shape"],
         correct: "Balance",
       },
       {
+        id: 1,
         question: "What is a wireframe in design?",
         options: [
           "A blueprint of a website layout",

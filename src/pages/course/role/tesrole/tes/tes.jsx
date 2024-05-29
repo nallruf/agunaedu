@@ -42,7 +42,7 @@ const TesPage = () => {
   return (
     <>
       <div className="min-h-screen flex flex-col md:flex-row">
-        <div className="bg-white shadow border w-full md:w-20 flex flex-col items-center py-4">
+        <div className="hidden bg-white shadow border w-full md:w-20 md:flex flex-col items-center py-4">
           <img className="h-9 mb-8" src={Logo} alt="logo" />
           <div className="mt-auto mb-4">
             <div className="bg-white h-10 w-10 flex items-center justify-center rounded-full">
@@ -53,16 +53,17 @@ const TesPage = () => {
 
         <div className=" flex-1 flex-col  p-8">
           <div className="flex flex-col gap-3">
-            <h1 className="text-2xl font-semibold">
-              Tes Dasar Web Development
-            </h1>
-            <span className="flex text-textTertiary items-center gap-3">
+            <h1 className="text-2xl font-semibold">{testData.title}</h1>
+            <button
+              className="flex text-textTertiary items-center gap-3"
+              onClick={() => navigate(-1)}
+            >
               <IoIosArrowBack />
               Kembali
-            </span>
+            </button>
           </div>
 
-          <div className="mt-8 flex flex-col md:flex-row justify-between items-center">
+          <div className="mt-8 flex flex-col sm:flex-row justify-between items-center">
             <div className="flex items-center gap-2 md:gap-4 flex-wrap">
               {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
                 <button
@@ -78,10 +79,10 @@ const TesPage = () => {
               ))}
             </div>
 
-            <div className="flex items-center p-4 bg-[#FEF3F2] rounded-xl gap-2 text-[#D73328] mt-4 md:mt-0 ml-auto md:ml-0">
+            <div className="flex items-center p-4 bg-[#FEF3F2] rounded-xl gap-2 text-[#D73328] mt-4 sm:mt-0 ml-auto md:ml-0">
               <FaRegClock className="text-xl" />
               <span>Tersisa</span>
-              <span className="font-semibold ml-2">0:55:02</span>
+              <span className="font-semibold ml-2">{testData.time}</span>
             </div>
           </div>
 
@@ -115,8 +116,8 @@ const TesPage = () => {
               </button>
             </div>
 
-            <div className="flex justify-center md:justify-end mt-4 md:mt-0">
-              <button className="bg-primaryBlue text-white rounded-xl p-3 px-10 flex items-center gap-2 font-medium">
+            <div className="flex justify-center mt-4 md:mt-0">
+              <button className="bg-primaryBlue text-white rounded-xl p-3 px-4 flex justify-center items-center gap-2 font-medium w-full">
                 Kumpulkan
               </button>
             </div>
