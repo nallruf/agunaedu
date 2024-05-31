@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from "react";
 import Logo from "../../../../../../assets/img/logo/logo-name-biru.png";
 import { transactionData } from "../../../../../../dummydata/course/datastatusbayar";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { IoMdArrowRoundForward, IoMdArrowRoundBack } from "react-icons/io";
+import { dataFeWeb } from "../../../../../../dummydata/course/datadetailweb";
+import NotFoundPage from "../../../../../notfound";
 
 const StatusTransactionPage = () => {
+  const { id } = useParams();
+  const location = useLocation();
+  const event = dataFeWeb.find((event) => event.id.toString() === id);
+  const { totalPayment, paymentId } = location.state || {};
+
   const [status, setStatus] = useState("waiting");
   const navigate = useNavigate();
   const [countdown, setCountdown] = useState(
@@ -34,6 +41,10 @@ const StatusTransactionPage = () => {
     }
   }, [status, countdown]);
 
+  if (!event) {
+    return <NotFoundPage />;
+  }
+
   const handleUpload = () => {
     const isSuccess = true;
     setStatus(isSuccess ? "success" : "failed");
@@ -52,8 +63,10 @@ const StatusTransactionPage = () => {
   };
 
   return (
-    <section className="bg-primaryBlue h-max">
-      <div className="bg-white px-[32px] py-4">
+    <section className="bg-primaryBlue h-max relative overflow-hidden">
+      <div className="absolute bottom-0 left-0 transform translate-x-[-50%] translate-y-[50%] w-[600px] h-[600px] rounded-full bg-secondaryBlue" />
+      <div className="absolute top-0 right-0 transform translate-x-[40%] translate-y-[-35%] w-[392px] h-[392px] rounded-full bg-secondaryBlue" />
+      <div className="bg-white px-[32px] py-4 z-10 relative">
         <img className="h-9" src={Logo} alt="logoaguna" draggable="false" />
       </div>
       <div className="flex justify-center py-[70px]">
@@ -78,7 +91,7 @@ const StatusTransactionPage = () => {
                 </span>
                 <div>
                   <span className="font-semibold text-textPrimary">
-                    {data.idPembayaran}
+                    {paymentId}
                   </span>
                 </div>
               </div>
@@ -141,7 +154,7 @@ const StatusTransactionPage = () => {
                 <span className="font-medium text-textTertiary">Jumlah</span>
                 <div>
                   <span className="font-semibold text-textPrimary">
-                    {data.jumlah}
+                    {totalPayment}
                   </span>
                 </div>
               </div>

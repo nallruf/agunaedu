@@ -25,6 +25,7 @@ import StatusTransactionPage from "./pages/course/role/path/fe/transaction/statu
 import PemulaPage from "./pages/course/role/pemula/pemula";
 import DetailTesPage from "./pages/course/role/tesrole/detailtes/detailtes";
 import TesPage from "./pages/course/role/tesrole/tes/tes";
+import HasilTes from "./pages/course/role/tesrole/tes/hasiltes";
 
 const DefaultLayout = ({ children }) => (
   <div>
@@ -132,6 +133,7 @@ function App() {
               }
             />
             <Route path=":role/tes/dasar" element={<TesPage />} />
+            <Route path=":role/tes/dasar/hasil" element={<HasilTes />} />
             <Route
               path="hacker/pemula/:path"
               element={

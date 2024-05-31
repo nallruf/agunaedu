@@ -21,7 +21,7 @@ const DetailFePage = () => {
       setPaymentConfirmed(JSON.parse(paymentStatus));
     }
 
-    // Menghapus item dari localStorage saat komponen dilepas
+    // Menghapus item dari localStorage saat komponen dilepas (jadi akan sementara dlu, nanti saat udh di BE akan diganti)
     return () => {
       localStorage.removeItem(`paymentConfirmed_${id}`);
     };
@@ -86,7 +86,7 @@ const DetailFePage = () => {
               </div>
             </div>
             <div className="flex md:justify-end items-center mt-10 md:mt-0">
-              <div className=" flex flex-col border-2 gap-5 w-[333px] p-8 rounded-xl">
+              <div className=" flex flex-col border-2 gap-5 md:w-[333px] p-4 sm:p-8 rounded-xl">
                 <span className="text-textPrimary text-2xl font-semibold">
                   Detail Kelas
                 </span>

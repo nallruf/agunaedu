@@ -82,7 +82,10 @@ const TransactionFePage = () => {
 
   if (paymentConfirmed) {
     // navigate(`/course/hacker/path-web/fe/${id}`);
-    navigate(`/course/hacker/path-web/fe/transaction/status/${id}`);
+    // navigate(`/course/hacker/path-web/fe/transaction/status/${id}`);
+    navigate(`/course/hacker/path-web/fe/transaction/status/${id}`, {
+      state: { totalPayment: formattedTotalPrice, paymentId },
+    });
   }
 
   return (
@@ -100,7 +103,7 @@ const TransactionFePage = () => {
       </div>
 
       <div className="w-full md:w-3/5 md:py-11 md:pl-[73px] md:pr-[67px] p-8 sm:p-20">
-        <div className="">
+        <div>
           <button
             className="flex items-center text-lg gap-3 text-primaryBlue font-semibold mb-7"
             onClick={() => navigate(-1)}

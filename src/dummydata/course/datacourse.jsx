@@ -55,7 +55,7 @@ export const dataHacker = [
         desccard: "Mempelajari Front-End Web Dev",
         icon2: <FiUsers />,
         level: "200 Siswa",
-        isLocked: false,
+        isLocked: true,
         link: "/course/hacker/path-web",
       },
       {
@@ -67,7 +67,7 @@ export const dataHacker = [
         desccard: "Mempelajari Back-End Web Dev",
         icon2: <FiUsers />,
         level: "200 Siswa",
-        isLocked: false,
+        isLocked: true,
         link: "/course/hacker/path-web",
       },
       {
@@ -79,7 +79,7 @@ export const dataHacker = [
         desccard: "Mempelajari Full Stack Web Dev",
         icon2: <FiUsers />,
         level: "200 Siswa",
-        isLocked: false,
+        isLocked: true,
         link: "/course/hacker/path-web",
       },
     ],

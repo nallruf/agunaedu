@@ -16,7 +16,7 @@ export const transactionData = {
     message: "Lakukan pembayaran untuk memulai pembelajaran",
     idPembayaran: "02223977",
     tanggal: formatDate(new Date()),
-    bayarSebelum: 0.3 * 60,
+    bayarSebelum: 60 * 60,
     noVirtual: "00036734987",
     jumlah: "Rp 175.000",
     buttonText: "Upload Bukti Pembayaran",
