@@ -22,7 +22,7 @@ const TextInputComponent = ({
   const inputType = passwordInput ? (openEye ? "text" : "password") : type;
   const searchIcon = searchInput ? (
     <div className="absolute inset-y-0 left-0 top-8 flex items-center pl-3">
-      <CiSearch className="h-6 w-6 stroke-iconInput" />
+      <CiSearch className="h-6 w-6 text-iconInput" />
     </div>
   ) : null;
   const eyeIcon = passwordInput ? (

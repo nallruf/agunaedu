@@ -26,6 +26,12 @@ import PemulaPage from "./pages/course/role/pemula/pemula";
 import DetailTesPage from "./pages/course/role/tesrole/detailtes/detailtes";
 import TesPage from "./pages/course/role/tesrole/tes/tes";
 import HasilTes from "./pages/course/role/tesrole/tes/hasiltes";
+import DashboardUserPage from "./pages/user-menu/dashboard";
+import MentoringUserPage from "./pages/user-menu/mentoring";
+import EventUserPage from "./pages/user-menu/event";
+import ChallengeUserPage from "./pages/user-menu/challenge";
+import TransactionUserPage from "./pages/user-menu/transaction";
+import SettingUserPage from "./pages/user-menu/settings";
 
 const DefaultLayout = ({ children }) => (
   <div>
@@ -102,10 +108,12 @@ function App() {
               </DefaultLayout>
             }
           />
-          <Route path="/auth/login" element={<LoginPage />} />
-          <Route path="/auth/register" element={<RegisterPage />} />
-          <Route path="/auth/forgot" element={<ForgotPage />} />
-          <Route path="/auth/reset" element={<ResetPage />} />
+          <Route path="/auth">
+            <Route path="login" element={<LoginPage />} />
+            <Route path="register" element={<RegisterPage />} />
+            <Route path="forgot" element={<ForgotPage />} />
+            <Route path="reset" element={<ResetPage />} />
+          </Route>
 
           <Route path="/course">
             <Route
@@ -166,6 +174,16 @@ function App() {
               path="hacker/path-web/fe/transaction/status/:id"
               element={<StatusTransactionPage />}
             />
+          </Route>
+
+          <Route path="/user">
+            <Route path="dashboard" element={<DashboardUserPage />} />
+            <Route path="mentoring" element={<MentoringUserPage />} />
+            <Route path="course/:id" element={<NotFoundPage />} />
+            <Route path="event" element={<EventUserPage />} />
+            <Route path="challenge" element={<ChallengeUserPage />} />
+            <Route path="transaction" element={<TransactionUserPage />} />
+            <Route path="settings" element={<SettingUserPage />} />
           </Route>
         </Routes>
       </AnimatePresence>

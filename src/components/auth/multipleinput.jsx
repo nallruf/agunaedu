@@ -38,7 +38,7 @@ const MultiSelectInputComponent = ({
       <div className="border-2 border-borderPrimary rounded-[8px] px-[14px] py-[10px] mt-[6px] focus-within:ring-2 focus-within:ring-primaryBlue shadow-sm pl-10">
         <div className="flex items-center gap-2">
           <div className="absolute inset-y-0 left-0 top-8 flex items-center pl-3">
-            <CiSearch className="h-6 w-6 stroke-iconInput" />
+            <CiSearch className="h-6 w-6 text-iconInput" />
           </div>
           {selectedSkills.map((skill) => (
             <div
