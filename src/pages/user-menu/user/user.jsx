@@ -5,7 +5,9 @@ const User = ({ content }) => {
   return (
     <div className="flex">
       <Sidebar />
-      <div>{content}</div>
+      <div className="flex-1 mx-8 md:mx-10 my-[35px] transition-all duration-300">
+        {content}
+      </div>
     </div>
   );
 };

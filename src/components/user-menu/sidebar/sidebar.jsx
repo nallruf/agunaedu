@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import LogoAguna from "../../../assets/img/logo/logo-name-biru.png";
+import LogoBiru from "../../../assets/img/logo/logo-biru.png";
 import ImgProfile from "../../../assets/img/team/ulum.png";
 import { RiHome6Line } from "react-icons/ri";
 import { LuBarChart2, LuSettings2, LuLogOut } from "react-icons/lu";
@@ -10,6 +11,20 @@ import { PiMedal } from "react-icons/pi";
 const Sidebar = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   const menu = [
     {
       name: "Dashboard",
@@ -36,15 +51,15 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="min-h-screen border-r border-[#EAECF0] w-[312px] px-5 py-8 shadow-lg outline-none flex flex-col justify-between">
-      <div className="flex flex-col gap-6">
+    <div className="min-h-screen border-r border-[#EAECF0] w-[80px] md:w-[260px] px-5 py-8 shadow-lg flex flex-col justify-between transition-all duration-300">
+      <div className="flex flex-col gap-6 items-center md:items-start">
         <img
-          src={LogoAguna}
+          src={isMobile ? LogoBiru : LogoAguna}
           alt="logo"
           draggable="false"
-          className="w-[130px]"
+          className="w-[30px] md:w-[130px]"
         />
-        <div className="relative">
+        <div className="relative hidden md:block">
           <div className="absolute inset-y-0 left-0 flex items-center pl-3">
             <CiSearch className="h-6 w-6 text-iconInput" />
           </div>
@@ -63,7 +78,7 @@ const Sidebar = () => {
               return (
                 <Link key={index} to={navi.link}>
                   <li
-                    className={`mb-1 flex flex-row items-center gap-3 py-2 px-3 rounded-lg ${
+                    className={`mb-1 flex flex-col md:flex-row items-center md:gap-3 py-2 px-3 rounded-lg ${
                       isActive
                         ? "bg-[#F9FAFB] text-textPrimary"
                         : "text-textLabel"
@@ -72,7 +87,7 @@ const Sidebar = () => {
                     <div className={`${isActive ? "text-primaryBlue" : ""}`}>
                       {navi.icon}
                     </div>
-                    <div>{navi.name}</div>
+                    <div className="hidden md:block">{navi.name}</div>
                   </li>
                 </Link>
               );
@@ -83,7 +98,7 @@ const Sidebar = () => {
       <div className="flex flex-col gap-4">
         <Link to={"/user/settings"}>
           <div
-            className={`flex items-center gap-3 py-2 px-3 rounded-lg font-semibold ${
+            className={`flex flex-col md:flex-row items-center md:gap-3 py-2 px-3 rounded-lg font-semibold ${
               location.pathname === "/user/settings"
                 ? "bg-[#F9FAFB] text-textPrimary"
                 : "text-textLabel"
@@ -95,17 +110,17 @@ const Sidebar = () => {
                 location.pathname === "/user/settings" ? "text-primaryBlue" : ""
               }`}
             />
-            Pengaturan
+            <div className="hidden md:block">Pengaturan</div>
           </div>
         </Link>
         <div className="border-t border-[#EAECF0]">
-          <div className="pt-[25px] flex items-center justify-between">
-            <div className="flex items-center gap-2">
+          <div className="pt-[25px] flex flex-col md:flex-row items-center justify-between">
+            <div className="hidden md:flex items-center gap-2">
               <img
                 src={ImgProfile}
                 alt="img-profile"
                 draggable="false"
-                className="w-10 rounded-full"
+                className=" w-10 rounded-full"
               />
               <div className="flex flex-col">
                 <h2 className="text-sm font-semibold text-textLabel">Ulum</h2>
