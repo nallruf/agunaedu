@@ -40,7 +40,7 @@ const Footer = () => {
             <div className="flex flex-col gap-10 space-x-0 sm:gap-0 sm:flex-row sm:space-x-40 mt-10 md:mt-0">
               <FooterMenu
                 title="Aguna Edu"
-                links={[{ name: "Tentang Kami", path: "/" }]}
+                links={[{ name: "Tentang Kami", path: "/about" }]}
               />
               <FooterMenu
                 title="Layanan"
@@ -53,8 +53,8 @@ const Footer = () => {
               <FooterMenu
                 title="Bantuan"
                 links={[
-                  { name: "Kebijakan dan Privasi", path: "/" },
-                  { name: "Syarat dan Ketentuan", path: "/" },
+                  { name: "Kebijakan dan Privasi", path: "/privacy" },
+                  { name: "Syarat dan Ketentuan", path: "/terms" },
                   { name: "FaQ", path: "/" },
                 ]}
               />

@@ -21,7 +21,7 @@ const CardCourse = ({ title, img, icons, tags, progress }) => {
             src={img}
             alt="course-image"
             draggable="false"
-            className="rounded-lg sm:w-[100px] sm:h-[90px] w-full"
+            className="rounded-lg md:w-[100px] md:h-[90px] w"
           />
           <div className="flex flex-col">
             <h1 className="text-xl font-semibold">{title}</h1>

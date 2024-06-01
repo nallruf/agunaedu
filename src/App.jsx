@@ -32,6 +32,9 @@ import EventUserPage from "./pages/user-menu/event";
 import ChallengeUserPage from "./pages/user-menu/challenge";
 import TransactionUserPage from "./pages/user-menu/transaction";
 import SettingUserPage from "./pages/user-menu/settings";
+import AboutPage from "./pages/information/about";
+import PrivacyPage from "./pages/information/privacy";
+import TermsPage from "./pages/information/terms";
 
 const DefaultLayout = ({ children }) => (
   <div>
@@ -73,6 +76,30 @@ function App() {
             element={
               <DefaultLayout>
                 <HomePage />
+              </DefaultLayout>
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <DefaultLayout>
+                <AboutPage />
+              </DefaultLayout>
+            }
+          />
+          <Route
+            path="/terms"
+            element={
+              <DefaultLayout>
+                <TermsPage />
+              </DefaultLayout>
+            }
+          />
+          <Route
+            path="/privacy"
+            element={
+              <DefaultLayout>
+                <PrivacyPage />
               </DefaultLayout>
             }
           />
