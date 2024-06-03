@@ -28,6 +28,22 @@ export const dataAnalysis = [
     profit: "+36%",
   },
 ];
+export const dataChallenge = [
+  {
+    title: "Total Challenge Yang Diikuti",
+    amount: 4,
+    total: "1145xp",
+    icon: "RiAwardLine",
+    profit: "+36%",
+  },
+  {
+    title: "Total Challenge",
+    amount: 4,
+    total: "1145xp",
+    icon: "LuCoins",
+    profit: "+36%",
+  },
+];
 
 export const dataMentoring = [
   {
