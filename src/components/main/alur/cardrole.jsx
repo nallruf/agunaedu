@@ -7,14 +7,14 @@ import { useNavigate } from "react-router-dom";
 
 const CardRole = ({
   img,
-  icon1,
+  icons,
   tes,
   titlecard,
   desccard,
   icon2,
-  icon3,
+  // icon3,
   level,
-  rating,
+  // rating,
   isLocked,
   link,
 }) => {
@@ -99,7 +99,7 @@ const CardRole = ({
                       isLocked ? "text-iconInput" : "text-textLabel"
                     } border-borderPrimary`}
                   >
-                    <span>{icon1}</span>
+                    <span>{icons[index]}</span>
                     <p>{test}</p>
                   </div>
                 ))}
@@ -121,7 +121,7 @@ const CardRole = ({
                     {desccard}
                   </p>
                 </div>
-                <div className="flex gap-3">
+                {/* <div className="flex gap-3">
                   <div className="flex items-center gap-2">
                     <span
                       className={
@@ -152,6 +152,22 @@ const CardRole = ({
                       {rating}
                     </span>
                   </div>
+                </div> */}
+                <div className="flex items-center gap-2">
+                  <span
+                    className={isLocked ? "text-iconInput" : "text-primaryBlue"}
+                  >
+                    {icon2}
+                  </span>
+                  <span
+                    className={
+                      isLocked
+                        ? "text-iconInput"
+                        : "text-primaryBlue font-semibold"
+                    }
+                  >
+                    {level}
+                  </span>
                 </div>
               </div>
             </div>

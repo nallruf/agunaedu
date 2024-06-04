@@ -10,11 +10,11 @@ const MentorKelas = ({ about, skills, gambar, name, role, review }) => {
           <span>{about}</span>
           <div className="flex flex-col mt-[35px]">
             <span className="text-2xl font-semibold">Keahlian</span>
-            <div className="flex gap-2">
+            <div className="flex gap-2 flex-wrap">
               {skills.map((skill, index) => (
                 <div
                   key={index}
-                  className="border-[1.5px] border-borderPrimary bg-[#F9FAFB] text-textLabel text-[14px] font-medium inline-flex items-center px-3 py-[6px] rounded-[6px] my-2 gap-2"
+                  className="border-[1.5px] border-borderPrimary bg-[#F9FAFB] text-textLabel text-[14px] font-medium inline-flex items-center px-3 py-[6px] rounded-[6px] sm:my-2 my-1 gap-2"
                 >
                   {skill}
                 </div>
@@ -22,9 +22,9 @@ const MentorKelas = ({ about, skills, gambar, name, role, review }) => {
             </div>
           </div>
         </div>
-        <div className="border-2 rounded-xl md:w-[266px] md:h-[318px] flex flex-col py-2 items-center bg-white">
+        <div className="border-2 rounded-xl p-4 md:p-5 flex flex-col items-center bg-white mt-3 w-fit">
           <div className="py-2 flex items-start justify-start flex-col">
-            <img src={gambar} alt="mentor" />
+            <img src={gambar} alt="mentor" draggable="false" />
             <div className="flex flex-col items-start w-full justify-center py-2">
               <span className="text-xl font-bold">{name}</span>
               <span className="text-sm text-textTertiary">{role}</span>

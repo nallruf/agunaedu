@@ -97,7 +97,7 @@ const NavBar = () => {
                       <div className="text-textTertiary text-[14px] font-semibold py-2 px-4">
                         <div className="flex flex-col gap-4 py-2 px-3 items-start">
                           <button
-                            onClick={() => navigate("/admin/dashboard")}
+                            onClick={() => navigate("/user/dashboard")}
                             className="hover:text-primaryBlue"
                           >
                             Dashboard

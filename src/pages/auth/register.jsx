@@ -6,6 +6,7 @@ import InfoComponent from "../../components/auth/info";
 import TextInputComponent from "../../components/auth/textinput";
 import TitleComponent from "../../components/auth/title";
 import { toast } from "react-hot-toast";
+import MultiSelectInputComponent from "../../components/auth/multipleinput";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const RegisterPage = () => {
 
   const handleSubmit = () => {
     // toast.success("Pendaftaran Berhasil!");
-    navigate("/auth/login");
+    navigate("/");
   };
 
   return (
@@ -96,16 +97,14 @@ const RegisterPage = () => {
                 searchInput={true}
               />
             </div>
-            {/* Kurang ini untuk multi selection input*/}
             <div className="mb-5">
-              <TextInputComponent
+              <MultiSelectInputComponent
                 htmlFor="skill"
                 label="Ketertarikan Skill"
-                type="text"
                 placeholder="Masukan Ketertarikan Skill"
                 name="skill"
                 id="skill"
-                searchInput={true}
+                // options={[]}
               />
             </div>
             <div className="mb-[11px]">

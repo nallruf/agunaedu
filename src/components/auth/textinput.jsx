@@ -22,7 +22,7 @@ const TextInputComponent = ({
   const inputType = passwordInput ? (openEye ? "text" : "password") : type;
   const searchIcon = searchInput ? (
     <div className="absolute inset-y-0 left-0 top-8 flex items-center pl-3">
-      <CiSearch className="h-6 w-6 stroke-iconInput" />
+      <CiSearch className="h-6 w-6 text-iconInput" />
     </div>
   ) : null;
   const eyeIcon = passwordInput ? (
@@ -48,18 +48,31 @@ const TextInputComponent = ({
         {label}
       </label>
       {searchIcon}
-      <input
-        type={inputType}
-        placeholder={placeholder}
-        name={name}
-        id={id}
-        value={value}
-        onChange={onChange}
-        autoComplete={passwordInput ? "current-password" : "off"}
-        className={`w-full border-2 border-borderPrimary rounded-[8px] px-[14px] py-[10px] mt-[6px] focus:outline-none focus:ring-2 focus:ring-primaryBlue shadow-sm ${
-          searchInput ? "pl-10" : ""
-        }`}
-      />
+      {type === "textarea" ? (
+        <textarea
+          placeholder={placeholder}
+          name={name}
+          id={id}
+          value={value}
+          onChange={onChange}
+          rows={7}
+          className="w-full border-2 border-borderPrimary rounded-[8px] px-[14px] py-[10px] mt-[6px] focus:outline-none focus:ring-2 focus:ring-primaryBlue shadow-sm"
+        />
+      ) : (
+        <input
+          type={inputType}
+          placeholder={placeholder}
+          name={name}
+          id={id}
+          value={value}
+          onChange={onChange}
+          autoComplete={passwordInput ? "current-password" : "off"}
+          className={`w-full border-2 border-borderPrimary rounded-[8px] px-[14px] py-[10px] mt-[6px] focus:outline-none focus:ring-2 focus:ring-primaryBlue shadow-sm ${
+            searchInput ? "pl-10" : ""
+          }`}
+        />
+      )}
+
       {eyeIcon}
     </div>
   );

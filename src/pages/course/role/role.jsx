@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import HeaderCourse from "../../../components/course/header/headercourse";
 import ImgRole from "../../../assets/img/illustration/role.png";
 import HeroCourse from "../../../components/course/hero/herocourse";
@@ -15,6 +15,7 @@ import {
 const RolePage = () => {
   const { role } = useParams();
   const event = dataRole.find((event) => event.role.toLowerCase() === role);
+  const [passed, setPassed] = useState(false);
 
   if (!event) {
     return (
@@ -26,7 +27,19 @@ const RolePage = () => {
 
   useEffect(() => {
     document.title = `Aguna Edu | Course ${event.role}`;
-  }, []);
+
+    const passedStatus =
+      localStorage.getItem(`${role.toLowerCase()}_passed`) === "true";
+
+    if (passedStatus) {
+      setPassed(JSON.parse(passedStatus));
+    }
+
+    // Menghapus item dari localStorage saat komponen dilepas (jadi akan sementara dlu, nanti saat udh di BE akan diganti)
+    return () => {
+      localStorage.removeItem(`${event.role.toLowerCase()}_passed`) === "true";
+    };
+  }, [role, event]);
 
   let classData;
   if (event.role.toLowerCase() === "hacker") {
@@ -50,7 +63,7 @@ const RolePage = () => {
         title="Ikut Tes Dulu, Yuk!"
         desc={`Ikuti tes dasar dulu yuk sebelum membuka kelas ${event.role}! Eitss, jangan khawatir, cuma yang simple simple aja kok!`}
         button="Ikuti Tes"
-        // gonjay="/course/hacker/path-web"
+        gonjay={`/course/${event.role}/tes`.toLowerCase()}
       />
 
       {classData &&
@@ -58,7 +71,10 @@ const RolePage = () => {
           <ClassCourse
             key={index}
             kelas={classItem.kelas}
-            data={classItem.data}
+            data={classItem.data.map((item) => ({
+              ...item,
+              isLocked: !passed && item.isLocked,
+            }))}
           />
         ))}
     </>

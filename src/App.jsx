@@ -11,18 +11,30 @@ import RegisterPage from "./pages/auth/register";
 import { AnimatePresence } from "framer-motion";
 import AOS from "aos";
 import "aos/dist/aos.css";
-// import HackerPage from "./pages/course/hacker/hacker";
-import PathWebPage from "./pages/course/hacker/path/pathweb";
+import PathWebPage from "./pages/course/role/path/pathweb";
 import { Toaster } from "react-hot-toast";
-import WebFePage from "./pages/course/hacker/path/fe/webfe";
+import WebFePage from "./pages/course/role/path/fe/webfe";
 import EventPage from "./pages/kegiatan/event/event";
 import ChallengePage from "./pages/kegiatan/challenge/challenge";
 import DetailEventPage from "./pages/kegiatan/event/detail/detailevent";
 import DetailChallengePage from "./pages/kegiatan/challenge/detail/detailchallenge";
 import RolePage from "./pages/course/role/role";
-import DetailFePage from "./pages/course/hacker/path/fe/detail/detailfe";
-import TransactionFePage from "./pages/course/hacker/path/fe/transaction/transactionfe";
+import DetailFePage from "./pages/course/role/path/fe/detail/detailfe";
+import TransactionFePage from "./pages/course/role/path/fe/transaction/transactionfe";
+import StatusTransactionPage from "./pages/course/role/path/fe/transaction/statustransaction";
 import PemulaPage from "./pages/course/role/pemula/pemula";
+import DetailTesPage from "./pages/course/role/tesrole/detailtes/detailtes";
+import TesPage from "./pages/course/role/tesrole/tes/tes";
+import HasilTes from "./pages/course/role/tesrole/tes/hasiltes";
+import DashboardUserPage from "./pages/user-menu/dashboard";
+import MentoringUserPage from "./pages/user-menu/mentoring";
+import EventUserPage from "./pages/user-menu/event";
+import ChallengeUserPage from "./pages/user-menu/challenge";
+import TransactionUserPage from "./pages/user-menu/transaction";
+import SettingUserPage from "./pages/user-menu/settings";
+import AboutPage from "./pages/information/about";
+import PrivacyPage from "./pages/information/privacy";
+import TermsPage from "./pages/information/terms";
 
 const DefaultLayout = ({ children }) => (
   <div>
@@ -68,6 +80,30 @@ function App() {
             }
           />
           <Route
+            path="/about"
+            element={
+              <DefaultLayout>
+                <AboutPage />
+              </DefaultLayout>
+            }
+          />
+          <Route
+            path="/terms"
+            element={
+              <DefaultLayout>
+                <TermsPage />
+              </DefaultLayout>
+            }
+          />
+          <Route
+            path="/privacy"
+            element={
+              <DefaultLayout>
+                <PrivacyPage />
+              </DefaultLayout>
+            }
+          />
+          <Route
             path="/event"
             element={
               <DefaultLayout>
@@ -99,20 +135,14 @@ function App() {
               </DefaultLayout>
             }
           />
-          <Route path="/auth/login" element={<LoginPage />} />
-          <Route path="/auth/register" element={<RegisterPage />} />
-          <Route path="/auth/forgot" element={<ForgotPage />} />
-          <Route path="/auth/reset" element={<ResetPage />} />
+          <Route path="/auth">
+            <Route path="login" element={<LoginPage />} />
+            <Route path="register" element={<RegisterPage />} />
+            <Route path="forgot" element={<ForgotPage />} />
+            <Route path="reset" element={<ResetPage />} />
+          </Route>
 
           <Route path="/course">
-            {/* <Route
-              path="hacker"
-              element={
-                <CourseLayout>
-                  <HackerPage />
-                </CourseLayout>
-              }
-            /> */}
             <Route
               path=":role"
               element={
@@ -129,6 +159,16 @@ function App() {
                 </CourseLayout>
               }
             />
+            <Route
+              path=":role/tes"
+              element={
+                <CourseLayout>
+                  <DetailTesPage />
+                </CourseLayout>
+              }
+            />
+            <Route path=":role/tes/dasar" element={<TesPage />} />
+            <Route path=":role/tes/dasar/hasil" element={<HasilTes />} />
             <Route
               path="hacker/pemula/:path"
               element={
@@ -157,6 +197,20 @@ function App() {
               path="hacker/path-web/fe/transaction/:id"
               element={<TransactionFePage />}
             />
+            <Route
+              path="hacker/path-web/fe/transaction/status/:id"
+              element={<StatusTransactionPage />}
+            />
+          </Route>
+
+          <Route path="/user">
+            <Route path="dashboard" element={<DashboardUserPage />} />
+            <Route path="mentoring" element={<MentoringUserPage />} />
+            <Route path="course/:id" element={<NotFoundPage />} />
+            <Route path="event" element={<EventUserPage />} />
+            <Route path="challenge" element={<ChallengeUserPage />} />
+            <Route path="transaction" element={<TransactionUserPage />} />
+            <Route path="settings" element={<SettingUserPage />} />
           </Route>
         </Routes>
       </AnimatePresence>
