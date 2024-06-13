@@ -2,18 +2,10 @@ import React from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { FiBook, FiUsers } from "react-icons/fi";
+import { HiOutlineBookOpen } from "react-icons/hi";
 
-const SideRole = ({
-  title,
-  desc,
-  icon1,
-  icon2,
-  icon3,
-  jmlalur,
-  jmlkelas,
-  jmlsiswa,
-  goto,
-}) => {
+const SideRole = ({ title, desc, jmlalur, jmlkelas, jmlsiswa, goto }) => {
   const navigate = useNavigate();
 
   const InfoRow = ({ icon, text }) => (
@@ -30,9 +22,20 @@ const SideRole = ({
         <p className="text-lg text-textLabel">{desc}</p>
         <hr />
         <div className="space-y-[14px]">
-          <InfoRow icon={icon1} text={jmlalur} />
-          <InfoRow icon={icon2} text={jmlkelas} />
-          <InfoRow icon={icon3} text={jmlsiswa} />
+          <InfoRow
+            icon={<FiBook className="text-borderTertiary text-lg" />}
+            text={`${jmlalur} Alur Pembelajaran`}
+          />
+          <InfoRow
+            icon={
+              <HiOutlineBookOpen className="text-borderTertiary text-lg " />
+            }
+            text={`${jmlkelas} Kelas Self Learning & Mentoring`}
+          />
+          <InfoRow
+            icon={<FiUsers className="text-borderTertiary text-lg" />}
+            text={`${jmlsiswa} Siswa`}
+          />
         </div>
         <div className="py-8">
           <motion.button

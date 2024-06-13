@@ -7,14 +7,12 @@ import { useNavigate } from "react-router-dom";
 
 const CardRole = ({
   img,
-  icons,
-  tes,
+  icons = [],
+  tes = [],
   titlecard,
   desccard,
   icon2,
-  // icon3,
   level,
-  // rating,
   isLocked,
   link,
 }) => {
@@ -89,86 +87,58 @@ const CardRole = ({
             draggable="false"
             className="object-cover rounded-t-2xl overflow-hidden h-[200px] md:w-[336px] w-full"
           />
-          <div className="bg-white p-6 flex flex-col rounded-b-2xl shadow-lg">
-            <div className="flex flex-col gap-3">
-              <div className="flex gap-3">
-                {tes.map((test, index) => (
-                  <div
-                    key={index}
-                    className={`flex items-center border-2 px-3 py-1 text-sm gap-2 font-medium rounded-lg ${
-                      isLocked ? "text-iconInput" : "text-textLabel"
-                    } border-borderPrimary`}
-                  >
-                    <span>{icons[index]}</span>
-                    <p>{test}</p>
+          <div className="bg-white p-6 flex flex-col rounded-b-2xl shadow-lg h-[270px]">
+            <div className="flex flex-col gap-3 justify-between h-full">
+              <div className="flex flex-col gap-5">
+                {tes.length > 0 && icons.length > 0 && (
+                  <div className="flex gap-3">
+                    {tes.map((test, index) => (
+                      <div
+                        key={index}
+                        className={`flex items-center border-2 px-3 py-1 text-sm gap-2 font-medium rounded-lg ${
+                          isLocked ? "text-iconInput" : "text-textLabel"
+                        } border-borderPrimary`}
+                      >
+                        <span>{icons[index]}</span>
+                        <p>{test}</p>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-              <div className="flex flex-col gap-10">
-                <div>
-                  <h2
-                    className={`text-2xl font-semibold ${
-                      isLocked ? "text-iconInput" : "text-textSecondary"
-                    }`}
-                  >
-                    {titlecard}
-                  </h2>
-                  <p
-                    className={`text-textLabel text-[14px] mt-1 ${
-                      isLocked ? "text-iconInput" : "text-textTertiary"
-                    }`}
-                  >
-                    {desccard}
-                  </p>
-                </div>
-                {/* <div className="flex gap-3">
-                  <div className="flex items-center gap-2">
-                    <span
-                      className={
-                        isLocked ? "text-iconInput" : "text-primaryBlue"
-                      }
+                )}
+                <div className="flex flex-col gap-10">
+                  <div>
+                    <h2
+                      className={`text-2xl font-semibold ${
+                        isLocked ? "text-iconInput" : "text-textSecondary"
+                      }`}
                     >
-                      {icon2}
-                    </span>
-                    <span
-                      className={isLocked ? "text-iconInput" : "text-textLabel"}
-                    >
-                      {level}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span
-                      className={
-                        isLocked ? "text-iconInput" : "text-yellow-500"
-                      }
-                    >
-                      {icon3}
-                    </span>
-                    <span
-                      className={
+                      {titlecard}
+                    </h2>
+                    <p
+                      className={`text-textLabel text-[14px] mt-1 ${
                         isLocked ? "text-iconInput" : "text-textTertiary"
-                      }
+                      }`}
                     >
-                      {rating}
-                    </span>
+                      {desccard}
+                    </p>
                   </div>
-                </div> */}
-                <div className="flex items-center gap-2">
-                  <span
-                    className={isLocked ? "text-iconInput" : "text-primaryBlue"}
-                  >
-                    {icon2}
-                  </span>
-                  <span
-                    className={
-                      isLocked
-                        ? "text-iconInput"
-                        : "text-primaryBlue font-semibold"
-                    }
-                  >
-                    {level}
-                  </span>
                 </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <span
+                  className={isLocked ? "text-iconInput" : "text-primaryBlue"}
+                >
+                  {icon2}
+                </span>
+                <span
+                  className={
+                    isLocked
+                      ? "text-iconInput"
+                      : "text-primaryBlue font-semibold"
+                  }
+                >
+                  {level}
+                </span>
               </div>
             </div>
           </div>

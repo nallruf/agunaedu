@@ -2,21 +2,50 @@ import React, { useEffect, useState } from "react";
 import HeaderKegiatan from "../../../components/kegiatan/headerkeg";
 import ChallengeImg from "../../../assets/img/illustration/1.png";
 import CardChallenge from "../../../components/kegiatan/cardchallenge";
-import {
-  dataCardChallenge,
-  dataLeaderboard,
-} from "../../../dummydata/kegiatan/datachallenge";
-import LeaderboardSection from "./leaderboard/leaderboard";
+import { dataLeaderboard } from "../../../dummydata/kegiatan/datachallenge";
+import LeaderboardSection from "../../../components/kegiatan/leaderboard";
 import RoleImg from "../../../assets/img/illustration/role.png";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const ChallengePage = () => {
+  const [challenge, setChallenge] = useState([]);
+
   useEffect(() => {
-    document.title = "Aguna Edu | Challenge";
+    const fetchChallenge = async () => {
+      try {
+        const response = await axios.get("/api/v1/public/landing/challenge");
+        setChallenge(response.data);
+      } catch (error) {
+        console.error("Error fetching challenge:", error);
+      }
+    };
+
+    fetchChallenge();
   }, []);
 
   const [showAll, setShowAll] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = "Aguna Edu | Challenge";
+  }, []);
+
+  const formatDateRange = (startDateStr, endDateStr) => {
+    const startDate = new Date(startDateStr);
+    const endDate = new Date(endDateStr);
+
+    const options = {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    };
+
+    const formattedStartDate = startDate.toLocaleDateString("id-ID", options);
+    const formattedEndDate = endDate.toLocaleDateString("id-ID", options);
+
+    return `${formattedStartDate} - ${formattedEndDate}`;
+  };
 
   const toggleShowAll = () => {
     setShowAll(!showAll);
@@ -42,8 +71,17 @@ const ChallengePage = () => {
               </h3>
             </div>
             <div className="mt-10 flex flex-col gap-6">
-              {dataCardChallenge.map((kegiatan, index) => (
-                <CardChallenge key={index} {...kegiatan} />
+              {challenge.map((kegiatan) => (
+                <CardChallenge
+                  key={kegiatan.id}
+                  title={kegiatan.name}
+                  imgChallenge={`${import.meta.env.VITE_PUBLIC_URL}/images/${
+                    kegiatan.imageUrl
+                  }`}
+                  tags={kegiatan.skills.map((skill) => skill.name)}
+                  date={formatDateRange(kegiatan.startDate, kegiatan.endDate)}
+                  link={`/challenge/detail/${kegiatan.id}`}
+                />
               ))}
             </div>
           </div>

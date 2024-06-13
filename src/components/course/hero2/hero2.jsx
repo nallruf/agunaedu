@@ -11,10 +11,7 @@ const HeroSection2 = () => {
     <>
       <section className="px-10 sm:px-20 md:px-40 bg-primaryBlue pb-10 md:pb-0">
         <div className="grid md:grid-cols-2">
-          <div
-            className="mt-32 md:my-auto"
-            // data-aos="zoom-in"
-          >
+          <div className="mt-32 md:my-auto">
             <h1 className="text-white font-bold text-5xl">
               Yuk, Jadi juara Bersama Aguna Edu!
             </h1>
@@ -30,10 +27,7 @@ const HeroSection2 = () => {
               </span>
             </motion.button>
           </div>
-          <div
-            className="flex md:justify-end justify-center mt-20 md:mt-0"
-            // data-aos="zoom-in"
-          >
+          <div className="flex md:justify-end justify-center mt-20 md:mt-0">
             <img
               src={ImgJuara}
               alt="img-keahlian"

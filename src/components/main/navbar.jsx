@@ -7,12 +7,15 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import ImgAvatar from "../../assets/img/team/ulum.png";
 import { toast } from "react-hot-toast";
+import axios from "axios";
+import { useAuth } from "../../hooks/useauth";
 
 const NavBar = () => {
   const [menu, setMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const navigate = useNavigate();
+  const { logout, user } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,17 +31,25 @@ const NavBar = () => {
     setMenu(!menu);
   };
 
-  const checkIsLoggedIn = () => {
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
-    return isLoggedIn === "true";
-  };
-
-  const [isLoggedIn, setIsLoggedIn] = useState(checkIsLoggedIn());
-
-  const logout = () => {
-    localStorage.setItem("isLoggedIn", "false");
-    setIsLoggedIn(false);
-    toast.success("Logout Success!");
+  const handleLogout = async () => {
+    try {
+      const response = await axios.post(
+        "/api/v1/auth/logout",
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${user}`,
+          },
+        }
+      );
+      if (response.status === 200) {
+        logout();
+        toast.success(response.data.message);
+      }
+    } catch (error) {
+      console.error("Error logging out", error);
+      toast.error("Failed to logout. Please try again.");
+    }
   };
 
   const toggleDropdown = () => {
@@ -75,7 +86,7 @@ const NavBar = () => {
             </div>
           </div>
           <div className="hidden md:flex justify-end gap-4 p-4">
-            {isLoggedIn ? (
+            {user ? (
               <>
                 <div className="flex items-center gap-5">
                   <div className="flex items-center justify-center relative">
@@ -103,7 +114,7 @@ const NavBar = () => {
                             Dashboard
                           </button>
                           <button
-                            onClick={logout}
+                            onClick={handleLogout}
                             className="hover:text-primaryBlue"
                           >
                             Keluar
@@ -150,7 +161,7 @@ const NavBar = () => {
               <Menu />
             </ul>
             <div className="py-5 flex gap-3">
-              {isLoggedIn ? (
+              {user ? (
                 <>
                   <div className="flex items-center gap-5">
                     <div className="flex items-center justify-center relative">
@@ -172,13 +183,13 @@ const NavBar = () => {
                         <div className="text-textTertiary text-[14px] font-semibold py-2 px-4">
                           <div className="flex flex-col gap-4 py-2 px-3 items-start">
                             <button
-                              onClick={() => navigate("/admin/dashboard")}
+                              onClick={() => navigate("/user/dashboard")}
                               className="hover:text-primaryBlue"
                             >
                               Dashboard
                             </button>
                             <button
-                              onClick={logout}
+                              onClick={handleLogout}
                               className="hover:text-primaryBlue"
                             >
                               Keluar

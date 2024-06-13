@@ -7,11 +7,15 @@ import { RiHome6Line } from "react-icons/ri";
 import { LuBarChart2, LuSettings2, LuLogOut } from "react-icons/lu";
 import { CiCalendar, CiBookmarkCheck, CiSearch } from "react-icons/ci";
 import { PiMedal } from "react-icons/pi";
+import { useAuth } from "../../../hooks/useauth";
+import axios from "axios";
+import { toast } from "react-hot-toast";
 
 const Sidebar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const { logout, user } = useAuth();
 
   useEffect(() => {
     const handleResize = () => {
@@ -45,9 +49,25 @@ const Sidebar = () => {
     },
   ];
 
-  const handleLogout = () => {
-    //  ubah jika sudah ada isLoggednya
-    navigate("/");
+  const handleLogout = async () => {
+    try {
+      const response = await axios.post(
+        "/api/v1/auth/logout",
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${user}`,
+          },
+        }
+      );
+      if (response.status === 200) {
+        logout();
+        toast.success(response.data.message);
+      }
+    } catch (error) {
+      console.error("Error logging out", error);
+      toast.error("Failed to logout. Please try again.");
+    }
   };
 
   return (

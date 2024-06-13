@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import HeaderKegiatan from "../../../components/kegiatan/headerkeg";
 import EventImg from "../../../assets/img/illustration/kegiatan.png";
 import CardKegiatan from "../../../components/kegiatan/cardkeg";
@@ -6,12 +6,39 @@ import CardEvent from "../../../components/kegiatan/cardevent";
 import { FiUser } from "react-icons/fi";
 import { RiBookLine } from "react-icons/ri";
 import { LuTag } from "react-icons/lu";
-import { dataCardEvent } from "../../../dummydata/kegiatan/dataevent";
+import axios from "axios";
 
 const EventPage = () => {
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const response = await axios.get("/api/v1/public/landing/event");
+        setEvents(response.data);
+      } catch (error) {
+        console.error("Error fetching events:", error);
+      }
+    };
+
+    fetchEvents();
+  }, []);
+
   useEffect(() => {
     document.title = "Aguna Edu | Event";
   });
+
+  const formatDateAndTime = (dateStr) => {
+    const date = new Date(dateStr);
+    const options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    const formattedDate = date.toLocaleDateString("id-ID", options);
+    return `${formattedDate}`;
+  };
 
   return (
     <>
@@ -31,8 +58,19 @@ const EventPage = () => {
           </h3>
         </div>
         <div className="grid md:grid-cols-3 mt-[50px]">
-          {dataCardEvent.map((kegiatan, index) => (
-            <CardKegiatan key={index} {...kegiatan} />
+          {events.map((event) => (
+            <CardKegiatan
+              key={event.id}
+              date={formatDateAndTime(event.date)}
+              desc={event.description}
+              imgEvent={`${import.meta.env.VITE_PUBLIC_URL}/images/${
+                event.imageUrl
+              }`}
+              tags={event.skills.map((skill) => skill.name)}
+              // time={event.time}
+              title={event.name}
+              link={`/event/detail/${event.id}`}
+            />
           ))}
         </div>
       </section>

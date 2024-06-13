@@ -1,15 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import LoginPopup from "../popup/loginpopup";
+import { useAuth } from "../../hooks/useauth";
 
-const CardChallenge = ({ title, imgChallenge, tags, date, icons, link }) => {
+const CardChallenge = ({ title, imgChallenge, tags, date, link }) => {
   const navigate = useNavigate();
+  const [showLoginPopup, setShowLoginPopup] = useState(false);
+  const { user } = useAuth();
 
   const handleClick = () => {
-    navigate(link);
+    if (!user) {
+      setShowLoginPopup(true);
+    } else {
+      navigate(link);
+    }
+  };
+
+  const handleLogin = () => {
+    setShowLoginPopup(false);
+    navigate("/auth/login");
+  };
+
+  const handleClose = () => {
+    setShowLoginPopup(false);
   };
 
   return (
     <>
+      <LoginPopup
+        showLoginPopup={showLoginPopup}
+        handleLogin={handleLogin}
+        handleClose={handleClose}
+      />
       <div className="border-[1.5px] border-borderPrimary py-3 pl-3 pr-3 sm:pr-6 rounded-xl">
         <div className="flex justify-between items-center flex-col sm:flex-row">
           <div className="flex items-center justify-center gap-3 flex-col sm:flex-row">
@@ -27,9 +49,6 @@ const CardChallenge = ({ title, imgChallenge, tags, date, icons, link }) => {
                     key={index}
                     className="border-[1.5px] border-borderPrimary text-textLabel text-xs font-medium inline-flex items-center px-3 py-[4px] rounded-lg my-2 shadow-md gap-2"
                   >
-                    <span className="text-textTertiary text-sm">
-                      {icons[index]}
-                    </span>
                     {tag}
                   </p>
                 ))}

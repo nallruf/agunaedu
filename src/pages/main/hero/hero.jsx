@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Hero from "../../../assets/img/illustration/hero.png";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,22 @@ import { motion } from "framer-motion";
 
 const HeroSection = () => {
   const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  const handleCourseSearch = () => {
+    if (isLoggedIn) {
+      navigate("/user/dashboard");
+    } else {
+      navigate("/auth/login");
+    }
+  };
 
   return (
     <section
@@ -16,31 +32,19 @@ const HeroSection = () => {
     >
       <div className="grid md:grid-cols-2">
         <div className="my-auto">
-          <h1
-            className="text-5xl text-primaryBlue font-semibold mb-4"
-            // initial={{ x: -300, scale: 0.5 }}
-            // animate={{ x: 0, scale: 1 }}
-            // transition={{ duration: 0.8 }}
-          >
+          <h1 className="text-5xl text-primaryBlue font-semibold mb-4">
             Temukan Course yang Tepat dan Raih Potensimu!
           </h1>
-          <h3
-            className="text-xl text-textTertiary mb-6"
-            // initial={{ y: 300, scale: 0.5 }}
-            // animate={{ y: 0, scale: 1 }}
-            // transition={{ duration: 0.8 }}
-          >
+          <h3 className="text-xl text-textTertiary mb-6">
             Bergabunglah dan temukan bimbingan dari para ahli di bidang IT dari
             berbagai role!
           </h3>
           <div className="py-6 md:flex items-center gap-7">
             <motion.button
               className="items-center rounded-lg font-semibold px-4 py-[10px] bg-primaryBlue text-white"
-              // initial={{ y: 100, scale: 0.5 }}
-              // animate={{ y: 0, scale: 1 }}
               transition={{ duration: 0.8 }}
               whileHover={{ scale: 1.2 }}
-              onClick={() => navigate("/auth/login")}
+              onClick={handleCourseSearch}
             >
               Cari Course Sekarang
             </motion.button>
@@ -48,11 +52,8 @@ const HeroSection = () => {
               <Link to="alur" spy={true} smooth={true} offset={-70}>
                 <motion.button
                   className="items-center font-semibold py-[10px] text-primaryBlue flex gap-2"
-                  // initial={{ y: 100, scale: 0.5 }}
-                  // animate={{ y: 0, scale: 1 }}
                   transition={{ duration: 0.8 }}
                   whileHover={{ scale: 1.2 }}
-                  // onClick={() => navigate("/auth/register")}
                 >
                   Pelajari lebih lanjut
                   <IoIosArrowForward />
@@ -60,12 +61,7 @@ const HeroSection = () => {
               </Link>
             </div>
           </div>
-          <div
-            className="flex mt-6 sm:space-x-6"
-            // initial={{ x: -300, scale: 0.5 }}
-            // animate={{ x: 0, scale: 1 }}
-            // transition={{ duration: 0.8 }}
-          >
+          <div className="flex mt-6 sm:space-x-6">
             <div className="hidden sm:flex items-center">
               <IoChatbubbleEllipsesOutline className="text-5xl text-textQuote" />
             </div>
@@ -83,12 +79,7 @@ const HeroSection = () => {
             </div>
           </div>
         </div>
-        <div
-          className="flex md:justify-end justify-center mt-20 md:mt-0"
-          // initial={{ x: 100, scale: 0.5 }}
-          // animate={{ x: 0, scale: 1 }}
-          // transition={{ duration: 0.8 }}
-        >
+        <div className="flex md:justify-end justify-center mt-20 md:mt-0">
           <img
             src={Hero}
             alt="Hero"

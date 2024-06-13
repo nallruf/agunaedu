@@ -1,9 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FaqItem from "../../../components/main/faq/faqitem";
-import { dataFaq } from "../../../dummydata/main/datafaq";
+import axios from "axios";
 
 const FaqSection = () => {
+  const [faqData, setFaqData] = useState([]);
   const [openFaq, setOpenFaq] = useState(null);
+  
+  useEffect(() => {
+    const fetchFaqData = async () => {
+      try {
+        const response = await axios.get("/api/v1/public/landing/faq");
+        setFaqData(response.data);
+      } catch (error) {
+        console.error("Error fetching FAQ data:", error);
+      }
+    };
+
+    fetchFaqData();
+  }, []);
 
   return (
     <>
@@ -12,27 +26,20 @@ const FaqSection = () => {
         id="faq"
       >
         <div className="flex flex-col gap-5">
-          <h1
-            className="text-4xl font-medium text-textPrimary text-center"
-            // data-aos="zoom-in"
-          >
+          <h1 className="text-4xl font-medium text-textPrimary text-center">
             Frequently Asked Questions
           </h1>
-          <h3
-            className="text-xl text-textTertiary text-center"
-            // data-aos="zoom-in"
-          >
+          <h3 className="text-xl text-textTertiary text-center">
             Berbagai Pertanyaan yang sering di ajukan
           </h3>
         </div>
-        <div
-          className="grid grid-cols-1 divide-y gap-8"
-          // data-aos="zoom-in"
-        >
-          {dataFaq.map((faq) => (
+        <div className="grid grid-cols-1 divide-y gap-8">
+          {faqData.map((faq) => (
             <FaqItem
               key={faq.id}
-              {...faq}
+              id={faq.id}
+              question={faq.question}
+              answer={faq.answer}
               openFaq={openFaq}
               setOpenFaq={setOpenFaq}
             />
