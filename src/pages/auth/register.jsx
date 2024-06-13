@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ImgRegister from "../../assets/img/illustration/register.png";
 import ButtonComponent from "../../components/auth/button";
@@ -7,17 +7,63 @@ import TextInputComponent from "../../components/auth/textinput";
 import TitleComponent from "../../components/auth/title";
 import { toast } from "react-hot-toast";
 import MultiSelectInputComponent from "../../components/auth/multipleinput";
+import axios from "axios";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    email: "",
+    name: "",
+    username: "",
+    password: "",
+    skills: [],
+    universities: "",
+    phoneNumber: "",
+  });
 
   useEffect(() => {
     document.title = "Aguna Edu | Register";
   }, []);
 
-  const handleSubmit = () => {
-    // toast.success("Pendaftaran Berhasil!");
-    navigate("/");
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSkillChange = (selectedSkills) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      skills: selectedSkills,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.username ||
+      !formData.phoneNumber ||
+      !formData.universities ||
+      !formData.skills.length ||
+      !formData.password
+    ) {
+      toast.error("Mohon lengkapi semua kolom yang dibutuhkan.");
+      return;
+    }
+
+    try {
+      const response = await axios.post("/api/v1/public/register", formData);
+      if (response.status === 201) {
+        toast.success(response.data.message);
+        navigate("/auth/login");
+      }
+    } catch (err) {
+      if (err.response) {
+        toast.error(err.response.data.error || err.response.data.message);
+      } else {
+        toast.error("An error occurred during registration. Please try again.");
+      }
+    }
   };
 
   return (
@@ -48,12 +94,14 @@ const RegisterPage = () => {
           <form onSubmit={handleSubmit}>
             <div className="mb-5 mt-10">
               <TextInputComponent
-                htmlfor="namaLengkap"
+                htmlfor="name"
                 label="Nama Lengkap"
                 type="text"
                 placeholder="Masukan Nama Lengkap"
-                id="namaLengkap"
-                name="namaLengkap"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
               />
             </div>
             <div className="mb-5">
@@ -64,47 +112,56 @@ const RegisterPage = () => {
                 placeholder="Masukan Email"
                 id="email"
                 name="email"
+                value={formData.email}
+                onChange={handleChange}
               />
             </div>
             <div className="mb-5">
               <TextInputComponent
-                htmlfor="namaPengguna"
+                htmlfor="username"
                 label="Nama Pengguna"
                 type="text"
                 placeholder="Masukan Nama Pengguna"
-                id="namaPengguna"
-                name="namaPengguna"
+                id="username"
+                name="username"
+                value={formData.username}
+                onChange={handleChange}
               />
             </div>
             <div className="mb-5">
               <TextInputComponent
-                htmlfor="noTelp"
+                htmlfor="phoneNumber"
                 label="No Telp"
-                type="number"
+                type="text"
                 placeholder="+62 812-3456-7890"
-                id="noTelp"
-                name="noTelp"
+                id="phoneNumber"
+                name="phoneNumber"
+                value={formData.phoneNumber}
+                onChange={handleChange}
               />
             </div>
             <div className="mb-5">
               <TextInputComponent
-                htmlFor="univ"
+                htmlFor="universities"
                 label="Universitas"
                 type="text"
                 placeholder="Masukkan Universitas"
-                name="univ"
-                id="univ"
+                name="universities"
+                id="universities"
                 searchInput={true}
+                value={formData.universities}
+                onChange={handleChange}
               />
             </div>
             <div className="mb-5">
               <MultiSelectInputComponent
-                htmlFor="skill"
+                htmlFor="skills"
                 label="Ketertarikan Skill"
                 placeholder="Masukan Ketertarikan Skill"
-                name="skill"
-                id="skill"
-                // options={[]}
+                name="skills"
+                id="skills"
+                value={formData.skills}
+                onChange={handleSkillChange}
               />
             </div>
             <div className="mb-[11px]">
@@ -116,6 +173,8 @@ const RegisterPage = () => {
                 name="password"
                 id="password"
                 passwordInput={true}
+                value={formData.password}
+                onChange={handleChange}
               />
             </div>
             <div className="flex items-center">

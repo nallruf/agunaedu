@@ -28,4 +28,16 @@ export const dataCardChallenge = [
     score: 45,
     image: ImgC4,
   },
+  {
+    title: "Challenge: Desain UI/UX Catering App",
+    points: "300xp poin",
+    score: 45,
+    image: ImgC4,
+  },
+  {
+    title: "Challenge: Desain UI/UX Catering App",
+    points: "300xp poin",
+    score: 45,
+    image: ImgC4,
+  },
 ];

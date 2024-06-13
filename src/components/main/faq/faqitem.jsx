@@ -1,7 +1,7 @@
 import React from "react";
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 
-const FaqItem = ({ id, title, answer, openFaq, setOpenFaq }) => {
+const FaqItem = ({ id, question, answer, openFaq, setOpenFaq }) => {
   const isFaqOpen = openFaq === id;
 
   const toggleFaq = () => {
@@ -12,7 +12,7 @@ const FaqItem = ({ id, title, answer, openFaq, setOpenFaq }) => {
     <div>
       <button className="flex justify-between w-full pt-6" onClick={toggleFaq}>
         <span className="text-lg font-medium text-textPrimary text-start sm:pr-10">
-          {title}
+          {question}
         </span>
         {isFaqOpen ? (
           <AiOutlineMinusCircle className="hidden sm:block text-textSecondary text-2xl" />

@@ -3,35 +3,48 @@ import { useParams, useNavigate } from "react-router-dom";
 import { LuCalendarCheck, LuUsers } from "react-icons/lu";
 import { IoMdTime } from "react-icons/io";
 import { SlLocationPin } from "react-icons/sl";
-import { dataDetailEvent } from "../../../../dummydata/kegiatan/dataevent";
 import Centang from "../../../../assets/img/illustration/centang.png";
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
+import axios from "axios";
+import { useAuth } from "../../../../hooks/useauth";
 
 const DetailEventPage = () => {
-  const [openModal, setOpenModal] = useState(false);
   const { id } = useParams();
-  const event = dataDetailEvent.find((event) => event.id.toString() === id);
+  const [event, setEvent] = useState(null);
+  const [openModal, setOpenModal] = useState(false);
   const navigate = useNavigate();
+  const { user } = useAuth();
+
+  useEffect(() => {
+    const fetchEventDetail = async () => {
+      try {
+        const response = await axios.get(`/api/v1/auth/event/${id}`, {
+          headers: {
+            Authorization: `Bearer ${user}`,
+          },
+        });
+        setEvent(response.data);
+      } catch (error) {
+        console.error("Error fetching event detail:", error);
+      }
+    };
+
+    fetchEventDetail();
+  }, [id, user]);
 
   useEffect(() => {
     document.title = event
       ? `Aguna Edu | Detail Event ${event.id}`
       : "Aguna Edu | Detail Event";
-  }, []);
+  }, [event]);
 
   if (!event) {
     return (
-      <div className="flex justify-center h-screen items-center">
-        Belum ada Data
+      <div className="flex justify-center h-screen items-center text-primaryBlue font-semibold">
+        LOADING .......
       </div>
     );
   }
-
-  const paragraphs = event.details.split("\n").map((paragraph, index) => (
-    <p key={index} className="text-textTertiary text-base">
-      {paragraph} <br />
-    </p>
-  ));
 
   return (
     <>
@@ -44,12 +57,14 @@ const DetailEventPage = () => {
             <MdOutlineKeyboardArrowLeft className="text-2xl" />
             <h3>Kembali</h3>
           </button>
-          <h1 className="font-semibold text-4xl">{event.title}</h1>
-          <h3 className="text-textTertiary text-xl mt-3">{event.desc}</h3>
+          <h1 className="font-semibold text-4xl">{event.name}</h1>
+          <h3 className="text-textTertiary text-xl mt-3">
+            {event.description}
+          </h3>
         </div>
         <div className="mb-11">
           <img
-            src={event.imgEvent}
+            src={`${import.meta.env.VITE_PUBLIC_URL}/images/${event.imageUrl}`}
             alt="hero-detail"
             draggable="false"
             className="rounded-2xl h-[417px] w-full object-cover"
@@ -58,14 +73,14 @@ const DetailEventPage = () => {
         <div className="flex gap-10 mb-[70px] md:flex-row flex-col">
           <div className="border-borderPrimary border-2 rounded-2xl p-8 md:w-[70%]">
             <h1 className="font-semibold text-2xl mb-7">Deskripsi</h1>
-            {paragraphs}
+            {event.description}
           </div>
           <div className="border-borderPrimary border-2 rounded-2xl p-8 md:w-[30%] h-fit">
             <h1 className="font-semibold text-xl mb-3">Detail Event</h1>
             <hr className="text-borderPrimary border-[1.5px]" />
             <EventDetails event={event} />
             <div className="text-primaryBlue font-semibold text-xl my-8">
-              GRATIS!
+              {event.price}
             </div>
             <button
               className="border-2 border-borderSecondary w-full rounded-lg px-4 py-[10px] text-textSecondary font-semibold text-lg"
@@ -84,12 +99,24 @@ const DetailEventPage = () => {
   );
 };
 
+const formatDateAndTime = (dateStr) => {
+  const date = new Date(dateStr);
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  const formattedDate = date.toLocaleDateString("id-ID", options);
+  return `${formattedDate}`;
+};
+
 const EventDetails = ({ event }) => (
   <div className="flex flex-col gap-8 mt-5">
     <DetailItem
       icon={<LuCalendarCheck className="text-primaryBlue text-xl" />}
       label="Tanggal Event"
-      value={event.date}
+      value={formatDateAndTime(event.date)}
     />
     <DetailItem
       icon={<IoMdTime className="text-primaryBlue text-xl" />}
@@ -99,12 +126,12 @@ const EventDetails = ({ event }) => (
     <DetailItem
       icon={<SlLocationPin className="text-primaryBlue text-xl" />}
       label="Lokasi"
-      value={event.loc}
+      value={event.location}
     />
     <DetailItem
       icon={<LuUsers className="text-primaryBlue text-xl" />}
       label="Komunitas"
-      value={event.komunitas}
+      value={event.organizer}
     />
   </div>
 );
@@ -131,7 +158,7 @@ const SpeakerProfile = ({ speakers }) => (
           </h1>
           <div className="flex flex-col md:flex-row gap-10">
             {speakers.map((speaker) => (
-              <SpeakerCard key={speaker.name} speaker={speaker} />
+              <SpeakerCard key={speaker.id} speaker={speaker} />
             ))}
           </div>
         </div>
@@ -143,15 +170,15 @@ const SpeakerProfile = ({ speakers }) => (
 const SpeakerCard = ({ speaker }) => (
   <div className="w-full md:h-[241px] md:w-[304px] shadow-lg">
     <img
-      src={speaker.img}
+      src={`${import.meta.env.VITE_PUBLIC_URL}/images/${speaker.imageUrl}`}
       alt="speaker-profile"
       draggable="false"
-      className="object-contain rounded-t-2xl overflow-hidden md:h-[241px] md:w-[304px] w-full bg-secondaryBlue"
+      className="object-cover rounded-t-2xl overflow-hidden md:h-[241px] md:w-[304px] w-full bg-secondaryBlue"
     />
     <div className="bg-white px-6 py-5 rounded-b-2xl shadow-lg">
       <div className="flex flex-col text-textPrimary items-start">
         <h1 className="text-xl font-semibold">{speaker.name}</h1>
-        <h3 className="text-base">{speaker.role}</h3>
+        <h3 className="text-base text-start">{speaker.jobs}</h3>
       </div>
     </div>
   </div>

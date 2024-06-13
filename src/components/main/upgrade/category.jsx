@@ -5,8 +5,8 @@ const Category = ({ icon, upgrade, isActive, onClick }) => {
     <button
       className={`${
         isActive
-          ? "bg-tertiaryBlue text-textQuote cursor-default"
-          : "bg-white text-primaryBlue"
+          ? "cursor-default bg-white text-primaryBlue"
+          : "bg-tertiaryBlue text-textQuote"
       } text-base font-medium inline-flex items-center px-3 py-[6px] rounded-b-lg mr-3 my-2 gap-3`}
       onClick={onClick}
     >

@@ -1,54 +1,77 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { dataDetailChallenge } from "../../../../dummydata/kegiatan/datachallenge";
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import { LuCalendarCheck, LuUsers } from "react-icons/lu";
 import TextInputComponent from "../../../../components/auth/textinput";
 import Centang from "../../../../assets/img/illustration/centang.png";
+import axios from "axios";
+import { useAuth } from "../../../../hooks/useauth";
+import toast from "react-hot-toast";
 
 const DetailChallengePage = () => {
   const { id } = useParams();
-  const event = dataDetailChallenge.find((event) => event.id.toString() === id);
   const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
   const [formData, setFormData] = useState({
     url: "",
   });
 
-  useEffect(() => {
-    document.title = event
-      ? `Aguna Edu | Detail Challenge ${event.id}`
-      : "Aguna Edu | Detail Challenge";
-  }, []);
+  const [challenge, setChallenge] = useState(null);
+  const { user } = useAuth();
 
-  if (!event) {
+  useEffect(() => {
+    const fetchChallengeDetail = async () => {
+      try {
+        const response = await axios.get(`/api/v1/auth/challenge/${id}`, {
+          headers: {
+            Authorization: `Bearer ${user}`,
+          },
+        });
+        setChallenge(response.data);
+      } catch (error) {
+        console.error("Error fetching challenge detail:", error);
+      }
+    };
+
+    fetchChallengeDetail();
+  }, [id, user]);
+
+  useEffect(() => {
+    document.title = challenge
+      ? `Aguna Edu | Detail Challenge ${challenge.id}`
+      : "Aguna Edu | Detail Challenge";
+  }, [challenge]);
+
+  if (!challenge) {
     return (
-      <div className="flex justify-center h-screen items-center">
-        Belum ada Data
+      <div className="flex justify-center h-screen items-center text-primaryBlue font-semibold">
+        LOADING .......
       </div>
     );
   }
-  const boldKeywords = ["Goals", "Persyaratan", "Hadiah"];
-
-  const paragraphs = event.details.split("\n").map((paragraph, index) => {
-    const trimmedParagraph = paragraph.trim();
-    const isBold = boldKeywords.some((word) =>
-      trimmedParagraph.startsWith(word)
-    );
-    return (
-      <p
-        key={index}
-        className={`text-textTertiary text-base ${
-          isBold ? "font-semibold" : ""
-        }`}
-      >
-        {trimmedParagraph} <br />
-      </p>
-    );
-  });
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const submitChallenge = async () => {
+    try {
+      await axios.post(
+        `/api/v1/auth/challenge/${id}`,
+        { link: formData.url },
+        {
+          headers: {
+            Authorization: `Bearer ${user}`,
+          },
+        }
+      );
+      toast.success("Challenge submitted successfully!");
+      setOpenModal(true);
+    } catch (error) {
+      const errorMessage = error.response?.data?.message || error.message;
+      if (error.response?.status === 400) {
+        toast.error(`${errorMessage}`);
+      }
+    }
   };
 
   return (
@@ -62,12 +85,16 @@ const DetailChallengePage = () => {
             <MdOutlineKeyboardArrowLeft className="text-2xl" />
             <h3>Kembali</h3>
           </button>
-          <h1 className="font-semibold text-4xl">{event.title}</h1>
-          <h3 className="text-textTertiary text-xl mt-3">{event.desc}</h3>
+          <h1 className="font-semibold text-4xl">{challenge.name}</h1>
+          <h3 className="text-textTertiary text-xl mt-3">
+            {challenge.description}
+          </h3>
         </div>
         <div className="mb-11">
           <img
-            src={event.imgChallenge}
+            src={`${import.meta.env.VITE_PUBLIC_URL}/images/${
+              challenge.imageUrl
+            }`}
             alt="hero-detail"
             draggable="false"
             className="rounded-2xl h-[417px] w-full object-cover"
@@ -76,9 +103,9 @@ const DetailChallengePage = () => {
         <div className="flex gap-10 mb-[70px] md:flex-row flex-col">
           <div className="border-borderPrimary border-2 rounded-2xl p-8 md:w-[70%]">
             <h1 className="font-semibold text-2xl mb-7">Deskripsi</h1>
-            {paragraphs}
+            {challenge.description}
 
-            <div>
+            <div className="mt-20">
               <TextInputComponent
                 htmlFor="url"
                 label="URL Hasil Challenge"
@@ -91,7 +118,7 @@ const DetailChallengePage = () => {
               />
               <button
                 className="rounded-lg px-[50px] py-[8px] text-white bg-primaryBlue font-semibold text-lg"
-                onClick={() => setOpenModal(true)}
+                onClick={submitChallenge}
               >
                 Submit Karya
               </button>
@@ -100,7 +127,7 @@ const DetailChallengePage = () => {
           <div className="border-borderPrimary border-2 rounded-2xl p-8 md:w-[30%] h-fit">
             <h1 className="font-semibold text-xl mb-3">Detail Event</h1>
             <hr className="text-borderPrimary border-[1.5px]" />
-            <ChallengeDetails challenge={event} />
+            <ChallengeDetails challenge={challenge} />
           </div>
         </div>
       </section>
@@ -109,17 +136,33 @@ const DetailChallengePage = () => {
   );
 };
 
+const formatDateRange = (startDateStr, endDateStr) => {
+  const startDate = new Date(startDateStr);
+  const endDate = new Date(endDateStr);
+
+  const options = {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  };
+
+  const formattedStartDate = startDate.toLocaleDateString("id-ID", options);
+  const formattedEndDate = endDate.toLocaleDateString("id-ID", options);
+
+  return `${formattedStartDate} - ${formattedEndDate}`;
+};
+
 const ChallengeDetails = ({ challenge }) => (
   <div className="flex flex-col gap-8 mt-5">
     <DetailItem
       icon={<LuCalendarCheck className="text-primaryBlue text-xl" />}
       label="Durasi Challenge"
-      value={challenge.date}
+      value={formatDateRange(challenge.startDate, challenge.endDate)}
     />
     <DetailItem
       icon={<LuUsers className="text-primaryBlue text-xl" />}
       label="Jumlah Pemenang"
-      value={challenge.win}
+      value={`${challenge.winner} Orang`}
     />
   </div>
 );
@@ -153,4 +196,5 @@ const Modal = ({ onClose }) => (
     </div>
   </div>
 );
+
 export default DetailChallengePage;

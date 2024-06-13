@@ -40,7 +40,7 @@ const TransactionUserPage = () => {
         </div>
       </div>
       <div className="flex justify-between items-center p-4 flex-wrap gap-4">
-        <div className="flex">
+        <div className="flex flex-wrap">
           <button className="px-4 py-2 bg-white border text-textLabel font-semibold rounded-l-xl">
             Semua
           </button>
@@ -72,80 +72,74 @@ const TransactionUserPage = () => {
       </div>
 
       <div className="bg-white shadow-md rounded-lg overflow-x-auto">
-        <div className="overflow-auto">
-          <table className="w-full bg-white">
-            <thead className="bg-gray-50">
-              <tr>
-                <th className="py-2 px-4 text-left text-textTertiary">
-                  <div className="flex items-center pl-1 gap-2">
-                    <LuMinusSquare className="text-primaryBlue" />
-                    Kelas
-                    <FaArrowDown className="ml-2 text-textTertiary" />
-                  </div>
-                </th>
-                <th className="py-2 px-4 text-left text-textTertiary">
-                  ID Pembelian
-                </th>
-                <th className="py-2 px-4 text-left text-textTertiary">
-                  Harga Kelas
-                </th>
-                <th className="py-2 px-4 text-left text-textTertiary">
-                  Status
-                </th>
-                <th className="py-2 px-4 text-left text-textTertiary">
-                  Struk Pembayaran
-                </th>
-                <th className="py-2 px-4 text-left text-textTertiary">
-                  Action
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200">
-              {dataTransaction.map((transaction) => (
-                <tr key={transaction.id} className="border-b">
-                  <td className="py-2 px-4 whitespace-nowrap">
-                    <div className="flex items-center">
-                      <input type="checkbox" className="mr-2" />
-                      <div className="flex items-center gap-2">
-                        <img
-                          src={transaction.img}
-                          alt="profile"
-                          className="w-8 h-8 rounded-full"
-                        />
-                        <div>
-                          <div>{transaction.class}</div>
-                          <div className="text-gray-500 text-sm">
-                            {transaction.name}
-                          </div>
+        <table className="w-full bg-white">
+          <thead className="bg-gray-50">
+            <tr>
+              <th className="py-2 px-4 text-left text-textTertiary">
+                <div className="flex items-center pl-1 gap-2">
+                  <LuMinusSquare className="text-primaryBlue" />
+                  Kelas
+                  <FaArrowDown className="ml-2 text-textTertiary" />
+                </div>
+              </th>
+              <th className="py-2 px-4 text-left text-textTertiary">
+                ID Pembelian
+              </th>
+              <th className="py-2 px-4 text-left text-textTertiary">
+                Harga Kelas
+              </th>
+              <th className="py-2 px-4 text-left text-textTertiary">Status</th>
+              <th className="py-2 px-4 text-left text-textTertiary">
+                Struk Pembayaran
+              </th>
+              <th className="py-2 px-4 text-left text-textTertiary">Action</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y">
+            {dataTransaction.map((transaction) => (
+              <tr key={transaction.id} className="border-b">
+                <td className="py-2 px-4 whitespace-nowrap">
+                  <div className="flex items-center">
+                    <input type="checkbox" className="mr-2" />
+                    <div className="flex items-center gap-2">
+                      <img
+                        src={transaction.img}
+                        alt="profile"
+                        className="w-8 h-8 rounded-full"
+                      />
+                      <div>
+                        <div>{transaction.class}</div>
+                        <div className="text-gray-500 text-sm">
+                          {transaction.name}
                         </div>
                       </div>
                     </div>
-                  </td>
-                  <td className="py-2 px-4 text-textTertiary whitespace-nowrap">
-                    {transaction.purchaseId}
-                  </td>
-                  <td className="py-2 px-4 text-textTertiary whitespace-nowrap">
-                    {transaction.price}
-                  </td>
-                  <td className="py-2 px-1.5 text-textTertiary whitespace-nowrap">
-                    <span
-                      className={`font-medium rounded-full px-4 py-1 text-sm uppercase tracking-wider ${transaction.statusColor}`}
-                    >
-                      {transaction.status}
-                    </span>
-                  </td>
-                  <td className="py-2 px-4 text-primaryBlue cursor-pointer font-semibold whitespace-nowrap">
-                    Lihat
-                  </td>
-                  <td className="py-2 px-4 text-center my-auto flex items-center gap-2 text-textTertiary whitespace-nowrap">
-                    <HiTrash className="cursor-pointer" />
-                    <HiOutlinePencil className="cursor-pointer" />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+                  </div>
+                </td>
+                <td className="py-2 px-4 text-textTertiary whitespace-nowrap">
+                  {transaction.purchaseId}
+                </td>
+                <td className="py-2 px-4 text-textTertiary whitespace-nowrap">
+                  {transaction.price}
+                </td>
+                <td className="py-2 px-1.5 text-textTertiary whitespace-nowrap">
+                  <span
+                    className={`font-medium rounded-full px-4 py-1 text-sm uppercase tracking-wider ${transaction.statusColor}`}
+                  >
+                    {transaction.status}
+                  </span>
+                </td>
+                <td className="py-2 px-4 text-primaryBlue cursor-pointer font-semibold whitespace-nowrap">
+                  Lihat
+                </td>
+                <td className="py-2 px-4 flex items-center gap-2 text-textTertiary whitespace-nowrap">
+                  <HiTrash className="cursor-pointer" />
+                  <HiOutlinePencil className="cursor-pointer" />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
       <div className="flex flex-col sm:flex-row items-center justify-between mt-10 px-4">
         <div className="text-sm">Halaman 1 dari 10</div>

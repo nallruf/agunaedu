@@ -6,43 +6,40 @@ import InfoComponent from "../../components/auth/info";
 import TitleComponent from "../../components/auth/title";
 import TextInputComponent from "../../components/auth/textinput";
 import { toast } from "react-hot-toast";
+import axios from "axios";
+import { useAuth } from "../../hooks/useauth";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-  const checkIsLoggedIn = () => {
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
-    return isLoggedIn === "true";
-  };
-  const [isLoggedIn, setIsLoggedIn] = useState(checkIsLoggedIn());
 
   useEffect(() => {
     document.title = "Aguna Edu | Login";
   }, []);
 
-  const login = () => {
-    localStorage.setItem("isLoggedIn", "true");
-    setIsLoggedIn(true);
-  };
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const { email, password } = formData;
-    const dummyUser = { email: "agunaedu@gmail.com", password: "12345678" };
-    if (email === dummyUser.email && password === dummyUser.password) {
-      toast.success("Login Success!");
-      login();
-      navigate("/");
-      // window.location.reload();
-    } else {
-      toast.error("Email atau password salah. Silakan coba lagi.");
+    try {
+      const response = await axios.post("/api/v1/public/login", formData);
+
+      if (response.status === 200) {
+        await login({ token: response.data.token });
+        toast.success(response.data.message);
+      }
+    } catch (err) {
+      if (err.response) {
+        toast.error(err.response.data.message);
+      } else {
+        toast.error("An error occurred during login. Please try again.");
+      }
     }
   };
 
