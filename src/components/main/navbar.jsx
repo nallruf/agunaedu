@@ -114,6 +114,12 @@ const NavBar = () => {
                             Dashboard
                           </button>
                           <button
+                            onClick={() => navigate("/admin/dashboard")}
+                            className="hover:text-primaryBlue"
+                          >
+                            Dashboard Admin
+                          </button>
+                          <button
                             onClick={handleLogout}
                             className="hover:text-primaryBlue"
                           >
@@ -187,6 +193,12 @@ const NavBar = () => {
                               className="hover:text-primaryBlue"
                             >
                               Dashboard
+                            </button>
+                            <button
+                              onClick={() => navigate("/admin/dashboard")}
+                              className="hover:text-primaryBlue"
+                            >
+                              Dashboard Admin
                             </button>
                             <button
                               onClick={handleLogout}
