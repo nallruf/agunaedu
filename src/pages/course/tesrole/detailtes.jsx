@@ -151,7 +151,14 @@ const DetailTesPage = () => {
                 <button
                   className="bg-primaryBlue text-white rounded-lg px-5 w-[269px] h-[36px] items-center justify-center font-semibold"
                   onClick={() =>
-                    navigate(`/course/${test.role_name}/tes/dasar`)
+                    navigate(
+                      `/course/${test.role_name.toLowerCase()}/tes/dasar`,
+                      {
+                        state: {
+                          testName: classData[0].testName,
+                        },
+                      }
+                    )
                   }
                 >
                   Ambil Tes
