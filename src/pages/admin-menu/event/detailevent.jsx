@@ -30,7 +30,7 @@ const DetailEvent = () => {
     <>
       <div>
         <HeaderDashboard
-          goto="/"
+          goto={navigate(-1)}
           buttonBack="Kembali"
           title="Detail Event"
           desc="Webinar Public Speaking"

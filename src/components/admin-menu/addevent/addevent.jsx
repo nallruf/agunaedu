@@ -90,13 +90,11 @@ const AddEvent = ({ isVisible, onClose }) => {
                   type="text"
                   id="namaWaktu"
                   name="namaWaktu"
+                  calenderInput={true}
                   value={formData.namaWaktu}
                   onChange={handleChange}
                   className="pl-10"
                 />
-                <div className="absolute inset-y-0 left-0 flex items-center justify-center pl-3">
-                  <CiCalendar className="h-6 w-6 text-black" />
-                </div>
               </div>
               <div>
                 <TextInputComponent

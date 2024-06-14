@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Admin from "./../admin/admin";
-import HeaderDashboard from "../../../components/admin-menu/headerdashboard/headerdashboard ";
+import HeaderDashboard from "../../../components/admin-menu/headerdashboard/headerdashboard";
 
 const JumlahPendaftar = () => {
   useEffect(() => {

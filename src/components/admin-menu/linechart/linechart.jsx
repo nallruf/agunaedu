@@ -82,7 +82,7 @@ const LineChart = () => {
   };
 
   return (
-    <div className="border-2 p-6 rounded-xl ">
+    <div className="border-2 p-6 rounded-xl hidden md:block">
       <div
         className="flex justify-between items-center mb-4"
         style={{ marginBottom: "20px" }}

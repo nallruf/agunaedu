@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Admin from "../admin/admin";
 import HeaderDashboard from "../../../components/admin-menu/headerdashboard/headerdashboard";
-import TableDashboard from "../../../components/admin-menu/tabledashboard/tabledashboardevent";
-
+import TableDashboard from "../../../components/admin-menu/tabledashboard/tabledashboard";
 import AddEvent from "../../../components/admin-menu/addevent/addevent";
 import TitleDashboard from "../../../components/admin-menu/title/title";
+import { dataEvent } from "../../../dummydata/admin-menu/dataevent";
 
 const EventDashboard = () => {
   useEffect(() => {
@@ -17,9 +17,19 @@ const EventDashboard = () => {
     setShowAddEvent(true);
   };
 
+  const columnsEvents = [
+    { header: "Aksi", field: "icon", truncate: 0 },
+    { header: "Nama Event", field: "title", truncate: 20 },
+    { header: "Deskripsi", field: "desc", truncate: 15 },
+    { header: "Waktu", field: "time", truncate: 20 },
+    { header: "Tanggal", field: "date", truncate: 20 },
+    { header: "Tag", field: "tag", truncate: 10 },
+    { header: "Gambar", field: "image", truncate: 0 },
+  ];
+
   const content = (
     <>
-      <div>
+      <div className="mb-10">
         <HeaderDashboard
           goto="/"
           buttonBack="Kembali"
@@ -37,7 +47,13 @@ const EventDashboard = () => {
             isVisible={showAddEvent}
             onClose={() => setShowAddEvent(false)}
           />
-          <TableDashboard />
+          <div className="mb-10">
+            <TableDashboard
+              columns={columnsEvents}
+              data={dataEvent}
+              detailRoute="/admin/event/detail"
+            />
+          </div>
         </div>
       </div>
     </>
