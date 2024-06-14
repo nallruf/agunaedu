@@ -243,7 +243,7 @@ function App() {
               />
             </Route>
   
-          <Route path="/admin">
+          <Route path="/admin" element={<ProtectedRoute />}>
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="mentor" element={<MentorDashboard />} />
             <Route path="users" element={<UsersDashboard />} />

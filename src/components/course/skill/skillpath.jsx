@@ -153,8 +153,7 @@ const SkillPath = ({ pathId }) => {
                 img={`${import.meta.env.VITE_PUBLIC_URL}/images/${
                   item.courseImageUrl
                 }`}
-                //kurang coursedesc
-                desccard={item.courseDescription}
+                desccard={item.description}
                 icon2={<SiGitbook />}
                 level={`${capitalizeFirstLetter(item.courseLevel)} Level`}
               />

@@ -107,7 +107,7 @@ const RegisterPage = () => {
             <div className="mb-5">
               <TextInputComponent
                 htmlfor="email"
-                label="Emal"
+                label="Email"
                 type="email"
                 placeholder="Masukan Email"
                 id="email"
