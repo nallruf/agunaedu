@@ -32,6 +32,18 @@ import EventUserPage from "./pages/user-menu/event";
 import ChallengeUserPage from "./pages/user-menu/challenge";
 import TransactionUserPage from "./pages/user-menu/transaction";
 import SettingUserPage from "./pages/user-menu/settings";
+import Dashboard from "./pages/admin-menu/dashboard";
+import MentorDashboard from "./pages/admin-menu/mentor";
+import UsersDashboard from "./pages/admin-menu/users/users";
+import ChallengeDashboard from "./pages/admin-menu/challenge/challenge";
+import EventDashboard from "./pages/admin-menu/event/event";
+import SettingDashboard from "./pages/admin-menu/settings";
+import DetailEvent from "./pages/admin-menu/event/detailevent";
+import DetailChallenge from "./pages/admin-menu/challenge/detailchallenge";
+import UserSettingDashboard from "./pages/admin-menu/users/usersetings";
+import SkillandToolsDashboard from "./pages/admin-menu/skillsandtools/skillandtools";
+import RoleDashboard from "./pages/admin-menu/role/role";
+import JumlahPendaftar from "./pages/admin-menu/event/jumlahpendaftar";
 
 const DefaultLayout = ({ children }) => (
   <div>
@@ -184,6 +196,22 @@ function App() {
             <Route path="challenge" element={<ChallengeUserPage />} />
             <Route path="transaction" element={<TransactionUserPage />} />
             <Route path="settings" element={<SettingUserPage />} />
+          </Route>
+
+          <Route path="/admin">
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="mentor" element={<MentorDashboard />} />
+            <Route path="users" element={<UsersDashboard />} />
+            <Route path="event" element={<EventDashboard />} />
+            <Route path="challenge" element={<ChallengeDashboard />} />
+            <Route path="event/detail" element={<DetailEvent />} />
+            <Route path="challenge/detail" element={<DetailChallenge />} />
+            <Route path="usersetting" element={<UserSettingDashboard />} />
+            <Route path="skillandtools" element={<SkillandToolsDashboard />} />
+            <Route path="role" element={<RoleDashboard />} />
+            <Route path="settings" element={<SettingDashboard />} />
+
+            <Route path="event/registrants" element={<JumlahPendaftar />} />
           </Route>
         </Routes>
       </AnimatePresence>

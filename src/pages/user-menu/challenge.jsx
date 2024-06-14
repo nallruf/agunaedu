@@ -8,8 +8,6 @@ import { dataCardChallenge } from "../../dummydata/user-menu/datachallenge";
 import CardChallenge from "../../components/user-menu/carddashboard/cardchallenge";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
 
 const ChallengeUserPage = () => {
   useEffect(() => {
@@ -56,8 +54,8 @@ const ChallengeUserPage = () => {
       </div>
       <div className="py-10">
         <h1 className="text-2xl font-bold mb-6">Riwayat Challenge</h1>
-        {/* <Swiper
-          className="pl-10 sm:pl-20 md:pl-40 pb-20 md:pb-72"
+        <Swiper
+          className="pb-20 md:pb-72"
           slidesPerView={1}
           spaceBetween={10}
           breakpoints={{
@@ -74,7 +72,13 @@ const ChallengeUserPage = () => {
               spaceBetween: 50,
             },
           }}
-        > */}
+        >
+          {dataCardChallenge.map((item, index) => (
+            <SwiperSlide key={index}>
+              <CardChallenge {...item} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
         <div className="flex gap-7 flex-wrap">
           {dataCardChallenge.map((item, index) => (
             <div key={index}>

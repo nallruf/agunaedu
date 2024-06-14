@@ -103,6 +103,12 @@ const NavBar = () => {
                             Dashboard
                           </button>
                           <button
+                            onClick={() => navigate("/admin/dashboard")}
+                            className="hover:text-primaryBlue"
+                          >
+                            Dashboard Admin
+                          </button>
+                          <button
                             onClick={logout}
                             className="hover:text-primaryBlue"
                           >
@@ -172,10 +178,16 @@ const NavBar = () => {
                         <div className="text-textTertiary text-[14px] font-semibold py-2 px-4">
                           <div className="flex flex-col gap-4 py-2 px-3 items-start">
                             <button
-                              onClick={() => navigate("/admin/dashboard")}
+                              onClick={() => navigate("/user/dashboard")}
                               className="hover:text-primaryBlue"
                             >
                               Dashboard
+                            </button>
+                            <button
+                              onClick={() => navigate("/admin/dashboard")}
+                              className="hover:text-primaryBlue"
+                            >
+                              Dashboard Admin
                             </button>
                             <button
                               onClick={logout}

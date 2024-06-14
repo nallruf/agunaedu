@@ -40,7 +40,7 @@ const TransactionUserPage = () => {
         </div>
       </div>
       <div className="flex justify-between items-center p-4 flex-wrap gap-4">
-        <div className="flex">
+        <div className="flex flex-wrap">
           <button className="px-4 py-2 bg-white border text-textLabel font-semibold rounded-l-xl">
             Semua
           </button>
