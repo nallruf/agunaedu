@@ -18,8 +18,8 @@ const SkillPath = ({ pathId }) => {
   const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState("");
   const [data, setData] = useState([]);
-  const [role, setRole] = useState([]);
-  const [detailPath, setDetailPath] = useState([]);
+  const [role, setRole] = useState({});
+  const [detailPath, setDetailPath] = useState({});
   const { user } = useAuth();
 
   useEffect(() => {
@@ -27,24 +27,24 @@ const SkillPath = ({ pathId }) => {
       try {
         const rolesData = await axios.get(`/api/v1/public/landing/role`);
         const foundRole = rolesData.data.find((item) =>
-          item.role_name.toLowerCase()
+          item.paths.some((p) => p.id === pathId)
         );
-        const foundPath = foundRole.paths.find(
-          (item) =>
-            item.name.toLowerCase() !== "pemula" &&
-            item.name.split(" ")[0].toLowerCase()
-        );
-        setRole(foundRole);
-        setDetailPath(foundPath);
-        const response = await axios.get(`/api/v1/auth/path/${pathId}`, {
-          headers: {
-            Authorization: `Bearer ${user}`,
-          },
-        });
-        setData(response.data);
 
-        if (response.data.length > 0) {
-          setActiveCategory(response.data[0].pathFocusName);
+        if (foundRole) {
+          const foundPath = foundRole.paths.find((item) => item.id === pathId);
+          setRole(foundRole);
+          setDetailPath(foundPath);
+
+          const response = await axios.get(`/api/v1/auth/path/${pathId}`, {
+            headers: {
+              Authorization: `Bearer ${user}`,
+            },
+          });
+          setData(response.data);
+
+          if (response.data.length > 0) {
+            setActiveCategory(response.data[0].pathFocusName);
+          }
         }
       } catch (err) {
         console.log(err);
@@ -58,19 +58,22 @@ const SkillPath = ({ pathId }) => {
     setActiveCategory(category);
   };
 
-  // const handleButtonClick = () => {
-  //   const activePath = data.find(
-  //     ({ pathFocusName }) => pathFocusName === activeCategory
-  //   );
-  //   if (activePath) {
-  //     const detailPathName = detailPath
-  //       ? detailPath.name.split(" ")[0].toLowerCase()
-  //       : "";
-  //     navigate(
-  //       `/course/${role.role_name.toLowerCase()}/${detailPathName}/${activePath.pathFocusName.toLowerCase()}`
-  //     );
-  //   }
-  // };
+  const handleButtonClick = () => {
+    const activePath = data.find(
+      ({ pathFocusName }) => pathFocusName === activeCategory
+    );
+    if (activePath) {
+      const roleName = role.role_name ? role.role_name.toLowerCase() : "";
+      const detailPathName = detailPath.name
+        ? detailPath.name.split(" ")[0].toLowerCase()
+        : "";
+      navigate(
+        `/course/${roleName}/${detailPathName}/${activePath.pathFocusName
+          .toLowerCase()
+          .replace(/\s+/g, "-")}`
+      );
+    }
+  };
 
   if (!data || data.length === 0) {
     return (
@@ -165,7 +168,7 @@ const SkillPath = ({ pathId }) => {
           transition={{ duration: 0.8 }}
           whileHover={{ scale: 1.2 }}
           className="text-white flex items-center gap-3"
-          // onClick={handleButtonClick}
+          onClick={handleButtonClick}
         >
           <span className="text-sm font-semibold">Lihat Detail</span>
           <FaArrowRight className="text-base" />
