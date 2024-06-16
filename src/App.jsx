@@ -19,7 +19,7 @@ import ChallengePage from "./pages/kegiatan/challenge/challenge";
 import DetailChallengePage from "./pages/kegiatan/challenge/detail/detailchallenge";
 import RolePage from "./pages/course/role";
 import DetailPathPage from "./pages/course/path/focus/detail/detailpath";
-import TransactionFePage from "./pages/course/path/focus/transaction/transactionfe";
+import TransactionPage from "./pages/course/path/focus/transaction/transaction";
 import StatusTransactionPage from "./pages/course/path/focus/transaction/statustransaction";
 import PemulaPage from "./pages/course/pemula/pemula";
 import DetailTesPage from "./pages/course/tesrole/detailtes";
@@ -204,8 +204,8 @@ function App() {
                 }
               />
               <Route
-                path="hacker/path-web/fe/transaction/:id"
-                element={<TransactionFePage />}
+                path=":role/:path/:focus/transaction/:id"
+                element={<TransactionPage />}
               />
               <Route
                 path="hacker/path-web/fe/transaction/status/:id"

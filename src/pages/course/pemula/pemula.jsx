@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import HeaderCourse from "../../../components/course/headercourse";
 import ImgPemula from "../../../assets/img/illustration/login.png";
 import { FiBook } from "react-icons/fi";
-import { dataMentorDetail } from "../../../dummydata/course/datamentor";
 import MentorKelas from "../../../components/course/pathfocus/metordetail";
 import { dataPemulaHacker } from "../../../dummydata/course/datadetailpemula";
 import NotFoundPage from "../../notfound";
@@ -110,9 +109,9 @@ const PemulaPage = () => {
           </div>
         </div>
       </section>
-      {dataMentorDetail.map((item) => (
+      {/* {dataMentorDetail.map((item) => (
         <MentorKelas key={item.id} {...item} />
-      ))}
+      ))} */}
     </>
   );
 };

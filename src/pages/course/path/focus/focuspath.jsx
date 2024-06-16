@@ -3,7 +3,6 @@ import HeaderCourse from "../../../../components/course/headercourse";
 import ImgRole from "../../../../assets/img/illustration/path-web.png";
 import MentorSection from "../../../../components/course/pathfocus/mentor";
 import KelasMandiri from "../../../../components/course/pathfocus/kelasmandiri";
-import { dataMentor } from "../../../../dummydata/course/datamentor";
 import { useAuth } from "../../../../hooks/useauth";
 import { useParams } from "react-router-dom";
 import axios from "axios";

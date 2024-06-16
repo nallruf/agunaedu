@@ -104,7 +104,9 @@ const DetailPathPage = () => {
 
   const handleDaftarClick = () => {
     navigate(
-      `/course/${role}/path-${path.toLowerCase()}/${focus.toLowerCase()}/transaction/${id}`
+      `/course/${role}/${path.toLowerCase()}/${focusPath.pathFocusName.toLowerCase()}/transaction/${
+        courseData.courseId
+      }`
     );
   };
 
@@ -215,11 +217,11 @@ const DetailPathPage = () => {
                 ) : (
                   <button
                     className="bg-primaryBlue text-white rounded-lg px-5 py-2 w-[269px] h-[36px] items-center justify-center flex"
-                    onClick={() =>
-                      navigate(
-                        `/course/${role}/path-${path.toLowerCase()}/${focus.toLowerCase()}/${id}`
-                      )
-                    }
+                    // onClick={() =>
+                    //   navigate(
+                    //     `/course/${role}/path-${path.toLowerCase()}/${focus.toLowerCase()}/${id}`
+                    //   )
+                    // }
                   >
                     Lanjut Belajar
                   </button>
