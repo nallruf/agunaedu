@@ -4,51 +4,49 @@ import { AiOutlineQuestionCircle } from "react-icons/ai";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 const HasilTes = () => {
-  const navigate = useNavigate();
   const location = useLocation();
-  const { testData, answers, role } = location.state;
+  const { test, testName, answers, correctAnswers, submittedTime, classData } =
+    location.state || {};
+  const { role } = useParams();
+  const navigate = useNavigate();
+
+  const [score, setScore] = useState(0);
+  const [totalCorrect, setTotalCorrect] = useState(0);
+  const [totalIncorrect, setTotalIncorrect] = useState(0);
+  const [testStatus, setTestStatus] = useState(false);
 
   useEffect(() => {
-    document.title = `Aguna Edu | Hasil Tes Dasar - ${role}`;
+    if (!test || !classData) {
+      navigate(`/course/${role}/tes/dasar`);
+    }
+  }, [test, classData, navigate, role]);
+
+  useEffect(() => {
+    document.title = `Aguna Edu | Hasil Tes Dasar - ${test.role_name}`;
   });
 
-  const calculateResults = () => {
-    let correctAnswers = 0;
-    let wrongAnswers = 0;
-    const currentTime = new Date();
-    const submittedTime = currentTime.toLocaleString("id-ID", {
-      weekday: "long",
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-    });
+  useEffect(() => {
+    if (answers && correctAnswers) {
+      const correct = answers.filter(
+        (answer, index) => answer === correctAnswers[index]
+      ).length;
+      const incorrect = answers.length - correct;
+      const calculatedScore = (correct / answers.length) * 100;
 
-    testData.questions.forEach((question, index) => {
-      if (answers[index] === question.correct) {
-        correctAnswers++;
-      } else {
-        wrongAnswers++;
+      setTotalCorrect(correct);
+      setTotalIncorrect(incorrect);
+      setScore(calculatedScore);
+
+      if (calculatedScore >= 70) {
+        setTestStatus(true);
       }
-    });
+    }
+  }, [answers, correctAnswers]);
 
-    const score = correctAnswers * 10;
-
-    return {
-      correctAnswers,
-      wrongAnswers,
-      score,
-      submittedTime,
-    };
-  };
-
-  const { correctAnswers, wrongAnswers, score, submittedTime } =
-    calculateResults();
-
-  const passed = score >= 70;
+  const passed = testStatus >= 70;
   const finalScore = `${score}/100`;
 
+  //kurang untuk submitnya gatau aku arahin gimana...
   const handleSubmit = () => {
     localStorage.setItem(`${role.toLowerCase()}_passed`, passed);
 
@@ -68,9 +66,9 @@ const HasilTes = () => {
         </div>
         <div className="flex-1 flex-col md:flex-row p-8">
           <div className="flex flex-col gap-3">
-            <h1 className="text-2xl font-semibold">{testData.title}</h1>
+            <h1 className="text-2xl font-semibold">{testName}</h1>
             <span className="flex text-textTertiary items-center gap-3">
-              {testData.description}
+              {testName}
             </span>
             <div className="mt-10 sm:mt-16">
               <span className="text-xl font-semibold">Ringkasan Hasil Tes</span>
@@ -98,10 +96,10 @@ const HasilTes = () => {
                 </div>
                 <div className="flex justify-end md:gap-[110px] gap-2 sm:gap-10">
                   <div className="border-2 border-[#079455] text-[#079455] bg-[#ECFEF3] rounded-full p-1 px-2 text-xs font-semibold">
-                    {correctAnswers}
+                    {totalCorrect}
                   </div>
                   <div className="border-2 border-[#D73328] text-[#D73328] bg-[#FEF3F2] rounded-full p-1 px-2 text-xs font-semibold">
-                    {wrongAnswers}
+                    {totalIncorrect}
                   </div>
                   <div className="border-2 border-[#85CAFF] text-[#175CD3] bg-[#EFF8FF] rounded-full p-1 px-2 text-xs font-semibold">
                     {score}

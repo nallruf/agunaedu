@@ -28,7 +28,7 @@ import HasilTes from "./pages/course/tesrole/tes/hasiltes";
 import PathPage from "./pages/course/path/path";
 import FocusPathPage from "./pages/course/path/focus/focuspath";
 import DashboardUserPage from "./pages/user-menu/dashboard";
-import MentoringUserPage from "./pages/user-menu/mentoring";
+import CourseUserPage from "./pages/user-menu/course";
 import EventUserPage from "./pages/user-menu/event";
 import ChallengeUserPage from "./pages/user-menu/challenge";
 import TransactionUserPage from "./pages/user-menu/transaction";
@@ -215,7 +215,7 @@ function App() {
 
             <Route path="/user" element={<ProtectedRoute />}>
               <Route path="dashboard" element={<DashboardUserPage />} />
-              <Route path="mentoring" element={<MentoringUserPage />} />
+              <Route path="course" element={<CourseUserPage />} />
               <Route path="course/:id" element={<NotFoundPage />} />
               <Route path="event" element={<EventUserPage />} />
               <Route path="challenge" element={<ChallengeUserPage />} />

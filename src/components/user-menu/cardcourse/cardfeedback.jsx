@@ -5,8 +5,8 @@ const CardFeedback = ({
   title,
   desc,
   tags,
-  imgProfile,
-  nameMentor,
+  // imgProfile,
+  // nameMentor,
 }) => {
   const handleFeedbackClick = () => {
     alert("EA FEEDBACK");
@@ -33,7 +33,7 @@ const CardFeedback = ({
           </div>
         </div>
         <div className="flex justify-between items-center">
-          <div className="hidden md:flex items-center gap-2">
+          {/* <div className="hidden md:flex items-center gap-2">
             <img
               src={imgProfile}
               alt="img-profile"
@@ -44,7 +44,7 @@ const CardFeedback = ({
               <h2 className="text-sm font-semibold text-textLabel">Mentor</h2>
               <h4 className="text-xs text-textTertiary">{nameMentor}</h4>
             </div>
-          </div>
+          </div> */}
           <button
             className="text-white bg-primaryBlue text-[12px] font-semibold h-fit py-2 px-[14px] rounded-lg"
             onClick={handleFeedbackClick}

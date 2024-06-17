@@ -148,17 +148,13 @@ const DetailPathPage = () => {
             </span>
           </div>
           <div className="flex flex-col md:flex-row">
-            <div className="flex flex-col gap-5 pr-10">
+            <div className="flex flex-col gap-5 pr-10 w-[80%]">
               <div className="grid gap-y-5">
                 <h1 className="text-2xl text-textPrimary font-semibold">
                   Tentang Kelas
                 </h1>
                 <span className="text-textTertiary">
-                  {/* tunggu di perbaiki uutuk desc  */}
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Facere, placeat? Laborum, asperiores optio, dolores quas
-                  labore eaque possimus distinctio nihil inventore id esse,
-                  iusto veniam iste eum quidem? Suscipit, sint.
+                  {courseData.description}
                 </span>
               </div>
               <div>

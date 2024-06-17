@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const CardMentoring = ({ title, img, icons, tags, imgProfile, nameMentor }) => {
+const CardCourse = ({ title, img, icons, tags, imgProfile, nameMentor }) => {
   const navigate = useNavigate();
 
   const handleMentorClick = () => {
@@ -50,7 +50,7 @@ const CardMentoring = ({ title, img, icons, tags, imgProfile, nameMentor }) => {
             className="text-white bg-primaryBlue text-[14px] font-semibold inline-flex items-center justify-center py-[8px] px-[18px] rounded-lg"
             onClick={handleMentorClick}
           >
-            Detail Mentoring
+            Lanjutkan Progress
           </button>
         </div>
       </div>
@@ -58,4 +58,4 @@ const CardMentoring = ({ title, img, icons, tags, imgProfile, nameMentor }) => {
   );
 };
 
-export default CardMentoring;
+export default CardCourse;

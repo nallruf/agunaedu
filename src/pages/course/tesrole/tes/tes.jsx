@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import NotFoundPage from "../../../notfound";
 import Logo from "../../../../assets/img/logo/logo-biru.png";
 import { IoIosArrowBack } from "react-icons/io";
 import { FaRegClock } from "react-icons/fa6";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
-import { FaArrowLeft } from "react-icons/fa6";
-import { FaArrowRight } from "react-icons/fa6";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import toast from "react-hot-toast";
 import { useAuth } from "../../../../hooks/useauth";
 import axios from "axios";
@@ -91,6 +89,8 @@ const TesPage = () => {
           classData,
           testName,
           answers,
+          correctAnswers: classData.questions.map((q) => q.correctAnswer),
+          submittedTime: new Date().toLocaleString(),
         },
       });
     }
@@ -121,7 +121,10 @@ const TesPage = () => {
       state: {
         test,
         classData,
+        testName,
         answers,
+        correctAnswers: classData.questions.map((q) => q.correctAnswer),
+        submittedTime: new Date().toLocaleString(),
       },
     });
   };
@@ -200,9 +203,14 @@ const TesPage = () => {
                       type="radio"
                       name={`answer-${currentQuestionIndex}`}
                       className="mr-2"
-                      checked={answers[currentQuestionIndex] === option.answer}
+                      checked={
+                        answers[currentQuestionIndex] === option.idAnswer
+                      }
                       onChange={() =>
-                        handleAnswerChange(currentQuestionIndex, option.answer)
+                        handleAnswerChange(
+                          currentQuestionIndex,
+                          option.idAnswer
+                        )
                       }
                     />
                     <span className="whitespace-normal">{option.answer}</span>
@@ -241,7 +249,7 @@ const TesPage = () => {
                 className="bg-primaryBlue text-white rounded-xl p-3 px-4 flex justify-center items-center gap-2 font-medium w-full"
                 onClick={handleSubmit}
               >
-                Selesaikan Tes
+                Selesai Tes
               </button>
             </div>
           </div>

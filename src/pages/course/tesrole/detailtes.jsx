@@ -74,8 +74,8 @@ const DetailTesPage = () => {
         desc="Aguna Edu menghadirkan beberapa test dasar yang dapat kalian pelajari secara gratis!"
         imgRole={ImgTes}
       />
-      {classData.map((classItem) => (
-        <section className="px-10 sm:px-20 md:px-40 py-[80px]">
+      {classData.map((classItem, index) => (
+        <section key={index} className="px-10 sm:px-20 md:px-40 py-[80px]">
           <div className="flex flex-col gap-2 mb-[45px] md:w-[60%]">
             <h1 className="text-5xl text-textPrimary font-semibold">
               {classItem.testName}
