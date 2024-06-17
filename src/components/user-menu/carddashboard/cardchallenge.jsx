@@ -6,7 +6,7 @@ const CardChallenge = ({ title, points, score, image }) => {
   return (
     <div>
       <div className="w-[271px] h-[309px] rounded-xl">
-        <img src={image} alt="challenge1" />
+        <img src={image} alt="challenge1" className="rounded-t-xl w-[271px] h-[173px] object-cover" />
         <div className="bg-primaryBlue rounded-b-xl px-[15px] py-[10px] ">
           <div className="mb-[18px]">
             <span className="text-white text-xl font-semibold">{title}</span>
@@ -19,9 +19,9 @@ const CardChallenge = ({ title, points, score, image }) => {
             <div className="flex justify-between">
               <div className="bg-white border-2 border-borderPrimary rounded-xl px-3 py-1 flex gap-1 items-center font-semibold text-primaryBlue">
                 <LuCoins />
-                <span>{points}</span>
+                <span>{points} XP Poin</span>
               </div>
-              <div className="bg-white border-2 border-borderPrimary rounded-xl px-3 py-1 flex gap-1 items-center font-semibold text-primaryBlue">
+              <div className="bg-white border-2 border-borderPrimary rounded-xl px-3 py-1 flex gap-1 items-center font-semibold text-primaryBlue w-fit">
                 <CgTrophy />
                 <span>{score}</span>
               </div>

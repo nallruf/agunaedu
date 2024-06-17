@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import LogoAguna from "../../../assets/img/logo/logo-name-biru.png";
 import LogoBiru from "../../../assets/img/logo/logo-biru.png";
-import ImgProfile from "../../../assets/img/team/ulum.png";
+import ImgAvatar from "../../../assets/img/team/avatar.jpg";
 import { RiHome6Line } from "react-icons/ri";
 import { LuBarChart2, LuSettings2, LuLogOut } from "react-icons/lu";
 import { CiCalendar, CiBookmarkCheck, CiSearch } from "react-icons/ci";
@@ -10,12 +10,14 @@ import { PiMedal } from "react-icons/pi";
 import { useAuth } from "../../../hooks/useauth";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import useProfile from "../../../hooks/useProfile";
 
 const Sidebar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const { logout, user } = useAuth();
+  const { profile } = useProfile(user);
 
   useEffect(() => {
     const handleResize = () => {
@@ -36,9 +38,9 @@ const Sidebar = () => {
       link: "/user/dashboard",
     },
     {
-      name: "Mentoring",
+      name: "Course",
       icon: <LuBarChart2 size={24} />,
-      link: "/user/mentoring",
+      link: "/user/course",
     },
     { name: "Event", icon: <CiCalendar size={24} />, link: "/user/event" },
     { name: "Challenge", icon: <PiMedal size={24} />, link: "/user/challenge" },
@@ -73,12 +75,14 @@ const Sidebar = () => {
   return (
     <div className="min-h-screen border-r border-[#EAECF0] w-[80px] md:w-[260px] px-5 py-8 shadow-lg flex flex-col justify-between transition-all duration-300">
       <div className="flex flex-col gap-6 items-center md:items-start">
-        <img
-          src={isMobile ? LogoBiru : LogoAguna}
-          alt="logo"
-          draggable="false"
-          className="w-[30px] md:w-[130px]"
-        />
+        <Link to={"/"}>
+          <img
+            src={isMobile ? LogoBiru : LogoAguna}
+            alt="logo"
+            draggable="false"
+            className="w-[30px] md:w-[130px]"
+          />
+        </Link>
         <div className="relative hidden md:block">
           <div className="absolute inset-y-0 left-0 flex items-center pl-3">
             <CiSearch className="h-6 w-6 text-iconInput" />
@@ -137,14 +141,24 @@ const Sidebar = () => {
           <div className="pt-[25px] flex flex-col md:flex-row items-center justify-between">
             <div className="hidden md:flex items-center gap-2">
               <img
-                src={ImgProfile}
+                src={
+                  profile?.imageUrl
+                    ? `${import.meta.env.VITE_PUBLIC_URL}/images/${
+                        profile.imageUrl
+                      }`
+                    : ImgAvatar
+                }
                 alt="img-profile"
                 draggable="false"
                 className=" w-10 rounded-full"
               />
               <div className="flex flex-col">
-                <h2 className="text-sm font-semibold text-textLabel">Ulum</h2>
-                <h4 className="text-xs text-textTertiary">Ulum@gmail.com</h4>
+                <h2 className="text-sm font-semibold text-textLabel">
+                  {profile?.username || "User Aguna"}
+                </h2>
+                <h4 className="text-xs text-textTertiary">
+                  {profile?.email || "dummy@gmail.com"}
+                </h4>
               </div>
             </div>
             <button className="text-textLabel" onClick={handleLogout}>

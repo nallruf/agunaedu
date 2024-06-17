@@ -18,24 +18,36 @@ import DetailEventPage from "./pages/kegiatan/event/detail/detailevent";
 import ChallengePage from "./pages/kegiatan/challenge/challenge";
 import DetailChallengePage from "./pages/kegiatan/challenge/detail/detailchallenge";
 import RolePage from "./pages/course/role";
-import DetailFePage from "./pages/course/path/fe/detail/detailfe";
-import TransactionFePage from "./pages/course/path/fe/transaction/transactionfe";
-import StatusTransactionPage from "./pages/course/path/fe/transaction/statustransaction";
+import DetailPathPage from "./pages/course/path/focus/detail/detailpath";
+import TransactionPage from "./pages/course/path/focus/transaction/transaction";
+import StatusTransactionPage from "./pages/course/path/focus/transaction/statustransaction";
 import PemulaPage from "./pages/course/pemula/pemula";
 import DetailTesPage from "./pages/course/tesrole/detailtes";
 import TesPage from "./pages/course/tesrole/tes/tes";
 import HasilTes from "./pages/course/tesrole/tes/hasiltes";
 import PathPage from "./pages/course/path/path";
-import WebFePage from "./pages/course/path/fe/webfe";
+import FocusPathPage from "./pages/course/path/focus/focuspath";
 import DashboardUserPage from "./pages/user-menu/dashboard";
-import MentoringUserPage from "./pages/user-menu/mentoring";
+import CourseUserPage from "./pages/user-menu/course";
 import EventUserPage from "./pages/user-menu/event";
 import ChallengeUserPage from "./pages/user-menu/challenge";
 import TransactionUserPage from "./pages/user-menu/transaction";
 import SettingUserPage from "./pages/user-menu/settings";
+import Dashboard from "./pages/admin-menu/dashboard";
+import MentorDashboard from "./pages/admin-menu/mentor";
+import UsersDashboard from "./pages/admin-menu/users/users";
+import ChallengeDashboard from "./pages/admin-menu/challenge/challenge";
+import EventDashboard from "./pages/admin-menu/event/event";
+import SettingDashboard from "./pages/admin-menu/settings";
+import DetailEvent from "./pages/admin-menu/event/detailevent";
+import DetailChallenge from "./pages/admin-menu/challenge/detailchallenge";
+import UserSettingDashboard from "./pages/admin-menu/users/usersetings";
+import SkillandToolsDashboard from "./pages/admin-menu/skillsandtools/skillandtools";
+import RoleDashboard from "./pages/admin-menu/role/role";
+import JumlahPendaftar from "./pages/admin-menu/event/jumlahpendaftar";
 
 import { AuthProvider } from "./hooks/useauth";
-import { ProtectedRoute } from "./private/protectedroute";
+import ProtectedRoute from "./private/protectedroute";
 
 import axios from "axios";
 import AOS from "aos";
@@ -176,24 +188,24 @@ function App() {
               <Route path=":role/tes/dasar" element={<TesPage />} />
               <Route path=":role/tes/dasar/hasil" element={<HasilTes />} />
               <Route
-                path="hacker/path-web/fe"
+                path=":role/:path/:focus"
                 element={
                   <CourseLayout>
-                    <WebFePage />
+                    <FocusPathPage />
                   </CourseLayout>
                 }
               />
               <Route
-                path="hacker/path-web/fe/:id"
+                path=":role/:path/:focus/:id"
                 element={
                   <CourseLayout>
-                    <DetailFePage />
+                    <DetailPathPage />
                   </CourseLayout>
                 }
               />
               <Route
-                path="hacker/path-web/fe/transaction/:id"
-                element={<TransactionFePage />}
+                path=":role/:path/:focus/transaction/:id"
+                element={<TransactionPage />}
               />
               <Route
                 path="hacker/path-web/fe/transaction/status/:id"
@@ -201,9 +213,12 @@ function App() {
               />
             </Route>
 
-            <Route path="/user" element={<ProtectedRoute />}>
+            <Route
+              path="/user"
+              element={<ProtectedRoute requiredRole={"USER"} />}
+            >
               <Route path="dashboard" element={<DashboardUserPage />} />
-              <Route path="mentoring" element={<MentoringUserPage />} />
+              <Route path="course" element={<CourseUserPage />} />
               <Route path="course/:id" element={<NotFoundPage />} />
               <Route path="event" element={<EventUserPage />} />
               <Route path="challenge" element={<ChallengeUserPage />} />
@@ -228,6 +243,28 @@ function App() {
                   </DefaultLayout>
                 }
               />
+            </Route>
+
+            <Route
+              path="/admin"
+              element={<ProtectedRoute requiredRole={"ADMIN"} />}
+            >
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="mentor" element={<MentorDashboard />} />
+              <Route path="users" element={<UsersDashboard />} />
+              <Route path="event" element={<EventDashboard />} />
+              <Route path="challenge" element={<ChallengeDashboard />} />
+              <Route path="event/detail" element={<DetailEvent />} />
+              <Route path="challenge/detail" element={<DetailChallenge />} />
+              <Route path="usersetting" element={<UserSettingDashboard />} />
+              <Route
+                path="skillandtools"
+                element={<SkillandToolsDashboard />}
+              />
+              <Route path="role" element={<RoleDashboard />} />
+              <Route path="settings" element={<SettingDashboard />} />
+
+              <Route path="event/registrants" element={<JumlahPendaftar />} />
             </Route>
           </Routes>
         </AnimatePresence>

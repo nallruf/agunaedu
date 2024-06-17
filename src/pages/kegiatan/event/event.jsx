@@ -62,7 +62,7 @@ const EventPage = () => {
             <CardKegiatan
               key={event.id}
               date={formatDateAndTime(event.date)}
-              desc={event.description}
+              desc={event.shortDescription}
               imgEvent={`${import.meta.env.VITE_PUBLIC_URL}/images/${
                 event.imageUrl
               }`}

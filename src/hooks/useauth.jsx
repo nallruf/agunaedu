@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { createContext, useContext, useEffect } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { useLocalStorage } from "./uselocalstorage";
 import { useNavigate } from "react-router-dom";
 
@@ -11,12 +11,33 @@ const AuthProvider = ({ children }) => {
     "tokenExpiration",
     null
   );
+  const [role, setRole] = useState(null);
   const navigate = useNavigate();
+
+  const parseJwt = (token) => {
+    try {
+      const base64Url = token.split(".")[1];
+      const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+      const jsonPayload = decodeURIComponent(
+        atob(base64)
+          .split("")
+          .map((c) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
+          .join("")
+      );
+      return JSON.parse(jsonPayload);
+    } catch (e) {
+      console.error("Invalid token", e);
+      return null;
+    }
+  };
 
   const login = (data) => {
     const expirationTime = new Date().getTime() + 3600 * 1000;
     setUser(data.token);
     setExpirationTime(expirationTime);
+
+    const decodedToken = parseJwt(data.token);
+    setRole(decodedToken?.role); // Store the role in state
     axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
     navigate("/");
   };
@@ -26,6 +47,7 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem("tokenExpiration");
     setUser(null);
     setExpirationTime(null);
+    setRole(null);
     delete axios.defaults.headers.common["Authorization"];
     navigate("/", { replace: true });
   };
@@ -46,8 +68,15 @@ const AuthProvider = ({ children }) => {
     }
   }, [user, expirationTime]);
 
+  useEffect(() => {
+    if (user) {
+      const decodedToken = parseJwt(user);
+      setRole(decodedToken?.role);
+    }
+  }, [user]);
+
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, role, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

@@ -1,68 +1,100 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { dataRole } from "../../../../dummydata/course/datarole";
-import {
-  dataTesHacker,
-  dataTesHipster,
-  dataTesHustler,
-} from "../../../../dummydata/course/datates";
-import NotFoundPage from "../../../notfound";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Logo from "../../../../assets/img/logo/logo-biru.png";
 import { IoIosArrowBack } from "react-icons/io";
 import { FaRegClock } from "react-icons/fa6";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
-import { FaArrowLeft } from "react-icons/fa6";
-import { FaArrowRight } from "react-icons/fa6";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import toast from "react-hot-toast";
+import { useAuth } from "../../../../hooks/useauth";
+import axios from "axios";
 
 const TesPage = () => {
   const { role } = useParams();
   const navigate = useNavigate();
-  const event = dataRole.find((event) => event.role.toLowerCase() === role);
+  const [test, setTest] = useState(null);
+  const [classData, setClassData] = useState(null);
+  const { user } = useAuth();
+  const location = useLocation();
+  const testName = location.state?.testName;
 
   useEffect(() => {
-    if (event) {
-      document.title = `Aguna Edu | Tes Dasar - ${event.role}`;
+    const fetchDetailclassData = async () => {
+      try {
+        const response = await axios.get(`/api/v1/public/landing/role`);
+        const foundRole = response.data.find(
+          (item) => item.role_name.toLowerCase() === role
+        );
+
+        if (foundRole) {
+          setTest(foundRole);
+
+          const roleResponse = await axios.get(
+            `/api/v1/auth/test/start/${foundRole.role_id}`,
+            {
+              headers: {
+                Authorization: `Bearer ${user}`,
+              },
+            }
+          );
+          setClassData(roleResponse.data);
+        } else {
+          console.error("Error No Test");
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchDetailclassData();
+  }, [role, user]);
+
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+  };
+
+  useEffect(() => {
+    if (test) {
+      document.title = `Aguna Edu | Tes Dasar - ${capitalizeFirstLetter(
+        test.role_name
+      )}`;
     }
-  }, [event]);
+  }, [test]);
 
-  let testData;
-  if (event.role.toLowerCase() === "hacker") {
-    testData = dataTesHacker[0];
-  } else if (event.role.toLowerCase() === "hustler") {
-    testData = dataTesHustler[0];
-  } else if (event.role.toLowerCase() === "hipster") {
-    testData = dataTesHipster[0];
-  }
-
-  if (!event || !testData) {
-    return <NotFoundPage />;
-  }
-
-  const [time, setTime] = useState(testData.time * 60);
+  const [time, setTime] = useState(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [answers, setAnswers] = useState(
-    Array(testData.questions.length).fill(null)
-  );
+  const [answers, setAnswers] = useState([]);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTime((prevTime) => (prevTime > 0 ? prevTime - 1 : 0));
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
+    if (classData) {
+      setTime(classData.duration * 60);
+      setAnswers(Array(classData.questions.length).fill(null));
+    }
+  }, [classData]);
+
+  useEffect(() => {
+    if (time !== null) {
+      const timer = setInterval(() => {
+        setTime((prevTime) => (prevTime > 0 ? prevTime - 1 : 0));
+      }, 1000);
+      return () => clearInterval(timer);
+    }
+  }, [time]);
 
   useEffect(() => {
     if (time === 0) {
-      navigate(`/course/${role}/tes/dasar/hasil`, {
+      navigate(`/course/${test.role_name.toLowerCase()}/tes/dasar/hasil`, {
         state: {
-          role,
-          testData,
+          test,
+          classData,
+          testName,
           answers,
+          correctAnswers: classData.questions.map((q) => q.correctAnswer),
+          submittedTime: new Date().toLocaleString(),
         },
       });
     }
-  }, [time]);
+  }, [time, test, navigate, classData, answers]);
 
   const formatTime = (seconds) => {
     const h = Math.floor(seconds / 3600);
@@ -81,18 +113,29 @@ const TesPage = () => {
     const unansweredQuestions = answers.some((answer) => answer === null);
 
     if (unansweredQuestions) {
-      toast.error("Please answer all questions before submitting.");
+      toast.error("Jawab semua pertanyaan sebelum menyelesaikan tes");
       return;
     }
 
-    navigate(`/course/${role}/tes/dasar/hasil`, {
+    navigate(`/course/${test.role_name.toLowerCase()}/tes/dasar/hasil`, {
       state: {
-        role,
-        testData,
+        test,
+        classData,
+        testName,
         answers,
+        correctAnswers: classData.questions.map((q) => q.correctAnswer),
+        submittedTime: new Date().toLocaleString(),
       },
     });
   };
+
+  if (!test || !classData) {
+    return (
+      <div className="flex justify-center h-screen items-center text-primaryBlue font-semibold">
+        LOADING .......
+      </div>
+    );
+  }
 
   return (
     <>
@@ -106,9 +149,9 @@ const TesPage = () => {
           </div>
         </div>
 
-        <div className=" flex-1 flex-col  p-8">
+        <div className="flex-1 flex-col p-8">
           <div className="flex flex-col gap-3">
-            <h1 className="text-2xl font-semibold">{testData.title}</h1>
+            <h1 className="text-2xl font-semibold">{testName}</h1>
             <button
               className="flex text-textTertiary items-center gap-3"
               onClick={() => navigate(-1)}
@@ -120,7 +163,7 @@ const TesPage = () => {
 
           <div className="mt-8 flex flex-col sm:flex-row justify-between items-center">
             <div className="flex items-center gap-2 md:gap-4 flex-wrap">
-              {testData.questions.map((_, index) => (
+              {classData.questions.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentQuestionIndex(index)}
@@ -146,11 +189,11 @@ const TesPage = () => {
 
           <div className="mt-8 p-8 bg-quatenaryBlue rounded-xl flex flex-col border-borderPrimary border">
             <h2 className="text-lg">
-              {testData.questions[currentQuestionIndex].question}
+              {classData.questions[currentQuestionIndex].question}
             </h2>
             <p className="mt-4 font-semibold">Pilih Jawaban:</p>
             <div className="mt-2 space-y-2">
-              {testData.questions[currentQuestionIndex].options.map(
+              {classData.questions[currentQuestionIndex].answers.map(
                 (option, idx) => (
                   <label
                     key={idx}
@@ -160,12 +203,17 @@ const TesPage = () => {
                       type="radio"
                       name={`answer-${currentQuestionIndex}`}
                       className="mr-2"
-                      checked={answers[currentQuestionIndex] === option}
+                      checked={
+                        answers[currentQuestionIndex] === option.idAnswer
+                      }
                       onChange={() =>
-                        handleAnswerChange(currentQuestionIndex, option)
+                        handleAnswerChange(
+                          currentQuestionIndex,
+                          option.idAnswer
+                        )
                       }
                     />
-                    <span className="whitespace-normal">{option}</span>
+                    <span className="whitespace-normal">{option.answer}</span>
                   </label>
                 )
               )}
@@ -188,7 +236,7 @@ const TesPage = () => {
                 className="bg-primaryBlue text-white rounded-xl p-3 px-4 flex items-center gap-2 font-medium"
                 onClick={() =>
                   setCurrentQuestionIndex((prev) =>
-                    prev < testData.questions.length - 1 ? prev + 1 : prev
+                    prev < classData.questions.length - 1 ? prev + 1 : prev
                   )
                 }
               >
@@ -201,7 +249,7 @@ const TesPage = () => {
                 className="bg-primaryBlue text-white rounded-xl p-3 px-4 flex justify-center items-center gap-2 font-medium w-full"
                 onClick={handleSubmit}
               >
-                Kumpulkan
+                Selesai Tes
               </button>
             </div>
           </div>

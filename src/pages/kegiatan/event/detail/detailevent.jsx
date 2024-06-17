@@ -59,7 +59,7 @@ const DetailEventPage = () => {
           </button>
           <h1 className="font-semibold text-4xl">{event.name}</h1>
           <h3 className="text-textTertiary text-xl mt-3">
-            {event.description}
+            {event.shortDescription}
           </h3>
         </div>
         <div className="mb-11">
@@ -73,7 +73,7 @@ const DetailEventPage = () => {
         <div className="flex gap-10 mb-[70px] md:flex-row flex-col">
           <div className="border-borderPrimary border-2 rounded-2xl p-8 md:w-[70%]">
             <h1 className="font-semibold text-2xl mb-7">Deskripsi</h1>
-            {event.description}
+            {event.detailDescription}
           </div>
           <div className="border-borderPrimary border-2 rounded-2xl p-8 md:w-[30%] h-fit">
             <h1 className="font-semibold text-xl mb-3">Detail Event</h1>

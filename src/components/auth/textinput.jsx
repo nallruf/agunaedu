@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { CiSearch } from "react-icons/ci";
+import { CiCalendar, CiSearch } from "react-icons/ci";
 
 const TextInputComponent = ({
   htmlFor,
@@ -11,6 +11,7 @@ const TextInputComponent = ({
   id,
   passwordInput = false,
   searchInput = false,
+  calenderInput = false,
   value = "",
   onChange = () => {},
 }) => {
@@ -20,11 +21,19 @@ const TextInputComponent = ({
   };
 
   const inputType = passwordInput ? (openEye ? "text" : "password") : type;
+
   const searchIcon = searchInput ? (
     <div className="absolute inset-y-0 left-0 top-8 flex items-center pl-3">
       <CiSearch className="h-6 w-6 text-iconInput" />
     </div>
   ) : null;
+
+  const calenderIcon = calenderInput ? (
+    <div className="absolute inset-y-0 left-0 top-8 flex items-center pl-3">
+      <CiCalendar className="h-6 w-6 text-black" />
+    </div>
+  ) : null;
+
   const eyeIcon = passwordInput ? (
     <div className="absolute top-11 right-5 text-xl cursor-pointer">
       {openEye ? (
@@ -37,9 +46,9 @@ const TextInputComponent = ({
 
   return (
     <div
-      className={`mb-[11px] relative ${passwordInput ? "password-input" : ""} ${
-        searchInput ? "search-input" : ""
-      }`}
+      className={`mb-[11px] relative ${passwordInput ? "password-input" : ""} 
+      ${searchInput ? "search-input" : ""}
+      ${calenderInput ? "calender-input" : ""}`}
     >
       <label
         htmlFor={htmlFor}
@@ -47,6 +56,7 @@ const TextInputComponent = ({
       >
         {label}
       </label>
+      {calenderIcon}
       {searchIcon}
       {type === "textarea" ? (
         <textarea
@@ -68,7 +78,7 @@ const TextInputComponent = ({
           onChange={onChange}
           autoComplete={passwordInput ? "current-password" : "off"}
           className={`w-full border-2 border-borderPrimary rounded-[8px] px-[14px] py-[10px] mt-[6px] focus:outline-none focus:ring-2 focus:ring-primaryBlue shadow-sm ${
-            searchInput ? "pl-10" : ""
+            searchInput || calenderInput ? "pl-10" : ""
           }`}
         />
       )}

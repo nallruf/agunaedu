@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import User from "./user/user";
 import {
-  dataAnalysis,
   dataKelas,
   dataMentoring,
 } from "../../dummydata/user-menu/datadashboard";
@@ -10,11 +9,41 @@ import { RiAwardLine } from "react-icons/ri";
 import CardDashboardAnalysis from "../../components/user-menu/carddashboard/cardanalysis";
 import CardDashboardMentoring from "../../components/user-menu/carddashboard/cardmentoring";
 import CardCourse from "../../components/user-menu/carddashboard/cardcourse";
+import { useAuth } from "../../hooks/useauth";
+import axios from "axios";
+import useProfile from "../../hooks/useProfile";
 
 const DashboardUserPage = () => {
+  const { user } = useAuth();
+  const { profile } = useProfile(user);
+  const [stats, setStats] = useState({
+    totalCourse: 0,
+    totalEvent: 0,
+    totalChallenge: 0,
+  });
+
   useEffect(() => {
     document.title = "Aguna Edu | Dashboard User";
   }, []);
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const response = await axios.get("/api/v1/user/statistic", {
+          headers: {
+            Authorization: `Bearer ${user}`,
+          },
+        });
+        setStats(response.data);
+      } catch (error) {
+        console.error("Error fetching stats", error);
+      }
+    };
+
+    if (user) {
+      fetchStats();
+    }
+  }, [user]);
 
   const iconComponents = {
     HiOutlineBookOpen: (
@@ -28,20 +57,38 @@ const DashboardUserPage = () => {
     ),
   };
 
+  const dataDashboardNih = [
+    {
+      title: "Total Course",
+      amount: stats.totalCourse,
+      icon: "HiOutlineBookOpen",
+    },
+    {
+      title: "Total Event",
+      amount: stats.totalEvent,
+      icon: "HiOutlineTicket",
+    },
+    {
+      title: "Total Challenge",
+      amount: stats.totalChallenge,
+      icon: "RiAwardLine",
+    },
+  ];
+
   const content = (
     <>
       <div className="flex flex-col gap-5 mb-10">
         <h1 className="text-2xl font-semibold text-textPrimary">
-          Selamat Datang, Ulum
+          Selamat Datang, {profile?.username || "Dummy Aguna"}
         </h1>
         <div className="flex flex-wrap gap-5 md:gap-10">
-          {dataAnalysis.map((item, index) => (
+          {dataDashboardNih.map((item, index) => (
             <CardDashboardAnalysis
               key={index}
               title={item.title}
               amount={item.amount}
-              total={item.total}
-              profit={item.profit}
+              // total={item.total}
+              // profit={item.profit}
               icon={iconComponents[item.icon]}
             />
           ))}

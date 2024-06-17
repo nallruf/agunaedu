@@ -5,17 +5,19 @@ import Logo from "../../assets/img/logo/logo-name-biru.png";
 import Menu from "./navbar/menu";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import ImgAvatar from "../../assets/img/team/ulum.png";
+import ImgAvatar from "../../assets/img/team/avatar.jpg";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import { useAuth } from "../../hooks/useauth";
+import useProfile from "../../hooks/useProfile";
 
 const NavBar = () => {
   const [menu, setMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const navigate = useNavigate();
-  const { logout, user } = useAuth();
+  const { logout, user, role } = useAuth();
+  const { profile } = useProfile(user);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -91,7 +93,13 @@ const NavBar = () => {
                 <div className="flex items-center gap-5">
                   <div className="flex items-center justify-center relative">
                     <img
-                      src={ImgAvatar}
+                      src={
+                        profile?.imageUrl
+                          ? `${import.meta.env.VITE_PUBLIC_URL}/images/${
+                              profile.imageUrl
+                            }`
+                          : ImgAvatar
+                      }
                       alt="img-profile"
                       draggable="false"
                       className="rounded-full w-8 cursor-pointer"
@@ -100,19 +108,29 @@ const NavBar = () => {
                   </div>
                   <div>
                     <h1 className="text-textLabel text-[14px] font-semibold">
-                      Hi, Aguna
+                      Hi, {profile?.username || "User Aguna"}
                     </h1>
                   </div>
                   {isDropdownOpen && (
-                    <div className="absolute w-[240px] top-24 right-10 bg-white border border-gray-200 shadow-md rounded-lg ">
+                    <div className="absolute w-[240px] top-24 right-10 bg-white border border-gray-200 shadow-md rounded-lg">
                       <div className="text-textTertiary text-[14px] font-semibold py-2 px-4">
                         <div className="flex flex-col gap-4 py-2 px-3 items-start">
-                          <button
-                            onClick={() => navigate("/user/dashboard")}
-                            className="hover:text-primaryBlue"
-                          >
-                            Dashboard
-                          </button>
+                          {role === "USER" && (
+                            <button
+                              onClick={() => navigate("/user/dashboard")}
+                              className="hover:text-primaryBlue"
+                            >
+                              Dashboard
+                            </button>
+                          )}
+                          {role === "ADMIN" && (
+                            <button
+                              onClick={() => navigate("/admin/dashboard")}
+                              className="hover:text-primaryBlue"
+                            >
+                              Dashboard Admin
+                            </button>
+                          )}
                           <button
                             onClick={handleLogout}
                             className="hover:text-primaryBlue"
@@ -166,7 +184,7 @@ const NavBar = () => {
                   <div className="flex items-center gap-5">
                     <div className="flex items-center justify-center relative">
                       <img
-                        src={ImgAvatar}
+                        src={profile?.imageUrl || ImgAvatar}
                         alt="img-profile"
                         draggable="false"
                         className="rounded-full w-8 cursor-pointer"
@@ -175,19 +193,29 @@ const NavBar = () => {
                     </div>
                     <div>
                       <h1 className="text-textLabel text-[14px] font-semibold">
-                        Hi, Aguna
+                        Hi, {profile?.username || "User Aguna"}
                       </h1>
                     </div>
                     {isDropdownOpen && (
-                      <div className="absolute w-[240px] top-[520px] md:top-24 md:right-10 bg-white border border-gray-200 shadow-md rounded-lg ">
+                      <div className="absolute w-[240px] top-[520px] md:top-24 md:right-10 bg-white border border-gray-200 shadow-md rounded-lg">
                         <div className="text-textTertiary text-[14px] font-semibold py-2 px-4">
                           <div className="flex flex-col gap-4 py-2 px-3 items-start">
-                            <button
-                              onClick={() => navigate("/user/dashboard")}
-                              className="hover:text-primaryBlue"
-                            >
-                              Dashboard
-                            </button>
+                            {role === "USER" && (
+                              <button
+                                onClick={() => navigate("/user/dashboard")}
+                                className="hover:text-primaryBlue"
+                              >
+                                Dashboard
+                              </button>
+                            )}
+                            {role === "ADMIN" && (
+                              <button
+                                onClick={() => navigate("/admin/dashboard")}
+                                className="hover:text-primaryBlue"
+                              >
+                                Dashboard Admin
+                              </button>
+                            )}
                             <button
                               onClick={handleLogout}
                               className="hover:text-primaryBlue"

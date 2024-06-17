@@ -92,7 +92,7 @@ const UpgradeSection = () => {
                       item.imageUrl
                     }`}
                     title={item.name}
-                    text={item.description}
+                    text={item.shortDescription}
                     subs={item.skills.map((skill) => skill.name)}
                   />
                 </div>
