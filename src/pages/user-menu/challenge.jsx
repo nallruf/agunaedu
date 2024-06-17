@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { RiAwardLine } from "react-icons/ri";
 import { LuCoins } from "react-icons/lu";
 import { BiSearchAlt } from "react-icons/bi";
-
 import CardDashboardAnalysis from "../../components/user-menu/carddashboard/cardanalysis";
 import CardChallenge from "../../components/user-menu/carddashboard/cardchallenge";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -73,7 +72,7 @@ const ChallengeUserPage = () => {
     },
     {
       title: "Total Poin",
-      amount: stats.point,
+      amount: `${stats.point} XP`,
       icon: "LuCoins",
     },
   ];

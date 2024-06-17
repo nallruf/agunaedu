@@ -9,14 +9,14 @@ import ImgAvatar from "../../assets/img/team/avatar.jpg";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import { useAuth } from "../../hooks/useauth";
-import useProfile  from "../../hooks/useProfile";
+import useProfile from "../../hooks/useProfile";
 
 const NavBar = () => {
   const [menu, setMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const navigate = useNavigate();
-  const { logout, user } = useAuth();
+  const { logout, user, role } = useAuth();
   const { profile } = useProfile(user);
 
   useEffect(() => {
@@ -115,18 +115,22 @@ const NavBar = () => {
                     <div className="absolute w-[240px] top-24 right-10 bg-white border border-gray-200 shadow-md rounded-lg">
                       <div className="text-textTertiary text-[14px] font-semibold py-2 px-4">
                         <div className="flex flex-col gap-4 py-2 px-3 items-start">
-                          <button
-                            onClick={() => navigate("/user/dashboard")}
-                            className="hover:text-primaryBlue"
-                          >
-                            Dashboard
-                          </button>
-                          <button
-                            onClick={() => navigate("/admin/dashboard")}
-                            className="hover:text-primaryBlue"
-                          >
-                            Dashboard Admin
-                          </button>
+                          {role === "USER" && (
+                            <button
+                              onClick={() => navigate("/user/dashboard")}
+                              className="hover:text-primaryBlue"
+                            >
+                              Dashboard
+                            </button>
+                          )}
+                          {role === "ADMIN" && (
+                            <button
+                              onClick={() => navigate("/admin/dashboard")}
+                              className="hover:text-primaryBlue"
+                            >
+                              Dashboard Admin
+                            </button>
+                          )}
                           <button
                             onClick={handleLogout}
                             className="hover:text-primaryBlue"
@@ -196,18 +200,22 @@ const NavBar = () => {
                       <div className="absolute w-[240px] top-[520px] md:top-24 md:right-10 bg-white border border-gray-200 shadow-md rounded-lg">
                         <div className="text-textTertiary text-[14px] font-semibold py-2 px-4">
                           <div className="flex flex-col gap-4 py-2 px-3 items-start">
-                            <button
-                              onClick={() => navigate("/user/dashboard")}
-                              className="hover:text-primaryBlue"
-                            >
-                              Dashboard
-                            </button>
-                            <button
-                              onClick={() => navigate("/admin/dashboard")}
-                              className="hover:text-primaryBlue"
-                            >
-                              Dashboard Admin
-                            </button>
+                            {role === "USER" && (
+                              <button
+                                onClick={() => navigate("/user/dashboard")}
+                                className="hover:text-primaryBlue"
+                              >
+                                Dashboard
+                              </button>
+                            )}
+                            {role === "ADMIN" && (
+                              <button
+                                onClick={() => navigate("/admin/dashboard")}
+                                className="hover:text-primaryBlue"
+                              >
+                                Dashboard Admin
+                              </button>
+                            )}
                             <button
                               onClick={handleLogout}
                               className="hover:text-primaryBlue"

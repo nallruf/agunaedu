@@ -80,7 +80,7 @@ const CardRole = ({
         onClick={handleCardClick}
       >
         {isLocked && lockedOverlay}
-        <div className="md:h-[250px] md:w-[336px] w-full shadow-lg">
+        <div className="md:h-[250px] md:w-[336px] w-full shadow-lg rounded-2xl">
           <img
             src={img}
             alt="card-image"

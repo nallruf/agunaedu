@@ -57,7 +57,7 @@ const DashboardUserPage = () => {
     ),
   };
 
-  const dataAnalysis = [
+  const dataDashboardNih = [
     {
       title: "Total Course",
       amount: stats.totalCourse,
@@ -82,7 +82,7 @@ const DashboardUserPage = () => {
           Selamat Datang, {profile?.username || "Dummy Aguna"}
         </h1>
         <div className="flex flex-wrap gap-5 md:gap-10">
-          {dataAnalysis.map((item, index) => (
+          {dataDashboardNih.map((item, index) => (
             <CardDashboardAnalysis
               key={index}
               title={item.title}

@@ -47,7 +47,7 @@ import RoleDashboard from "./pages/admin-menu/role/role";
 import JumlahPendaftar from "./pages/admin-menu/event/jumlahpendaftar";
 
 import { AuthProvider } from "./hooks/useauth";
-import { ProtectedRoute } from "./private/protectedroute";
+import ProtectedRoute from "./private/protectedroute";
 
 import axios from "axios";
 import AOS from "aos";
@@ -213,7 +213,10 @@ function App() {
               />
             </Route>
 
-            <Route path="/user" element={<ProtectedRoute />}>
+            <Route
+              path="/user"
+              element={<ProtectedRoute requiredRole={"USER"} />}
+            >
               <Route path="dashboard" element={<DashboardUserPage />} />
               <Route path="course" element={<CourseUserPage />} />
               <Route path="course/:id" element={<NotFoundPage />} />
@@ -242,7 +245,10 @@ function App() {
               />
             </Route>
 
-            <Route path="/admin" element={<ProtectedRoute />}>
+            <Route
+              path="/admin"
+              element={<ProtectedRoute requiredRole={"ADMIN"} />}
+            >
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="mentor" element={<MentorDashboard />} />
               <Route path="users" element={<UsersDashboard />} />

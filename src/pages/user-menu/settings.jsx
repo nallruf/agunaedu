@@ -13,6 +13,7 @@ const SettingUserPage = () => {
   const { user } = useAuth();
   const { profile } = useProfile(user);
   const [formData, setFormData] = useState({
+    name: "",
     username: "",
     email: "",
     phoneNumber: "",
@@ -23,6 +24,7 @@ const SettingUserPage = () => {
   useEffect(() => {
     if (profile) {
       setFormData({
+        name: profile.name || "",
         username: profile.username || "",
         email: profile.email || "",
         phoneNumber: profile.phoneNumber || "",
@@ -31,7 +33,7 @@ const SettingUserPage = () => {
       });
     }
   }, [profile]);
-  
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
@@ -54,6 +56,7 @@ const SettingUserPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const updatedProfile = new FormData();
+    updatedProfile.append("name", formData.name);
     updatedProfile.append("username", formData.username);
     updatedProfile.append("email", formData.email);
     updatedProfile.append("phoneNumber", formData.phoneNumber);
@@ -69,7 +72,10 @@ const SettingUserPage = () => {
           "Content-Type": "multipart/form-data",
         },
       });
-      toast.success("Profile updated successfully.");
+      toast.success("Profile Updated Successfully.");
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     } catch (error) {
       console.error("Error updating profile", error);
       toast.error("Failed to update profile. Please try again.");
@@ -134,6 +140,15 @@ const SettingUserPage = () => {
             <div className="flex flex-col gap-10">
               <div className="flex flex-col gap-2">
                 <TextInputComponent
+                  htmlFor="name"
+                  label="Nama"
+                  type="text"
+                  placeholder="Masukan Nama Terbaru"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                />
+                <TextInputComponent
                   htmlFor="username"
                   label="Nama Pengguna"
                   type="text"
@@ -142,15 +157,20 @@ const SettingUserPage = () => {
                   value={formData.username}
                   onChange={handleInputChange}
                 />
-                <TextInputComponent
-                  htmlFor="email"
-                  label="Email"
-                  type="email"
-                  placeholder="Masukan Email Terbaru"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                />
+                <div className="flex flex-col mb-[11px]">
+                  <label
+                    htmlFor="email"
+                    className="text-[14px] font-medium text-textLabel"
+                  >
+                    Email
+                  </label>
+                  <div
+                    id="email"
+                    className="w-full border-2 border-borderPrimary bg-gray-100 rounded-[8px] px-[14px] py-[10px] mt-[6px] shadow-sm"
+                  >
+                    {formData.email}
+                  </div>
+                </div>
                 <TextInputComponent
                   htmlFor="notelp"
                   label="No Telp"

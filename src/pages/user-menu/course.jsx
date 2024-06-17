@@ -78,17 +78,16 @@ const CourseUserPage = () => {
                 progressCourses.map((course, index) => (
                   <CardCourse
                     key={index}
-                    title={course.course[0].courseName}
+                    title={course.course[0]?.courseName}
                     img={`${import.meta.env.VITE_PUBLIC_URL}/images/${
-                      course.course[0].courseImageUrl
+                      course.course[0]?.courseImageUrl
                     }`}
-                    tags={[
-                      // course.course[0].courseLevel,
-                      course.course[0].method,
-                    ]}
+                    tags={[course.course[0]?.method]}
                     icons={[<IoVideocamOutline />]}
-                    imgProfile={course.course[0].mentor.mentorImage}
-                    nameMentor={course.course[0].mentor.mentorName}
+                    imgProfile={`${import.meta.env.VITE_PUBLIC_URL}/images/${
+                      course.course[0]?.mentor?.mentorImage
+                    }`}
+                    nameMentor={course.course[0]?.mentor?.mentorName}
                   />
                 ))
               ) : (
@@ -113,9 +112,9 @@ const CourseUserPage = () => {
                   <CardFeedback
                     key={index}
                     imgCode={ImgCode}
-                    title={course.detailCourse[0].courseName}
-                    desc={course.detailCourse[0].description}
-                    tags={[course.detailCourse[0].courseLevel]}
+                    title={course.course[0]?.courseName}
+                    desc={course.course[0]?.description}
+                    tags={[course.course[0]?.courseLevel]}
                   />
                 ))
               ) : (

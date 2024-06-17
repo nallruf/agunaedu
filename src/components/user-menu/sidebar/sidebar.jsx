@@ -75,12 +75,14 @@ const Sidebar = () => {
   return (
     <div className="min-h-screen border-r border-[#EAECF0] w-[80px] md:w-[260px] px-5 py-8 shadow-lg flex flex-col justify-between transition-all duration-300">
       <div className="flex flex-col gap-6 items-center md:items-start">
-        <img
-          src={isMobile ? LogoBiru : LogoAguna}
-          alt="logo"
-          draggable="false"
-          className="w-[30px] md:w-[130px]"
-        />
+        <Link to={"/"}>
+          <img
+            src={isMobile ? LogoBiru : LogoAguna}
+            alt="logo"
+            draggable="false"
+            className="w-[30px] md:w-[130px]"
+          />
+        </Link>
         <div className="relative hidden md:block">
           <div className="absolute inset-y-0 left-0 flex items-center pl-3">
             <CiSearch className="h-6 w-6 text-iconInput" />
