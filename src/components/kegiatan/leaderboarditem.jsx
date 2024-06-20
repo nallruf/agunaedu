@@ -26,7 +26,7 @@ const LeaderboardItem = ({ participant, isTopThree = false, position }) => {
         </div>
         <div className="bg-[#079455] rounded-xl text-white text-[13px] font-semibold inline-flex items-center justify-center py-[10px] px-[12.5px] gap-1">
           <FaStar className="text-[#FDB022] text-base" />
-          <span>{participant.xp}</span>
+          <span>{participant.xp} Xp</span>
         </div>
       </div>
     </div>
@@ -48,7 +48,7 @@ const LeaderboardItem = ({ participant, isTopThree = false, position }) => {
         <div className="w-[40%] justify-end flex">
           <div className="flex items-center border border-borderSecondary text-textSecondary bg-[#EFF8FF] gap-1 px-[10px] py-1 rounded-full text-[14px] font-semibold">
             <FaRegStar className="text-secondaryBlue text-xl" />
-            {participant.xp}
+            {participant.xp} Xp
           </div>
         </div>
       </div>
