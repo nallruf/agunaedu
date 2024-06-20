@@ -2,16 +2,21 @@ import React, { useEffect, useState } from "react";
 import HeaderKegiatan from "../../../components/kegiatan/headerkeg";
 import ChallengeImg from "../../../assets/img/illustration/1.png";
 import CardChallenge from "../../../components/kegiatan/cardchallenge";
-import { dataLeaderboard } from "../../../dummydata/kegiatan/datachallenge";
 import LeaderboardSection from "../../../components/kegiatan/leaderboard";
 import RoleImg from "../../../assets/img/illustration/role.png";
+import Avatar from "../../../assets/img/team/avatar.jpg";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const ChallengePage = () => {
   const [challenge, setChallenge] = useState([]);
+  const [leaderboard, setLeaderboard] = useState([]);
+  const [showAll, setShowAll] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    document.title = "Aguna Edu | Challenge";
+
     const fetchChallenge = async () => {
       try {
         const response = await axios.get("/api/v1/public/landing/challenge");
@@ -21,14 +26,28 @@ const ChallengePage = () => {
       }
     };
 
+    const fetchLeaderboard = async () => {
+      try {
+        const response = await axios.get("/api/v1/public/leaderboard");
+        const leaderboardData = response.data.map((participant, index) => ({
+          id: index + 1,
+          name: participant.name,
+          profileImg: participant.imageUrl
+            ? `${import.meta.env.VITE_PUBLIC_URL}/images/${
+                participant.imageUrl
+              }`
+            : Avatar,
+          xp: participant.totalScore,
+          rank: index + 1,
+        }));
+        setLeaderboard(leaderboardData);
+      } catch (error) {
+        console.error("Error fetching leaderboard:", error);
+      }
+    };
+
     fetchChallenge();
-  }, []);
-
-  const [showAll, setShowAll] = useState(false);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    document.title = "Aguna Edu | Challenge";
+    fetchLeaderboard();
   }, []);
 
   const formatDateRange = (startDateStr, endDateStr) => {
@@ -87,7 +106,7 @@ const ChallengePage = () => {
           </div>
           <div className="md:w-[35%]">
             <LeaderboardSection
-              data={dataLeaderboard}
+              data={leaderboard}
               showAll={showAll}
               toggleShowAll={toggleShowAll}
             />
