@@ -26,7 +26,7 @@
             port: 22
             script: |
               cd /var/www/agunaedu
-              git pull origin master
+              git pull origin master 
               git status
               npm install
               pm2 restart agunaedu
