@@ -94,7 +94,7 @@ const DashboardUserPage = () => {
           ))}
         </div>
       </div>
-      <div className="flex flex-col gap-5 mb-10">
+      {/* <div className="flex flex-col gap-5 mb-10">
         <h1 className="text-xl font-semibold text-textPrimary">Mentoring</h1>
         <div className="flex flex-wrap gap-3 md:gap-5">
           {dataMentoring.map((mentoring, index) => (
@@ -123,7 +123,7 @@ const DashboardUserPage = () => {
             />
           ))}
         </div>
-      </div>
+      </div> */}
     </>
   );
 

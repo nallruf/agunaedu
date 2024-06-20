@@ -162,7 +162,7 @@ const ChallengeDetails = ({ challenge }) => (
     <DetailItem
       icon={<LuUsers className="text-primaryBlue text-xl" />}
       label="Jumlah Pemenang"
-      value={`${challenge.winner} Orang`}
+      value={`${challenge.totalWinner} Orang`}
     />
   </div>
 );
