@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import Logo from "../../../../assets/img/logo/logo-biru.png";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
+import { useAuth } from "../../../../hooks/useauth";
+import { toast } from "react-hot-toast";
 
 const HasilTes = () => {
   const location = useLocation();
@@ -9,7 +12,7 @@ const HasilTes = () => {
     location.state || {};
   const { role } = useParams();
   const navigate = useNavigate();
-
+  const { user } = useAuth();
   const [score, setScore] = useState(0);
   const [totalCorrect, setTotalCorrect] = useState(0);
   const [totalIncorrect, setTotalIncorrect] = useState(0);
@@ -43,14 +46,30 @@ const HasilTes = () => {
     }
   }, [answers, correctAnswers]);
 
-  const passed = testStatus >= 70;
+  const passed = testStatus;
   const finalScore = `${score}/100`;
 
-  //kurang untuk submitnya gatau aku arahin gimana...
-  const handleSubmit = () => {
-    localStorage.setItem(`${role.toLowerCase()}_passed`, passed);
-
-    navigate(passed ? `/course/${role}` : `/course/${role}/tes`);
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post(
+        `/api/v1/auth/test/submit/${test.role_id}`,
+        {
+          score,
+          correctAnswer: totalCorrect,
+          wrongAnswer: totalIncorrect,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${user}`,
+          },
+        }
+      );
+      toast.success(response.data.message);
+      navigate(`/course/${role}`);
+      
+    } catch (err) {
+      console.error("Failed to save test results:", err);
+    }
   };
 
   return (

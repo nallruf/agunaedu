@@ -152,7 +152,7 @@ const TransactionPage = () => {
   if (!data || !focusPath || !detailPath || !courseData || !transactionData) {
     return (
       <div className="flex justify-center h-screen items-center text-primaryBlue font-semibold">
-        LOADING .......
+        Loading...
       </div>
     );
   }

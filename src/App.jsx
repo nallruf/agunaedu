@@ -161,6 +161,7 @@ function App() {
                   </CourseLayout>
                 }
               />
+              {/* harsunya ini hanya :role/pemula (karena blm atur jadi masih default data dummy) */}
               <Route
                 path=":role/pemula/:path"
                 element={

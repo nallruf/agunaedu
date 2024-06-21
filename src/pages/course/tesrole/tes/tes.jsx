@@ -132,7 +132,7 @@ const TesPage = () => {
   if (!test || !classData) {
     return (
       <div className="flex justify-center h-screen items-center text-primaryBlue font-semibold">
-        LOADING .......
+        Loading...
       </div>
     );
   }
@@ -220,38 +220,40 @@ const TesPage = () => {
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row gap-4 mt-8 justify-between">
-            <div className="flex gap-3 md:flex-row justify-between">
-              <button
-                className="text-primaryBlue rounded-xl p-3 px-4 flex items-center gap-2 border border-borderSecondary font-medium"
-                onClick={() =>
-                  setCurrentQuestionIndex((prev) =>
-                    prev > 0 ? prev - 1 : prev
-                  )
-                }
-              >
-                <FaArrowLeft /> Sebelumnya
-              </button>
-              <button
-                className="bg-primaryBlue text-white rounded-xl p-3 px-4 flex items-center gap-2 font-medium"
-                onClick={() =>
-                  setCurrentQuestionIndex((prev) =>
-                    prev < classData.questions.length - 1 ? prev + 1 : prev
-                  )
-                }
-              >
-                Selanjutnya <FaArrowRight />
-              </button>
-            </div>
+          <div className="flex justify-between mt-8">
+            <button
+              className={`flex items-center gap-2 bg-primaryBlue text-white px-4 py-2 rounded-lg ${
+                currentQuestionIndex === 0
+                  ? "opacity-50 cursor-not-allowed"
+                  : ""
+              }`}
+              onClick={() =>
+                setCurrentQuestionIndex((prevIndex) => prevIndex - 1)
+              }
+              disabled={currentQuestionIndex === 0}
+            >
+              <FaArrowLeft />
+              Sebelumnya
+            </button>
 
-            <div className="flex justify-center mt-4 md:mt-0">
+            {currentQuestionIndex === classData.questions.length - 1 ? (
               <button
-                className="bg-primaryBlue text-white rounded-xl p-3 px-4 flex justify-center items-center gap-2 font-medium w-full"
+                className="flex items-center gap-2 bg-primaryBlue text-white px-4 py-2 rounded-lg"
                 onClick={handleSubmit}
               >
-                Selesai Tes
+                Selesai
               </button>
-            </div>
+            ) : (
+              <button
+                className="flex items-center gap-2 bg-primaryBlue text-white px-4 py-2 rounded-lg"
+                onClick={() =>
+                  setCurrentQuestionIndex((prevIndex) => prevIndex + 1)
+                }
+              >
+                Selanjutnya
+                <FaArrowRight />
+              </button>
+            )}
           </div>
         </div>
       </div>

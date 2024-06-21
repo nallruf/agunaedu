@@ -5,21 +5,22 @@ import { useNavigate } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
 import { Link } from "react-scroll";
 import { motion } from "framer-motion";
+import { useAuth } from "../../../hooks/useauth";
 
 const HeroSection = () => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { user } = useAuth();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
+    if (user) {
       setIsLoggedIn(true);
     }
   }, []);
 
   const handleCourseSearch = () => {
     if (isLoggedIn) {
-      navigate("/user/dashboard");
+      navigate("/");
     } else {
       navigate("/auth/login");
     }

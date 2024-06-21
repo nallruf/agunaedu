@@ -13,7 +13,6 @@ const RolePage = () => {
   const { role } = useParams();
   const [course, setCourse] = useState(null);
   const [classData, setClassData] = useState([]);
-  const [passed, setPassed] = useState(false);
   const { user } = useAuth();
 
   useEffect(() => {
@@ -46,10 +45,14 @@ const RolePage = () => {
     };
 
     fetchRoleData();
-  }, [role, user, passed]);
+  }, [role, user]);
 
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+  };
+
+  const formatPathName = (name) => {
+    return name.split(" ")[0].toLowerCase();
   };
 
   useEffect(() => {
@@ -57,21 +60,13 @@ const RolePage = () => {
       document.title = `Aguna Edu | Course ${capitalizeFirstLetter(
         course.role_name
       )}`;
-
-      const passedStatus =
-        localStorage.getItem(`${course.role_name}_passed`) === "true";
-      setPassed(passedStatus);
-
-      return () => {
-        localStorage.removeItem(`${course.role_name}_passed`);
-      };
     }
   }, [course]);
 
   if (!course) {
     return (
       <div className="flex justify-center h-screen items-center text-primaryBlue font-semibold">
-        LOADING .......
+        Loading...
       </div>
     );
   }
@@ -116,15 +111,15 @@ const RolePage = () => {
             }`,
             tes: [classItem.pathName],
             icons: [<IoBookOutline />],
-            isLocked: !passed && classItem.lock,
+            isLocked: classItem.lock,
             icon2: <GiBlackBook />,
             level: `${focus.totalCourse} Course`,
             link:
               classItem.pathName.toLowerCase().includes("pemula") ||
               classItem.pathName.toLowerCase() ===
                 course.role_name.toLowerCase()
-                ? `/course/${role}/pemula/web`
-                : `/course/${role}/path-web`,
+                ? `/course/${role}/pemula`
+                : `/course/${role}/${formatPathName(classItem.pathName)}`,
           }))}
         />
       ))}
