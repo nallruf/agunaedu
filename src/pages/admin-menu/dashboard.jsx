@@ -44,7 +44,7 @@ const Dashboard = () => {
           </div>
         </div>
         <LineChart />
-        <div className="p-8">
+        <div className="mt-10">
           <BarCard
             transaksiData={transaksiData}
             penyelesaianData={penyelesaianData}

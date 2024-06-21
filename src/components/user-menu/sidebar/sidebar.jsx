@@ -36,7 +36,7 @@ const Sidebar = () => {
       link: "/user/dashboard",
     },
     {
-      name: "Mentoring",
+      name: "Course",
       icon: <LuBarChart2 size={24} />,
       link: "/user/mentoring",
     },
