@@ -1,13 +1,42 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import User from "./user/user";
 import { HiOutlinePencil } from "react-icons/hi2";
 import { HiTrash } from "react-icons/hi";
-import { dataTransaction } from "../../dummydata/user-menu/datatransaction";
+import { dataTransaction as originalDataTransaction } from "../../dummydata/user-menu/datatransaction";
 import { FiUploadCloud } from "react-icons/fi";
 import { CiSearch } from "react-icons/ci";
 import { IoMenu } from "react-icons/io5";
-import { LuMinusSquare } from "react-icons/lu";
-import { FaArrowDown } from "react-icons/fa6";
+import TableDashboard from "../../components/admin-menu/tabledashboard/tabledashboard";
+import ImgProfile from "../../assets/img/team/ulum.png";
+import { LuPencil } from "react-icons/lu";
+import { FaRegTrashAlt } from "react-icons/fa";
+
+const columnsTransaction = [
+  { header: "", field: "checkbox", truncate: 0 },
+  { header: "Kelas", field: "class", truncate: 50 },
+  { header: "ID Pembelian", field: "purchaseId", truncate: 50 },
+  { header: "Harga Kelas", field: "price", truncate: 50 },
+  { header: "Status", field: "status", truncate: 50 },
+  { header: "Struk Pembayaran", field: "image", truncate: 0 },
+  { header: "Aksi", field: "icon", truncate: 0 },
+];
+
+const dataTransactionWithImages = originalDataTransaction.map(
+  (transaction) => ({
+    ...transaction,
+    checkbox: <input type="checkbox" className="form-checkbox" />,
+    class: (
+      <div className="flex items-center gap-2">
+        <img
+          src={transaction.img}
+          alt={transaction.class}
+          className="w-8 h-8 rounded-full"
+        />
+        <span>{transaction.class}</span>
+      </div>
+    ),
+  })
+);
 
 const TransactionUserPage = () => {
   useEffect(() => {
@@ -71,76 +100,11 @@ const TransactionUserPage = () => {
         </div>
       </div>
 
-      <div className="bg-white shadow-md rounded-lg overflow-x-auto">
-        <table className="w-full bg-white">
-          <thead className="bg-gray-50">
-            <tr>
-              <th className="py-2 px-4 text-left text-textTertiary">
-                <div className="flex items-center pl-1 gap-2">
-                  <LuMinusSquare className="text-primaryBlue" />
-                  Kelas
-                  <FaArrowDown className="ml-2 text-textTertiary" />
-                </div>
-              </th>
-              <th className="py-2 px-4 text-left text-textTertiary">
-                ID Pembelian
-              </th>
-              <th className="py-2 px-4 text-left text-textTertiary">
-                Harga Kelas
-              </th>
-              <th className="py-2 px-4 text-left text-textTertiary">Status</th>
-              <th className="py-2 px-4 text-left text-textTertiary">
-                Struk Pembayaran
-              </th>
-              <th className="py-2 px-4 text-left text-textTertiary">Action</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y">
-            {dataTransaction.map((transaction) => (
-              <tr key={transaction.id} className="border-b">
-                <td className="py-2 px-4 whitespace-nowrap">
-                  <div className="flex items-center">
-                    <input type="checkbox" className="mr-2" />
-                    <div className="flex items-center gap-2">
-                      <img
-                        src={transaction.img}
-                        alt="profile"
-                        className="w-8 h-8 rounded-full"
-                      />
-                      <div>
-                        <div>{transaction.class}</div>
-                        <div className="text-gray-500 text-sm">
-                          {transaction.name}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td className="py-2 px-4 text-textTertiary whitespace-nowrap">
-                  {transaction.purchaseId}
-                </td>
-                <td className="py-2 px-4 text-textTertiary whitespace-nowrap">
-                  {transaction.price}
-                </td>
-                <td className="py-2 px-1.5 text-textTertiary whitespace-nowrap">
-                  <span
-                    className={`font-medium rounded-full px-4 py-1 text-sm uppercase tracking-wider ${transaction.statusColor}`}
-                  >
-                    {transaction.status}
-                  </span>
-                </td>
-                <td className="py-2 px-4 text-primaryBlue cursor-pointer font-semibold whitespace-nowrap">
-                  Lihat
-                </td>
-                <td className="py-2 px-4 flex items-center gap-2 text-textTertiary whitespace-nowrap">
-                  <HiTrash className="cursor-pointer" />
-                  <HiOutlinePencil className="cursor-pointer" />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <TableDashboard
+        columns={columnsTransaction}
+        data={dataTransactionWithImages}
+      />
+
       <div className="flex flex-col sm:flex-row items-center justify-between mt-10 px-4">
         <div className="text-sm">Halaman 1 dari 10</div>
         <div className="mt-2 sm:mt-0">
