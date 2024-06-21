@@ -4,7 +4,7 @@ import ImgRole from "../../../../assets/img/illustration/path-web.png";
 import MentorSection from "../../../../components/course/pathfocus/mentor";
 import KelasMandiri from "../../../../components/course/pathfocus/kelasmandiri";
 import { useAuth } from "../../../../hooks/useauth";
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 const FocusPathPage = () => {
@@ -15,6 +15,8 @@ const FocusPathPage = () => {
   const [detailPath, setDetailPath] = useState(null);
   const [focusData, setFocusData] = useState(null);
   const [mentors, setMentors] = useState([]);
+  const [isLocked, setIsLocked] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,6 +25,16 @@ const FocusPathPage = () => {
         const foundRole = response.data.find(
           (item) => item.role_name.toLowerCase() === role
         );
+
+        const responseLocked = await axios.get(
+          `/api/v1/auth/role/${foundRole.role_id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${user}`,
+            },
+          }
+        );
+
         const pathFirstWord = path.split("-")[0].toLowerCase();
         const foundPath = foundRole.paths.find(
           (item) =>
@@ -31,45 +43,48 @@ const FocusPathPage = () => {
         );
 
         setData(foundRole);
-        setDetailPath(foundPath);
+        setIsLocked(responseLocked.data[0].lock);
 
-        const responsePath = await axios.get(
-          `/api/v1/auth/path/${foundPath.id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${user}`,
-            },
-          }
-        );
+        if (foundPath) {
+          setDetailPath(foundPath);
 
-        const foundFocus = responsePath.data.find(
-          (item) =>
-            item.pathFocusName.toLowerCase().replace(/\s+/g, "-") === focus
-        );
+          const responsePath = await axios.get(
+            `/api/v1/auth/path/${foundPath.id}`,
+            {
+              headers: {
+                Authorization: `Bearer ${user}`,
+              },
+            }
+          );
 
-        setFocusData(foundFocus);
+          const foundFocus = responsePath.data.find(
+            (item) =>
+              item.pathFocusName.toLowerCase().replace(/\s+/g, "-") === focus
+          );
+          setFocusData(foundFocus);
 
-        const responseFocus = await axios.get(
-          `/api/v1/auth/path/focus/${foundFocus.pathFocusId}`,
-          {
-            headers: {
-              Authorization: `Bearer ${user}`,
-            },
-          }
-        );
+          const responseFocus = await axios.get(
+            `/api/v1/auth/path/focus/${foundFocus.pathFocusId}`,
+            {
+              headers: {
+                Authorization: `Bearer ${user}`,
+              },
+            }
+          );
+          setCourses(responseFocus.data);
 
-        setCourses(responseFocus.data);
-
-        const responseMentors = await axios.get(
-          `/api/v1/auth/path/focus/mentor/${foundFocus.pathFocusId}`,
-          {
-            headers: {
-              Authorization: `Bearer ${user}`,
-            },
-          }
-        );
-
-        setMentors(responseMentors.data);
+          const responseMentors = await axios.get(
+            `/api/v1/auth/path/focus/mentor/${foundFocus.pathFocusId}`,
+            {
+              headers: {
+                Authorization: `Bearer ${user}`,
+              },
+            }
+          );
+          setMentors(responseMentors.data);
+        } else {
+          console.error("Error No Path");
+        }
       } catch (err) {
         console.error("Path Focus not found");
       }
@@ -96,9 +111,13 @@ const FocusPathPage = () => {
   if (!focusData || !detailPath || !data) {
     return (
       <div className="flex justify-center h-screen items-center text-primaryBlue font-semibold">
-        LOADING .......
+        Loading...
       </div>
     );
+  }
+
+  if (isLocked) {
+    return <Navigate to={`/course/${role}/tes`} replace />;
   }
 
   return (

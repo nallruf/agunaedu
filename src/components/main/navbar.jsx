@@ -184,7 +184,13 @@ const NavBar = () => {
                   <div className="flex items-center gap-5">
                     <div className="flex items-center justify-center relative">
                       <img
-                        src={profile?.imageUrl || ImgAvatar}
+                        src={
+                          profile?.imageUrl
+                            ? `${import.meta.env.VITE_PUBLIC_URL}/images/${
+                                profile.imageUrl
+                              }`
+                            : ImgAvatar
+                        }
                         alt="img-profile"
                         draggable="false"
                         className="rounded-full w-8 cursor-pointer"

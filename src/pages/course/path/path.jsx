@@ -4,7 +4,7 @@ import ImgRole from "../../../assets/img/illustration/path-web.png";
 import SkillPath from "../../../components/course/skill/skillpath";
 import TestiCourse from "../../../components/course/testi/testicourse";
 import HeroSection2 from "../../../components/course/hero2/hero2";
-import { useNavigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../../hooks/useauth";
 import axios from "axios";
 import ToolsPath from "../../../components/course/tools/toolspath";
@@ -15,7 +15,9 @@ const PathPage = () => {
   const [data, setData] = useState(null);
   const [detailPath, setDetailPath] = useState(null);
   const [skills, setSkills] = useState([]);
-
+  const [isLocked, setIsLocked] = useState();
+  const navigate = useNavigate();
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -23,6 +25,16 @@ const PathPage = () => {
         const foundRole = rolesData.data.find(
           (item) => item.role_name.toLowerCase() === role.toLowerCase()
         );
+
+        const response = await axios.get(
+          `/api/v1/auth/role/${foundRole.role_id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${user}`,
+            },
+          }
+        );
+
         const pathFirstWord = path.split("-")[0].toLowerCase();
         const foundPath = foundRole.paths.find(
           (item) =>
@@ -31,6 +43,8 @@ const PathPage = () => {
         );
 
         setData(foundRole);
+        setIsLocked(response.data[0].lock);
+
         if (foundPath) {
           setDetailPath(foundPath);
 
@@ -76,9 +90,13 @@ const PathPage = () => {
   if (!data || !detailPath) {
     return (
       <div className="flex justify-center h-screen items-center text-primaryBlue font-semibold">
-        LOADING .......
+        Loading...
       </div>
     );
+  }
+
+  if (isLocked) {
+    return <Navigate to={`/course/${role}/tes`} replace />;
   }
 
   return (

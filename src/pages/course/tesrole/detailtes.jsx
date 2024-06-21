@@ -60,7 +60,7 @@ const DetailTesPage = () => {
   if (!test || !classData) {
     return (
       <div className="flex justify-center h-screen items-center text-primaryBlue font-semibold">
-        LOADING .......
+        Loading...
       </div>
     );
   }

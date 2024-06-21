@@ -4,21 +4,22 @@ import { dataTesti } from "../../../dummydata/main/datatesti";
 import { FaArrowRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useAuth } from "../../../hooks/useauth";
 
 const TestiSection = () => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { user } = useAuth();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
+    if (user) {
       setIsLoggedIn(true);
     }
   }, []);
 
   const handleJoinClick = () => {
     if (isLoggedIn) {
-      navigate("/user/dashboard");
+      navigate("/");
     } else {
       navigate("/auth/login");
     }

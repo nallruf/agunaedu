@@ -28,5 +28,7 @@
               cd /var/www/agunaedu
               git pull origin master 
               git status
-              npm install
+              npm install              
+              npm run build
               pm2 restart agunaedu
+

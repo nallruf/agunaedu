@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import HeaderCourse from "../../../../../components/course/headercourse";
-import { useParams, useNavigate } from "react-router-dom";
+import { Navigate, useParams, useNavigate } from "react-router-dom";
 import ImgCourse from "../../../../../assets/img/illustration/course.png";
 import { FiBook } from "react-icons/fi";
 import MentorKelas from "../../../../../components/course/pathfocus/metordetail";
@@ -17,6 +17,7 @@ const DetailPathPage = () => {
   const [focusPath, setFocusPath] = useState(null);
   const [courseData, setCourseData] = useState(null);
   const [mentors, setMentors] = useState(null);
+  const [isLocked, setIsLocked] = useState();
 
   useEffect(() => {
     const fetchDetail = async () => {
@@ -31,6 +32,15 @@ const DetailPathPage = () => {
           return;
         }
 
+        const responseLocked = await axios.get(
+          `/api/v1/auth/role/${selectedRole.role_id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${user}`,
+            },
+          }
+        );
+
         const pathFirstWord = path.split("-")[0].toLowerCase();
         const foundPath = selectedRole.paths.find(
           (item) =>
@@ -39,6 +49,8 @@ const DetailPathPage = () => {
         );
 
         setData(selectedRole);
+        setIsLocked(responseLocked.data[0].lock);
+
         if (foundPath) {
           setDetailPath(foundPath);
 
@@ -123,9 +135,13 @@ const DetailPathPage = () => {
   if (!mentors || !detailPath || !courseData) {
     return (
       <div className="flex justify-center h-screen items-center text-primaryBlue font-semibold">
-        LOADING .......
+        Loading...
       </div>
     );
+  }
+
+  if (isLocked) {
+    return <Navigate to={`/course/${role}/tes`} replace />;
   }
 
   return (
