@@ -42,6 +42,11 @@ const Sidebar = () => {
       icon: <LuBarChart2 size={24} />,
       link: "/user/course",
     },
+    {
+      name: "Material",
+      icon: <LuBarChart2 size={24} />,
+      link: "/user/course-material",
+    },
     { name: "Event", icon: <CiCalendar size={24} />, link: "/user/event" },
     { name: "Challenge", icon: <PiMedal size={24} />, link: "/user/challenge" },
     {
