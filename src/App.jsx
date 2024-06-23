@@ -54,12 +54,8 @@ import DetailPathFocus from "./pages/admin-menu/role/detailpathfocus";
 import DetailPathFocusKelasMandiri from "./pages/admin-menu/role/detailpathfocuskelasmandiri";
 import DetailTestRolePage from "./pages/admin-menu/role/detailtestrole";
 import PembicaraEventPage from "./pages/admin-menu/event/pembicaravent";
-import MaterialPage from "./pages/user-menu/material";
-import ReactBasicPage from "./pages/user-menu/material/reactbasic";
-import DeployTetingPage from "./pages/user-menu/material/deploytesting";
-import RoutingPage from "./pages/user-menu/material/routing";
-import JsBasicPage from "./pages/user-menu/material/jsbasic";
-import StylingPage from "./pages/user-menu/material/styling";
+import MaterialPage from "./pages/user-menu/material/material";
+import ContentMaterial from "./pages/user-menu/material/contentmaterial";
 
 import { AuthProvider } from "./hooks/useauth";
 import ProtectedRoute from "./private/protectedroute";
@@ -236,15 +232,14 @@ function App() {
             >
               <Route path="dashboard" element={<DashboardUserPage />} />
               <Route path="course" element={<CourseUserPage />} />
-              <Route path="course/reactbasic" element={<ReactBasicPage />} />
               <Route
-                path="course/deploytesting"
-                element={<DeployTetingPage />}
+                path="/user/course/:userCourseId"
+                element={<MaterialPage />}
               />
-              <Route path="course/jsbasic" element={<JsBasicPage />} />
-              <Route path="course/routing" element={<RoutingPage />} />
-              <Route path="course/styling" element={<StylingPage />} />
-              <Route path="course-material" element={<MaterialPage />} />
+              <Route
+                path="/user/course/:userCourseId/material/:materialId"
+                element={<ContentMaterial />}
+              />
               <Route path="event" element={<EventUserPage />} />
               <Route path="challenge" element={<ChallengeUserPage />} />
               <Route path="transaction" element={<TransactionUserPage />} />

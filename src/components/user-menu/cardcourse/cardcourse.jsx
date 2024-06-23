@@ -1,11 +1,19 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const CardCourse = ({ title, img, icons, tags, imgProfile, nameMentor }) => {
+const CardCourse = ({
+  title,
+  img,
+  icons,
+  tags,
+  imgProfile,
+  nameMentor,
+  userCourseId,
+}) => {
   const navigate = useNavigate();
 
-  const handleMentorClick = () => {
-    navigate("/");
+  const handleClick = () => {
+    navigate(`/user/course/${userCourseId}`);
   };
 
   return (
@@ -48,7 +56,7 @@ const CardCourse = ({ title, img, icons, tags, imgProfile, nameMentor }) => {
         <div className="mt-5 md:mt-0">
           <button
             className="text-white bg-primaryBlue text-[14px] font-semibold inline-flex items-center justify-center py-[8px] px-[18px] rounded-lg"
-            onClick={handleMentorClick}
+            onClick={handleClick}
           >
             Lanjutkan Progress
           </button>
