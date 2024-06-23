@@ -42,15 +42,11 @@ const TableDashboard = ({ columns, data, detailRoute }) => {
                       >
                         {item[col.field]}
                       </div>
-                    ) : col.field === "image" ? (
+                    ) : col.field === "paymentImageUrl" ? (
                       <div className="flex items-center">
-                        <div>
+                        <div className="border border-secondaryBlue flex bg-[#F9FAFB] shadow-md items-center px-4 py-2 rounded-xl text-primaryBlue cursor-pointer font-semibold whitespace-nowrap">
                           {item[col.field] &&
                             truncateText(item[col.field], col.truncate)}
-                        </div>
-
-                        <div className="border border-secondaryBlue flex bg-[#F9FAFB] shadow-md items-center px-4 py-2 rounded-xl text-primaryBlue cursor-pointer font-semibold whitespace-nowrap">
-                          Lihat
                         </div>
                       </div>
                     ) : (

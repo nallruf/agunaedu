@@ -1,14 +1,8 @@
 import React, { useEffect, useState } from "react";
 import User from "./user/user";
-import {
-  dataKelas,
-  dataMentoring,
-} from "../../dummydata/user-menu/datadashboard";
 import { HiOutlineBookOpen, HiOutlineTicket } from "react-icons/hi2";
 import { RiAwardLine } from "react-icons/ri";
 import CardDashboardAnalysis from "../../components/user-menu/carddashboard/cardanalysis";
-import CardDashboardMentoring from "../../components/user-menu/carddashboard/cardmentoring";
-import CardCourse from "../../components/user-menu/carddashboard/cardcourse";
 import { useAuth } from "../../hooks/useauth";
 import axios from "axios";
 import useProfile from "../../hooks/useProfile";
