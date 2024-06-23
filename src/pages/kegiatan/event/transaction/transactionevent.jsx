@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate, Navigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
-import InfoComponent from "../../../../../components/auth/info";
-import { useAuth } from "../../../../../hooks/useauth";
+import InfoComponent from "../../../../components/auth/info";
+import { useAuth } from "../../../../hooks/useauth";
 import axios from "axios";
-import ImgAtm from "../../../../../assets/img/illustration/atm.png";
+import ImgAtm from "../../../../assets/img/illustration/atm.png";
 import { toast } from "react-hot-toast";
 
-const TransactionPage = () => {
-  const { role, path, focus, id } = useParams();
+const TransactionEventPage = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
   const { user } = useAuth();
-  const [data, setData] = useState(null);
-  const [detailPath, setDetailPath] = useState(null);
-  const [focusPath, setFocusPath] = useState(null);
-  const [courseData, setCourseData] = useState(null);
+  const [event, setEvent] = useState(null);
   const [transactionData, setTransactionData] = useState(null);
   const [promoCode, setPromoCode] = useState("");
   const [isValidPromo, setIsValidPromo] = useState(false);
@@ -22,91 +19,36 @@ const TransactionPage = () => {
   const [paymentId, setPaymentId] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [selectedBank, setSelectedBank] = useState("");
-  const [isLocked, setIsLocked] = useState();
 
   useEffect(() => {
     const fetchDetail = async () => {
       try {
-        const roleResponse = await axios.get("/api/v1/public/landing/role");
-        const selectedRole = roleResponse.data.find(
-          (r) => r.role_name.toLowerCase() === role
-        );
+        const eventResponse = await axios.get(`/api/v1/auth/event/${id}`, {
+          headers: {
+            Authorization: `Bearer ${user}`,
+          },
+        });
+        if (eventResponse.data) {
+          setEvent(eventResponse.data);
 
-        if (!selectedRole) {
-          console.error("Role not found");
-          return;
-        }
-
-        const responseLocked = await axios.get(
-          `/api/v1/auth/role/${selectedRole.role_id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${user}`,
-            },
-          }
-        );
-
-        const pathFirstWord = path.split("-")[0].toLowerCase();
-        const foundPath = selectedRole.paths.find(
-          (item) =>
-            item.name.toLowerCase() !== "pemula" &&
-            item.name.split(" ")[0].toLowerCase() === pathFirstWord
-        );
-
-        setData(selectedRole);
-        setIsLocked(responseLocked.data[0].lock);
-
-        if (foundPath) {
-          setDetailPath(foundPath);
-
-          const responsePath = await axios.get(
-            `/api/v1/auth/path/${foundPath.id}`,
+          const transactionResponse = await axios.get(
+            `/api/v1/auth/transaction/event/${id}`,
             {
               headers: {
                 Authorization: `Bearer ${user}`,
               },
             }
           );
-          const foundFocus = responsePath.data.find(
-            (item) =>
-              item.pathFocusName.toLowerCase().replace(/\s+/g, "-") === focus
-          );
-          setFocusPath(foundFocus);
+          setTransactionData(transactionResponse.data);
 
-          if (foundFocus) {
-            const courseResponse = await axios.get(
-              `/api/v1/auth/course/${id}`,
-              {
-                headers: {
-                  Authorization: `Bearer ${user}`,
-                },
-              }
-            );
-
-            setCourseData(courseResponse.data);
-
-            const transactionResponse = await axios.get(
-              `/api/v1/auth/transaction/course/${courseResponse.data.courseId}`,
-              {
-                headers: {
-                  Authorization: `Bearer ${user}`,
-                },
-              }
-            );
-
-            setTransactionData(transactionResponse.data);
-
-            if (!paymentId) {
-              const newPaymentId = Math.floor(Math.random() * 10000000000)
-                .toString()
-                .padStart(10, "0");
-              setPaymentId(newPaymentId);
-            }
-          } else {
-            console.error("Focus and Course not found");
+          if (!paymentId) {
+            const newPaymentId = Math.floor(Math.random() * 10000000000)
+              .toString()
+              .padStart(10, "0");
+            setPaymentId(newPaymentId);
           }
         } else {
-          console.error("Course not found");
+          console.error("Event not found");
         }
       } catch (err) {
         console.log(err);
@@ -114,13 +56,13 @@ const TransactionPage = () => {
     };
 
     fetchDetail();
-  }, [role, path, focus, id, user]);
+  }, [id, user]);
 
   useEffect(() => {
-    if (courseData) {
-      document.title = `Aguna Edu | Transaction #${courseData.courseId}`;
+    if (event) {
+      document.title = `Aguna Edu | Transaction Event #${event.id}`;
     }
-  }, [courseData]);
+  }, [event]);
 
   const handleCheckPromoCode = async () => {
     try {
@@ -171,7 +113,7 @@ const TransactionPage = () => {
       //buatkan supaya bisa handle misal ada kesalahan (harus diinputkan dulu baru bisa ngepost / ada isinya)
       const { course, servicePrice, totalPrice } = transactionData;
       const response = await axios.post(
-        `/api/v1/auth/transaction/course/${courseData.courseId}`,
+        `/api/v1/auth/transaction/event/${event.id}`,
         {
           price: course.price,
           serviceFee: servicePrice,
@@ -188,30 +130,21 @@ const TransactionPage = () => {
       );
       const { transactionId } = response.data;
       toast.success(response.data.message);
-      navigate(
-        `/course/${role}/${detailPath.name
-          .split(" ")[0]
-          .toLowerCase()}/${focus}/transaction/status/${courseData.courseId}`,
-        {
-          state: { paymentId, transactionId },
-        }
-      );
+      navigate(`/event/detail/transaction/status/${event.id}`, {
+        state: { paymentId, transactionId },
+      });
     } catch (error) {
       console.error("Failed to complete the payment:", error);
       setErrorMessage("Terjadi kesalahan. Silakan coba lagi.");
     }
   };
 
-  if (!data || !focusPath || !detailPath || !courseData || !transactionData) {
+  if (!event || !transactionData) {
     return (
       <div className="flex justify-center h-screen items-center text-primaryBlue font-semibold">
         Loading...
       </div>
     );
-  }
-
-  if (isLocked) {
-    return <Navigate to={`/course/${role}/tes`} replace />;
   }
 
   const { course, servicePrice, totalPrice, bank } = transactionData;
@@ -229,7 +162,7 @@ const TransactionPage = () => {
         <div className="w-2/3">
           <InfoComponent
             title="Yuk, selesaikan transaksimu!"
-            desc="Selesaikan dulu transaksimu sebelum memulai pembelajaran!"
+            desc="Selesaikan dulu transaksimu sebelum mengikuti event!"
             img={ImgAtm}
           />
         </div>
@@ -240,7 +173,7 @@ const TransactionPage = () => {
         <div>
           <button
             className="flex items-center text-lg gap-3 text-primaryBlue font-semibold mb-7"
-            onClick={() => navigate(-1)}
+            onClick={() => navigate("/event")}
           >
             <MdOutlineKeyboardArrowLeft className="text-2xl" />
             <h3>Kembali</h3>
@@ -377,4 +310,4 @@ const TransactionPage = () => {
   );
 };
 
-export default TransactionPage;
+export default TransactionEventPage;

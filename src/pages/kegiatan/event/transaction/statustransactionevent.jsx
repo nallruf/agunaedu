@@ -1,33 +1,24 @@
 import React, { useEffect, useState, useRef } from "react";
-import {
-  useParams,
-  useNavigate,
-  useLocation,
-  Navigate,
-} from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import { useAuth } from "../../../../../hooks/useauth";
+import { useAuth } from "../../../../hooks/useauth";
 import { IoMdArrowRoundForward, IoMdArrowRoundBack } from "react-icons/io";
-import Logo from "../../../../../assets/img/logo/logo-name-biru.png";
-import { transactionData } from "../../../../../dummydata/course/datastatusbayar";
+import Logo from "../../../../assets/img/logo/logo-name-biru.png";
+import { transactionData } from "../../../../dummydata/kegiatan/datastatusbayar";
 import {
   formatDate,
   formatCurrency,
   formatCountdown,
-} from "../../../../../utils/formatting";
+} from "../../../../utils/formatting";
 import { toast } from "react-hot-toast";
 
-const StatusTransactionPage = () => {
-  const { role, path, focus, id } = useParams();
+const StatusTransactionEventPage = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
   const { user } = useAuth();
   const location = useLocation();
   const { transactionId, paymentId } = location.state || {};
   const [data, setData] = useState(null);
-  const [detailPath, setDetailPath] = useState(null);
-  const [focusPath, setFocusPath] = useState(null);
-  const [courseData, setCourseData] = useState(null);
-  const [isLocked, setIsLocked] = useState(false);
   const [paymentData, setPaymentData] = useState(null);
   const [status, setStatus] = useState("waiting");
   const [countdown, setCountdown] = useState(0);
@@ -40,94 +31,42 @@ const StatusTransactionPage = () => {
   useEffect(() => {
     const fetchDetail = async () => {
       try {
-        const roleResponse = await axios.get("/api/v1/public/landing/role");
-        const selectedRole = roleResponse.data.find(
-          (r) => r.role_name.toLowerCase() === role
-        );
+        const eventResponse = await axios.get(`/api/v1/auth/event/${id}`, {
+          headers: {
+            Authorization: `Bearer ${user}`,
+          },
+        });
 
-        if (!selectedRole) {
-          console.error("Role not found");
-          return;
-        }
+        if (eventResponse.data) {
+          setData(eventResponse.data);
 
-        const responseLocked = await axios.get(
-          `/api/v1/auth/role/${selectedRole.role_id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${user}`,
-            },
-          }
-        );
-
-        const pathFirstWord = path.split("-")[0].toLowerCase();
-        const foundPath = selectedRole.paths.find(
-          (item) =>
-            item.name.toLowerCase() !== "pemula" &&
-            item.name.split(" ")[0].toLowerCase() === pathFirstWord
-        );
-
-        setData(selectedRole);
-        setIsLocked(responseLocked.data[0].lock);
-
-        if (foundPath) {
-          setDetailPath(foundPath);
-
-          const responsePath = await axios.get(
-            `/api/v1/auth/path/${foundPath.id}`,
+          const paymentResponse = await axios.get(
+            `/api/v1/auth/payment/${transactionId}`,
             {
               headers: {
                 Authorization: `Bearer ${user}`,
               },
             }
           );
-          const foundFocus = responsePath.data.find(
-            (item) =>
-              item.pathFocusName.toLowerCase().replace(/\s+/g, "-") === focus
+          setPaymentData(paymentResponse.data);
+          setStatus(
+            paymentResponse.data.status === "UNPAID"
+              ? "waiting"
+              : paymentResponse.data.status === "PENDING"
+              ? "pending"
+              : paymentResponse.data.status === "ACCEPT"
+              ? "success"
+              : "failed"
           );
-          setFocusPath(foundFocus);
-
-          if (foundFocus) {
-            const courseResponse = await axios.get(
-              `/api/v1/auth/course/${id}`,
-              {
-                headers: {
-                  Authorization: `Bearer ${user}`,
-                },
-              }
-            );
-
-            setCourseData(courseResponse.data);
-
-            const paymentResponse = await axios.get(
-              `/api/v1/auth/payment/${transactionId}`,
-              {
-                headers: {
-                  Authorization: `Bearer ${user}`,
-                },
-              }
-            );
-            setPaymentData(paymentResponse.data);
-            setStatus(
-              paymentResponse.data.status === "UNPAID"
-                ? "waiting"
-                : paymentResponse.data.status === "PENDING"
-                ? "pending"
-                : paymentResponse.data.status === "ACCEPT"
-                ? "success"
-                : "failed"
-            );
-            setCountdown(
-              Math.max(
-                0,
-                (new Date(paymentResponse.data.paymentDeadline) - new Date()) /
-                  1000
-              )
-            );
-          } else {
-            console.error("Focus and Course not found");
-          }
+          setCountdown(
+            Math.max(
+              0,
+              (new Date(paymentResponse.data.paymentDeadline) - new Date()) /
+                1000
+            )
+          );
         } else {
-          console.error("Course not found");
+          console.error("Event not found");
         }
       } catch (err) {
         console.log(err);
@@ -135,13 +74,13 @@ const StatusTransactionPage = () => {
     };
 
     fetchDetail();
-  }, [role, path, focus, id, user]);
+  }, [id, user]);
 
   useEffect(() => {
-    if (courseData) {
-      document.title = `Aguna Edu | Status Transaction #${courseData.courseId}`;
+    if (data) {
+      document.title = `Aguna Edu | Status Transaction #${data.id}`;
     }
-  }, [courseData]);
+  }, [data]);
 
   useEffect(() => {
     let timer;
@@ -192,16 +131,12 @@ const StatusTransactionPage = () => {
     }
   };
 
-  if (!data || !focusPath || !detailPath || !courseData || !paymentData) {
+  if (!data || !paymentData) {
     return (
       <div className="flex justify-center h-screen items-center text-primaryBlue font-semibold">
         Loading...
       </div>
     );
-  }
-
-  if (isLocked) {
-    return <Navigate to={`/course/${role}/tes`} replace />;
   }
 
   return (
@@ -219,7 +154,7 @@ const StatusTransactionPage = () => {
             <div className="flex flex-col justify-center items-center gap-5 p-5 px-8 ">
               <img src={dataTf.imgstatus} alt="img" draggable="false" />
               <div className="flex flex-col items-center gap-3 pb-3">
-                <h1 className="text-3xl font-semibold text-textPrimary">
+                <h1 className="text-3xl font-semibold text-textPrimary text-center">
                   {dataTf.title}
                 </h1>
                 <span className="text-textTertiary">{dataTf.message}</span>
@@ -333,7 +268,7 @@ const StatusTransactionPage = () => {
           {status === "success" ? (
             <div className="flex justify-end mt-[28px]">
               <button className="text-white flex items-center gap-3 font-semibold">
-                Lanjutkan ke kelas <IoMdArrowRoundForward className="text-xl" />
+                Lanjutkan ke event <IoMdArrowRoundForward className="text-xl" />
               </button>
             </div>
           ) : (
@@ -352,4 +287,4 @@ const StatusTransactionPage = () => {
   );
 };
 
-export default StatusTransactionPage;
+export default StatusTransactionEventPage;

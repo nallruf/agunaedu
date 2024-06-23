@@ -19,8 +19,10 @@ import ChallengePage from "./pages/kegiatan/challenge/challenge";
 import DetailChallengePage from "./pages/kegiatan/challenge/detail/detailchallenge";
 import RolePage from "./pages/course/role";
 import DetailPathPage from "./pages/course/path/focus/detail/detailpath";
-import TransactionPage from "./pages/course/path/focus/transaction/transaction";
-import StatusTransactionPage from "./pages/course/path/focus/transaction/statustransaction";
+import TransactionCoursePage from "./pages/course/path/focus/transaction/transactioncourse";
+import TransactionEventPage from "./pages/kegiatan/event/transaction/transactionevent";
+import StatusTransactionEventPage from "./pages/kegiatan/event/transaction/statustransactionevent";
+import StatusTransactionCoursePage from "./pages/course/path/focus/transaction/statustransactioncourse";
 import PemulaPage from "./pages/course/pemula/pemula";
 import DetailTesPage from "./pages/course/tesrole/detailtes";
 import TesPage from "./pages/course/tesrole/tes/tes";
@@ -214,11 +216,11 @@ function App() {
               />
               <Route
                 path=":role/:path/:focus/transaction/:id"
-                element={<TransactionPage />}
+                element={<TransactionCoursePage />}
               />
               <Route
                 path=":role/:path/:focus/transaction/status/:id"
-                element={<StatusTransactionPage />}
+                element={<StatusTransactionCoursePage />}
               />
             </Route>
 
@@ -243,6 +245,14 @@ function App() {
                     <DetailEventPage />
                   </DefaultLayout>
                 }
+              />
+              <Route
+                path="event/detail/transaction/:id"
+                element={<TransactionEventPage />}
+              />
+              <Route
+                path="event/detail/transaction/status/:id"
+                element={<StatusTransactionEventPage />}
               />
               <Route
                 path="challenge/detail/:id"
