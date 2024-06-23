@@ -84,7 +84,8 @@ const DetailEventPage = () => {
             </div>
             <button
               className="border-2 border-borderSecondary w-full rounded-lg px-4 py-[10px] text-textSecondary font-semibold text-lg"
-              onClick={() => setOpenModal(true)}
+              // onClick={() => setOpenModal(true)}
+              onClick={() => navigate(`/event/detail/transaction/${event.id}`)}
             >
               Daftar
             </button>

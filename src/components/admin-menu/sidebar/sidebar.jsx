@@ -7,11 +7,13 @@ import { RiHome6Line } from "react-icons/ri";
 import { LuSettings2, LuLogOut, LuUserCheck2 } from "react-icons/lu";
 import { CiCalendar } from "react-icons/ci";
 import { PiMedal } from "react-icons/pi";
-import { FiUsers, FiSettings, FiBookOpen } from "react-icons/fi";
+import { FiUsers, FiBookOpen } from "react-icons/fi";
 import { AiOutlineUsergroupAdd, AiOutlineTool } from "react-icons/ai";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import { TbSquarePlus } from "react-icons/tb";
 import { GrGroup } from "react-icons/gr";
+import { CiBookmarkCheck } from "react-icons/ci";
+import { RiUser6Line } from "react-icons/ri";
 
 const Sidebar = () => {
   const location = useLocation();
@@ -31,6 +33,12 @@ const Sidebar = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  useEffect(() => {
+    // Close dropdowns on route change
+    setIsPenggunaDropdownOpen(false);
+    setIsEventDropdownOpen(false);
+  }, [location.pathname]);
 
   const menu = [
     {
@@ -58,6 +66,11 @@ const Sidebar = () => {
           link: "/admin/event/registrants",
           icon: <GrGroup size={24} />,
         },
+        {
+          name: "Pembicara",
+          link: "/admin/event/speaker",
+          icon: <RiUser6Line size={24} />,
+        },
       ],
     },
     {
@@ -80,6 +93,11 @@ const Sidebar = () => {
       icon: <AiOutlineTool size={24} />,
       link: "/admin/skillandtools",
     },
+    {
+      name: "Transaksi",
+      icon: <CiBookmarkCheck size={24} />,
+      link: "/admin/transaksi",
+    },
   ];
 
   const handleLogout = () => {
@@ -99,7 +117,12 @@ const Sidebar = () => {
         <div>
           <ul className="text-textLabel font-semibold">
             {menu.map((navi, index) => {
-              const isActive = location.pathname === navi.link;
+              const isActive =
+                location.pathname === navi.link ||
+                (navi.dropdown &&
+                  navi.dropdown.some(
+                    (item) => location.pathname === item.link
+                  ));
               const hasDropdown = navi.dropdown && navi.dropdown.length > 0;
 
               return (
@@ -121,7 +144,7 @@ const Sidebar = () => {
                       className={`flex flex-col md:flex-row items-center md:gap-3 py-2 px-3 rounded-lg ${
                         isActive
                           ? "bg-[#F9FAFB] text-textPrimary"
-                          : "text-textLabel"
+                          : "text-textLabel hover:bg-[#F9FAFB] hover:text-textPrimary"
                       }`}
                     >
                       <div className={`${isActive ? "text-primaryBlue" : ""}`}>
@@ -149,24 +172,31 @@ const Sidebar = () => {
                   (isPenggunaDropdownOpen && navi.name !== "Event")
                     ? hasDropdown && (
                         <ul className="pl-8">
-                          {navi.dropdown.map((dropdownItem, dropdownIndex) => (
-                            <Link key={dropdownIndex} to={dropdownItem.link}>
-                              <li
-                                className={`flex items-center gap-3 py-2 px-3 rounded-lg ${
-                                  location.pathname === dropdownItem.link
-                                    ? "bg-[#F9FAFB] text-textPrimary"
-                                    : "text-textLabel"
-                                }`}
-                              >
-                                {dropdownItem.icon && (
-                                  <div className="text-lg">
+                          {navi.dropdown.map((dropdownItem, dropdownIndex) => {
+                            const isDropdownActive =
+                              location.pathname === dropdownItem.link;
+
+                            return (
+                              <Link key={dropdownIndex} to={dropdownItem.link}>
+                                <li
+                                  className={`flex items-center gap-3 py-2 px-3 rounded-lg ${
+                                    isDropdownActive
+                                      ? "bg-[#F9FAFB] text-textPrimary"
+                                      : "text-textLabel hover:bg-[#F9FAFB] hover:text-textPrimary"
+                                  }`}
+                                >
+                                  <div
+                                    className={`${
+                                      isDropdownActive ? "text-primaryBlue" : ""
+                                    }`}
+                                  >
                                     {dropdownItem.icon}
                                   </div>
-                                )}
-                                {dropdownItem.name}
-                              </li>
-                            </Link>
-                          ))}
+                                  {dropdownItem.name}
+                                </li>
+                              </Link>
+                            );
+                          })}
                         </ul>
                       )
                     : null}
@@ -182,7 +212,7 @@ const Sidebar = () => {
             className={`flex flex-col md:flex-row items-center md:gap-3 py-2 px-3 rounded-lg font-semibold ${
               location.pathname === "/admin/settings"
                 ? "bg-[#F9FAFB] text-textPrimary"
-                : "text-textLabel"
+                : "text-textLabel hover:bg-[#F9FAFB] hover:text-textPrimary"
             }`}
           >
             <LuSettings2
@@ -210,7 +240,10 @@ const Sidebar = () => {
                 <h4 className="text-xs text-textTertiary">Ulum@gmail.com</h4>
               </div>
             </div>
-            <button className="text-textLabel" onClick={handleLogout}>
+            <button
+              className="text-textLabel hover:text-textPrimary"
+              onClick={handleLogout}
+            >
               <LuLogOut size={20} />
             </button>
           </div>

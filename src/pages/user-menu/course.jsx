@@ -88,6 +88,7 @@ const CourseUserPage = () => {
                       course.course[0]?.mentor?.mentorImage
                     }`}
                     nameMentor={course.course[0]?.mentor?.mentorName}
+                    userCourseId={course.userCourseId}
                   />
                 ))
               ) : (

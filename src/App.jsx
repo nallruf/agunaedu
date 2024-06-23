@@ -19,8 +19,10 @@ import ChallengePage from "./pages/kegiatan/challenge/challenge";
 import DetailChallengePage from "./pages/kegiatan/challenge/detail/detailchallenge";
 import RolePage from "./pages/course/role";
 import DetailPathPage from "./pages/course/path/focus/detail/detailpath";
-import TransactionPage from "./pages/course/path/focus/transaction/transaction";
-import StatusTransactionPage from "./pages/course/path/focus/transaction/statustransaction";
+import TransactionCoursePage from "./pages/course/path/focus/transaction/transactioncourse";
+import TransactionEventPage from "./pages/kegiatan/event/transaction/transactionevent";
+import StatusTransactionEventPage from "./pages/kegiatan/event/transaction/statustransactionevent";
+import StatusTransactionCoursePage from "./pages/course/path/focus/transaction/statustransactioncourse";
 import PemulaPage from "./pages/course/pemula/pemula";
 import DetailTesPage from "./pages/course/tesrole/detailtes";
 import TesPage from "./pages/course/tesrole/tes/tes";
@@ -45,6 +47,15 @@ import UserSettingDashboard from "./pages/admin-menu/users/usersetings";
 import SkillandToolsDashboard from "./pages/admin-menu/skillsandtools/skillandtools";
 import RoleDashboard from "./pages/admin-menu/role/role";
 import JumlahPendaftar from "./pages/admin-menu/event/jumlahpendaftar";
+import DetailRoleDashboard from "./pages/admin-menu/role/detailrole";
+import DetailSkillandTools from "./pages/admin-menu/skillsandtools/detailskillandtools";
+import DetailRolePath from "./pages/admin-menu/role/detailrolepath";
+import DetailPathFocus from "./pages/admin-menu/role/detailpathfocus";
+import DetailPathFocusKelasMandiri from "./pages/admin-menu/role/detailpathfocuskelasmandiri";
+import DetailTestRolePage from "./pages/admin-menu/role/detailtestrole";
+import PembicaraEventPage from "./pages/admin-menu/event/pembicaravent";
+import MaterialPage from "./pages/user-menu/material/material";
+import ContentMaterial from "./pages/user-menu/material/contentmaterial";
 
 import { AuthProvider } from "./hooks/useauth";
 import ProtectedRoute from "./private/protectedroute";
@@ -52,6 +63,7 @@ import ProtectedRoute from "./private/protectedroute";
 import axios from "axios";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import TransaksiDashboard from "./pages/admin-menu/transaksi/transaksi";
 
 axios.defaults.withCredentials = true;
 axios.defaults.baseURL = import.meta.env.VITE_PUBLIC_URL;
@@ -206,11 +218,11 @@ function App() {
               />
               <Route
                 path=":role/:path/:focus/transaction/:id"
-                element={<TransactionPage />}
+                element={<TransactionCoursePage />}
               />
               <Route
-                path="hacker/path-web/fe/transaction/status/:id"
-                element={<StatusTransactionPage />}
+                path=":role/:path/:focus/transaction/status/:id"
+                element={<StatusTransactionCoursePage />}
               />
             </Route>
 
@@ -220,7 +232,14 @@ function App() {
             >
               <Route path="dashboard" element={<DashboardUserPage />} />
               <Route path="course" element={<CourseUserPage />} />
-              <Route path="course/:id" element={<NotFoundPage />} />
+              <Route
+                path="/user/course/:userCourseId"
+                element={<MaterialPage />}
+              />
+              <Route
+                path="/user/course/:userCourseId/material/:materialId"
+                element={<ContentMaterial />}
+              />
               <Route path="event" element={<EventUserPage />} />
               <Route path="challenge" element={<ChallengeUserPage />} />
               <Route path="transaction" element={<TransactionUserPage />} />
@@ -235,6 +254,14 @@ function App() {
                     <DetailEventPage />
                   </DefaultLayout>
                 }
+              />
+              <Route
+                path="event/detail/transaction/:id"
+                element={<TransactionEventPage />}
+              />
+              <Route
+                path="event/detail/transaction/status/:id"
+                element={<StatusTransactionEventPage />}
               />
               <Route
                 path="challenge/detail/:id"
@@ -254,15 +281,33 @@ function App() {
               <Route path="mentor" element={<MentorDashboard />} />
               <Route path="users" element={<UsersDashboard />} />
               <Route path="event" element={<EventDashboard />} />
+              <Route path="transaksi" element={<TransaksiDashboard />} />
               <Route path="challenge" element={<ChallengeDashboard />} />
               <Route path="event/detail" element={<DetailEvent />} />
+              <Route path="event/speaker" element={<PembicaraEventPage />} />
               <Route path="challenge/detail" element={<DetailChallenge />} />
               <Route path="usersetting" element={<UserSettingDashboard />} />
               <Route
                 path="skillandtools"
                 element={<SkillandToolsDashboard />}
               />
+              <Route
+                path="skillandtools/detail"
+                element={<DetailSkillandTools />}
+              />
+
               <Route path="role" element={<RoleDashboard />} />
+              <Route path="role/detail" element={<DetailRoleDashboard />} />
+              <Route path="role/detail/path" element={<DetailRolePath />} />
+              <Route path="role/detail/test" element={<DetailTestRolePage />} />
+              <Route
+                path="role/detail/path/focus"
+                element={<DetailPathFocus />}
+              />
+              <Route
+                path="role/detail/path/focus/kelasmandiri"
+                element={<DetailPathFocusKelasMandiri />}
+              />
               <Route path="settings" element={<SettingDashboard />} />
 
               <Route path="event/registrants" element={<JumlahPendaftar />} />
