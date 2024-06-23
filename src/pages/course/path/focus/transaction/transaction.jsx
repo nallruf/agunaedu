@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Navigate } from "react-router-dom";
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import InfoComponent from "../../../../../components/auth/info";
 import { useAuth } from "../../../../../hooks/useauth";
 import axios from "axios";
 import ImgAtm from "../../../../../assets/img/illustration/atm.png";
+import { toast } from "react-hot-toast";
 
 const TransactionPage = () => {
   const { role, path, focus, id } = useParams();
@@ -21,6 +22,7 @@ const TransactionPage = () => {
   const [paymentId, setPaymentId] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [selectedBank, setSelectedBank] = useState("");
+  const [isLocked, setIsLocked] = useState();
 
   useEffect(() => {
     const fetchDetail = async () => {
@@ -35,6 +37,15 @@ const TransactionPage = () => {
           return;
         }
 
+        const responseLocked = await axios.get(
+          `/api/v1/auth/role/${selectedRole.role_id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${user}`,
+            },
+          }
+        );
+
         const pathFirstWord = path.split("-")[0].toLowerCase();
         const foundPath = selectedRole.paths.find(
           (item) =>
@@ -43,6 +54,8 @@ const TransactionPage = () => {
         );
 
         setData(selectedRole);
+        setIsLocked(responseLocked.data[0].lock);
+
         if (foundPath) {
           setDetailPath(foundPath);
 
@@ -121,9 +134,13 @@ const TransactionPage = () => {
         }
       );
 
-      if (response.data.isValid) {
+      if (response.data.discountAmount) {
         setIsValidPromo(true);
-        setDiscount(response.data.discount);
+        setDiscount(response.data.discountAmount);
+        setTransactionData((prevData) => ({
+          ...prevData,
+          totalPrice: response.data.newTotalPrice,
+        }));
         setErrorMessage("");
       } else {
         setIsValidPromo(false);
@@ -149,12 +166,52 @@ const TransactionPage = () => {
     setSelectedBank(e.target.value);
   };
 
+  const handlePayment = async () => {
+    try {
+      //buatkan supaya bisa handle misal ada kesalahan (harus diinputkan dulu baru bisa ngepost / ada isinya)
+      const { course, servicePrice, totalPrice } = transactionData;
+      const response = await axios.post(
+        `/api/v1/auth/transaction/course/${courseData.courseId}`,
+        {
+          price: course.price,
+          serviceFee: servicePrice,
+          totalPrice: isValidPromo
+            ? course.price * (1 - discount / 100) + servicePrice
+            : totalPrice,
+          bankId: selectedBank,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${user}`,
+          },
+        }
+      );
+      const { transactionId } = response.data;
+      toast.success(response.data.message);
+      navigate(
+        `/course/${role}/${detailPath.name
+          .split(" ")[0]
+          .toLowerCase()}/${focus}/transaction/status/${courseData.courseId}`,
+        {
+          state: { paymentId, transactionId },
+        }
+      );
+    } catch (error) {
+      console.error("Failed to complete the payment:", error);
+      setErrorMessage("Terjadi kesalahan. Silakan coba lagi.");
+    }
+  };
+
   if (!data || !focusPath || !detailPath || !courseData || !transactionData) {
     return (
       <div className="flex justify-center h-screen items-center text-primaryBlue font-semibold">
         Loading...
       </div>
     );
+  }
+
+  if (isLocked) {
+    return <Navigate to={`/course/${role}/tes`} replace />;
   }
 
   const { course, servicePrice, totalPrice, bank } = transactionData;
@@ -269,7 +326,7 @@ const TransactionPage = () => {
                   >
                     <option value="">Pilih Metode Pembayaran</option>
                     {bank.map((bankini) => (
-                      <option key={bankini.bankId}>
+                      <option key={bankini.bankId} value={bankini.bankId}>
                         {bankini.bankName} - {bankini.bankNo}
                       </option>
                     ))}
@@ -289,7 +346,7 @@ const TransactionPage = () => {
               <div>
                 <button
                   className="bg-primaryBlue w-full sm:w-[185px] h-[44px] text-white rounded-lg px-6 py-2 items-center font-semibold justify-center mt-[6px]"
-                  onClick={() => navigate("/")}
+                  onClick={handlePayment}
                 >
                   Bayar
                 </button>

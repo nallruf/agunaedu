@@ -171,7 +171,6 @@ export const dataTransactionAdmin = [
     purchaseId: "2212132323",
     tgl: "2022-12-13",
     name: "Kunkun",
-    purchaseId: "2212132323",
     deadline: "2022-12-14",
     price: "Rp 400.000",
     status: "Dibatalkan",

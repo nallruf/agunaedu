@@ -12,7 +12,6 @@ export const dataKontenChallenge = [
     title: "Mobile App dengan Flutter",
     tag: "Hacker, Challenge",
     sub: "Membuat mobile app pembalajaran dengan menggunakan flutter",
-    tag: "Hacker, Challenge",
     detail:
       "   Bergabunglah dengan kami dalam acara yang menginspirasi ini yang bertujuan untuk membekali Anda dengan keterampilan yang diperlukan untuk menjadi seorang pembicara publik yang percaya diri dan berpengaruh. ",
     durasi: "20 Mar - 30 Aug 2024",

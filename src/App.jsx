@@ -217,7 +217,7 @@ function App() {
                 element={<TransactionPage />}
               />
               <Route
-                path="hacker/path-web/fe/transaction/status/:id"
+                path=":role/:path/:focus/transaction/status/:id"
                 element={<StatusTransactionPage />}
               />
             </Route>
@@ -228,7 +228,7 @@ function App() {
             >
               <Route path="dashboard" element={<DashboardUserPage />} />
               <Route path="course" element={<CourseUserPage />} />
-              <Route path="course/:id" element={<NotFoundPage />} />
+              <Route path="course-material" element={<NotFoundPage />} />
               <Route path="event" element={<EventUserPage />} />
               <Route path="challenge" element={<ChallengeUserPage />} />
               <Route path="transaction" element={<TransactionUserPage />} />
