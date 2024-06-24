@@ -118,6 +118,7 @@ const CourseUserPage = () => {
                     tags={[course.course[0]?.courseLevel]}
                     courseId={course.userCourseId}
                     statusFeedback={course.statusFeedback}
+                    userCourseId={course.userCourseId}
                   />
                 ))
               ) : (

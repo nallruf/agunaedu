@@ -205,7 +205,7 @@ const StatusTransactionCoursePage = () => {
   }
 
   return (
-    <section className="bg-primaryBlue h-max relative overflow-hidden">
+    <section className="bg-primaryBlue min-h-screen relative overflow-hidden">
       <div className="absolute bottom-0 left-0 transform translate-x-[-50%] translate-y-[50%] w-[600px] h-[600px] rounded-full bg-secondaryBlue" />
       <div className="absolute top-0 right-0 transform translate-x-[40%] translate-y-[-35%] w-[392px] h-[392px] rounded-full bg-secondaryBlue" />
       <div className="bg-white px-[32px] py-4 z-10 relative">
@@ -222,7 +222,7 @@ const StatusTransactionCoursePage = () => {
                 <h1 className="text-3xl font-semibold text-textPrimary text-center">
                   {dataTf.title}
                 </h1>
-                <span className="text-textTertiary">{dataTf.message}</span>
+                <span className="text-textTertiary text-center">{dataTf.message}</span>
               </div>
               <div className="border border-borderPrimary border-dashed w-full" />
             </div>
@@ -245,18 +245,19 @@ const StatusTransactionCoursePage = () => {
                   </span>
                 </div>
               </div>
-              {paymentData.paymentDeadline && (
-                <div className="flex justify-between">
-                  <span className="font-medium text-textTertiary">
-                    Bayar Sebelum
-                  </span>
-                  <div>
-                    <span className="font-semibold text-textPrimary">
-                      {formatCountdown(countdown)}
+              {paymentData.paymentDeadline &&
+                (status === "waiting" || status === "pending") && (
+                  <div className="flex justify-between">
+                    <span className="font-medium text-textTertiary">
+                      Bayar Sebelum
                     </span>
+                    <div>
+                      <span className="font-semibold text-textPrimary">
+                        {formatCountdown(countdown)}
+                      </span>
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
               {paymentData.bankNo && (
                 <div className="flex justify-between">
                   <span className="font-medium text-textTertiary">No Bank</span>
@@ -332,7 +333,10 @@ const StatusTransactionCoursePage = () => {
           </div>
           {status === "success" ? (
             <div className="flex justify-end mt-[28px]">
-              <button className="text-white flex items-center gap-3 font-semibold">
+              <button
+                className="text-white flex items-center gap-3 font-semibold"
+                onClick={() => navigate("/user/course")}
+              >
                 Lanjutkan ke kelas <IoMdArrowRoundForward className="text-xl" />
               </button>
             </div>

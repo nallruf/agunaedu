@@ -15,7 +15,7 @@ export const transactionData = {
   pending: {
     imgstatus: ImgWait,
     title: "Menunggu Konfirmasi Admin",
-    message: "Mohon tunggu dikonfirmasi oleh Admin Aguna",
+    message: "Mohon tunggu dikonfirmasi oleh Admin Aguna (refresh berkala)",
   },
   success: {
     imgstatus: ImgSukses,

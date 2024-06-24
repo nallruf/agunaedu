@@ -71,7 +71,7 @@ const DetailEventPage = () => {
           />
         </div>
         <div className="flex gap-10 mb-[70px] md:flex-row flex-col">
-          <div className="border-borderPrimary border-2 rounded-2xl p-8 md:w-[70%]">
+          <div className="border-borderPrimary border-2 rounded-2xl p-8 md:w-[70%] h-fit">
             <h1 className="font-semibold text-2xl mb-7">Deskripsi</h1>
             {event.detailDescription}
           </div>
@@ -80,7 +80,7 @@ const DetailEventPage = () => {
             <hr className="text-borderPrimary border-[1.5px]" />
             <EventDetails event={event} />
             <div className="text-primaryBlue font-semibold text-xl my-8">
-              {event.price}
+              {event.price === 0 ? "GRATIS" : `Rp ${event.price}`}
             </div>
             <button
               className="border-2 border-borderSecondary w-full rounded-lg px-4 py-[10px] text-textSecondary font-semibold text-lg"

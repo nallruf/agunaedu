@@ -84,7 +84,7 @@ const UpgradeSection = () => {
               ))}
             </div>
 
-            <div className="grid md:grid-cols-2 mt-10 gap-3 justify-end">
+            <div className="grid md:grid-cols-2 mt-10 gap-8 justify-end">
               {filteredDataSide.map((item) => (
                 <div key={item.id}>
                   <CardCat

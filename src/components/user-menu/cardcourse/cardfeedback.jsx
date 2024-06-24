@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Modal from "../../../components/user-menu/modal/addtestimoni";
+import { useNavigate } from "react-router-dom";
 
 const CardFeedback = ({
   imgCode,
@@ -8,9 +9,11 @@ const CardFeedback = ({
   tags,
   courseId,
   statusFeedback,
+  userCourseId,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isFeedbackSubmitted, setIsFeedbackSubmitted] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsFeedbackSubmitted(statusFeedback === 1);
@@ -18,6 +21,10 @@ const CardFeedback = ({
 
   const handleFeedbackClick = () => {
     setIsModalOpen(true);
+  };
+
+  const handleClick = () => {
+    navigate(`/user/course/${userCourseId}`);
   };
 
   return (
@@ -42,15 +49,23 @@ const CardFeedback = ({
         </div>
       </div>
 
-      <button
-        className={`text-white text-[12px] font-semibold h-fit py-2 px-[14px] rounded-lg mt-6 ${
-          isFeedbackSubmitted ? "bg-gray-400" : "bg-primaryBlue"
-        }`}
-        onClick={handleFeedbackClick}
-        disabled={isFeedbackSubmitted}
-      >
-        {isFeedbackSubmitted ? "Feedback Submitted" : "Beri Feedback"}
-      </button>
+      <div className="flex justify-between">
+        <button
+          className={`text-white text-[12px] font-semibold h-fit py-2 px-[14px] rounded-lg mt-6 bg-primaryBlue`}
+          onClick={handleClick}
+        >
+          Review Materi
+        </button>
+        <button
+          className={`text-white text-[12px] font-semibold h-fit py-2 px-[14px] rounded-lg mt-6 ${
+            isFeedbackSubmitted ? "bg-gray-400" : "bg-primaryBlue"
+          }`}
+          onClick={handleFeedbackClick}
+          disabled={isFeedbackSubmitted}
+        >
+          {isFeedbackSubmitted ? "Feedback Submitted" : "Beri Feedback"}
+        </button>
+      </div>
 
       {isModalOpen && (
         <Modal onClose={() => setIsModalOpen(false)} courseId={courseId} />

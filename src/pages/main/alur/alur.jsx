@@ -117,11 +117,7 @@ const AlurSection = () => {
               <SideRole
                 key={item.role_id}
                 title={item.role_name}
-                desc={
-                  filteredDataPilih.find(({ goto }) =>
-                    goto.toLowerCase().includes(item.role_name.toLowerCase())
-                  )?.desc
-                }
+                desc={item.role_description}
                 jmlalur={item.total_path}
                 jmlkelas={item.total_course}
                 jmlsiswa={item.total_student}

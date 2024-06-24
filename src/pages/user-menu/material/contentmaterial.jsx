@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import UserMaterial from "../usermaterial/usermaterial";
 import MentorImg from "../../../assets/img/team/avatar.jpg";
@@ -14,6 +14,8 @@ const ContentMaterial = () => {
   const [tools, setTools] = useState([]);
   const [mentor, setMentor] = useState({});
   const { user } = useAuth();
+  const [isLastMaterial, setIsLastMaterial] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMaterial = async () => {
@@ -39,6 +41,12 @@ const ContentMaterial = () => {
           (m) => m.materialId.toString() === materialId
         );
         setMaterial(currentMaterial);
+
+        const isLast =
+          courseData.materials[
+            courseData.materials.length - 1
+          ].materialId.toString() === materialId;
+        setIsLastMaterial(isLast);
       } catch (error) {
         console.error("Error fetching material", error);
       }
@@ -69,6 +77,25 @@ const ContentMaterial = () => {
     }
   };
 
+  const CompleteProgress = async () => {
+    try {
+      const response = await axios.post(
+        `/api/v1/user/finishcourse/${userCourseId}`,
+        {
+          userCourseId: userCourseId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${user}`,
+          },
+        }
+      );
+      toast.success(response.data.message);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   if (!material) {
     return (
       <div className="flex justify-center h-screen items-center text-primaryBlue font-semibold">
@@ -76,6 +103,20 @@ const ContentMaterial = () => {
       </div>
     );
   }
+
+  const navigateToNextMaterial = () => {
+    navigate(`/user/course/${userCourseId}`);
+  };
+
+  const handleButtonClick = () => {
+    if (isLastMaterial) {
+      CompleteProgress();
+      navigate("/user/course");
+    } else {
+      SaveProgress();
+      navigateToNextMaterial();
+    }
+  };
 
   const content = (
     <>
@@ -100,9 +141,9 @@ const ContentMaterial = () => {
           </div>
           <button
             className="border-[#85CAFF] border-2 bg-[#F9FAFB] text-primaryBlue rounded-lg px-10 shadow-md py-2 font-semibold"
-            onClick={SaveProgress}
+            onClick={handleButtonClick}
           >
-            Lanjutkan
+            {isLastMaterial ? "Selesaikan" : "Lanjutkan"}
           </button>
         </div>
         <div className="mt-6 flex gap-3 justify-between">

@@ -104,19 +104,19 @@ const DetailPathPage = () => {
     fetchDetail();
 
     // kurang payment
-    const paymentStatus = localStorage.getItem(`paymentConfirmed_${id}`);
-    if (paymentStatus) {
-      setPaymentConfirmed(JSON.parse(paymentStatus));
-    }
+    // const paymentStatus = localStorage.getItem(`paymentConfirmed_${id}`);
+    // if (paymentStatus) {
+    //   setPaymentConfirmed(JSON.parse(paymentStatus));
+    // }
 
-    return () => {
-      localStorage.removeItem(`paymentConfirmed_${id}`);
-    };
+    // return () => {
+    //   localStorage.removeItem(`paymentConfirmed_${id}`);
+    // };
   }, [role, path, focus, id, user]);
 
   const handleDaftarClick = () => {
     navigate(
-      `/course/${role}/${path.toLowerCase()}/${focusPath.pathFocusName.toLowerCase()}/transaction/${
+      `/course/${role}/${path.toLowerCase()}/${focus}/transaction/${
         courseData.courseId
       }`
     );

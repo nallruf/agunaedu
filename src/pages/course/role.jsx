@@ -85,9 +85,9 @@ const RolePage = () => {
     <>
       <HeaderCourse
         goto="/"
-        buttonBack="Home"
+        buttonBack="Beranda"
         role={`Role  ${capitalizeFirstLetter(course.role_name)}`}
-        desc={`Mulai belajar ${course.role_name.toLowerCase()} yang sesuai dengan industri saat ini agar dapat berkembang menjadi seorang developer handal.`}
+        desc={`${course.role_description}`}
         skills={[`${capitalizeFirstLetter(course.role_name)}`]}
         imgRole={ImgRole}
       />

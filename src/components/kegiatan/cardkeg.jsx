@@ -38,7 +38,7 @@ const CardKegiatan = ({ imgEvent, title, date, time, desc, tags, link }) => {
             className="object-cover rounded-t-2xl overflow-hidden md:h-[250px] md:w-[336px] w-full"
           />
 
-          <div className="bg-white px-6 py-5 rounded-xl shadow-lg h-[350px]">
+          <div className="bg-white px-6 py-5 rounded-b-xl shadow-lg h-[350px]">
             <div className="flex flex-col justify-between h-full">
               <div>
                 <div className="flex flex-col gap-[6px]">
