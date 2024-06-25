@@ -73,7 +73,11 @@ const DetailEventPage = () => {
         <div className="flex gap-10 mb-[70px] md:flex-row flex-col">
           <div className="border-borderPrimary border-2 rounded-2xl p-8 md:w-[70%] h-fit">
             <h1 className="font-semibold text-2xl mb-7">Deskripsi</h1>
-            {event.detailDescription}
+            <div className="text-textTertiary">
+              {event.detailDescription.split("\n").map((item, index) => (
+                <p key={index}>{item}</p>
+              ))}
+            </div>
           </div>
           <div className="border-borderPrimary border-2 rounded-2xl p-8 md:w-[30%] h-fit">
             <h1 className="font-semibold text-xl mb-3">Detail Event</h1>

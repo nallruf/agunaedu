@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import LogoAguna from "../../../assets/img/logo/logo-name-biru.png";
 import LogoBiru from "../../../assets/img/logo/logo-biru.png";
-import ImgProfile from "../../../assets/img/team/ulum.png";
+import ImgAvatar from "../../../assets/img/team/avatar.jpg";
 import { RiHome6Line } from "react-icons/ri";
 import { LuSettings2, LuLogOut, LuUserCheck2 } from "react-icons/lu";
 import { CiCalendar } from "react-icons/ci";
@@ -14,6 +14,9 @@ import { TbSquarePlus } from "react-icons/tb";
 import { GrGroup } from "react-icons/gr";
 import { CiBookmarkCheck } from "react-icons/ci";
 import { RiUser6Line } from "react-icons/ri";
+import { useAuth } from "../../../hooks/useauth";
+import useProfile from "../../../hooks/useProfile";
+import axios from "axios";
 
 const Sidebar = () => {
   const location = useLocation();
@@ -21,6 +24,8 @@ const Sidebar = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [isPenggunaDropdownOpen, setIsPenggunaDropdownOpen] = useState(false);
   const [isEventDropdownOpen, setIsEventDropdownOpen] = useState(false);
+  const { logout, user } = useAuth();
+  const { profile } = useProfile(user);
 
   useEffect(() => {
     const handleResize = () => {
@@ -100,19 +105,37 @@ const Sidebar = () => {
     },
   ];
 
-  const handleLogout = () => {
-    navigate("/");
+  const handleLogout = async () => {
+    try {
+      const response = await axios.post(
+        "/api/v1/auth/logout",
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${user}`,
+          },
+        }
+      );
+      if (response.status === 200) {
+        logout();
+        toast.success(response.data.message);
+      }
+    } catch (error) {
+      console.error("Error logging out", error);
+      toast.error("Failed to logout. Please try again.");
+    }
   };
-
   return (
     <div className="min-h-screen border-r border-[#EAECF0] w-[80px] md:w-[260px] px-5 py-8 shadow-lg flex flex-col justify-between transition-all duration-300">
       <div className="flex flex-col gap-6 items-center md:items-start">
-        <img
-          src={isMobile ? LogoBiru : LogoAguna}
-          alt="logo"
-          draggable="false"
-          className="w-[30px] md:w-[130px]"
-        />
+        <Link to={"/"}>
+          <img
+            src={isMobile ? LogoBiru : LogoAguna}
+            alt="logo"
+            draggable="false"
+            className="w-[30px] md:w-[130px]"
+          />
+        </Link>
 
         <div>
           <ul className="text-textLabel font-semibold">
@@ -230,14 +253,24 @@ const Sidebar = () => {
           <div className="pt-[25px] flex flex-col md:flex-row items-center justify-between">
             <div className="hidden md:flex items-center gap-2">
               <img
-                src={ImgProfile}
+                src={
+                  profile?.imageUrl
+                    ? `${import.meta.env.VITE_PUBLIC_URL}/images/${
+                        profile.imageUrl
+                      }`
+                    : ImgAvatar
+                }
                 alt="img-profile"
                 draggable="false"
                 className=" w-10 rounded-full"
               />
               <div className="flex flex-col">
-                <h2 className="text-sm font-semibold text-textLabel">Ulum</h2>
-                <h4 className="text-xs text-textTertiary">Ulum@gmail.com</h4>
+                <h2 className="text-sm font-semibold text-textLabel">
+                  {profile?.username || "User Aguna"}
+                </h2>
+                <h4 className="text-xs text-textTertiary">
+                  {profile?.email || "dummy@gmail.com"}
+                </h4>
               </div>
             </div>
             <button

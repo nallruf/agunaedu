@@ -1,17 +1,30 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { dataNav } from "../../../dummydata/main/datanav";
 
 const Menu = () => {
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   return (
     <>
       {dataNav.map(({ name, icon, icon2, linkMenu, submenu, sublinks }) => (
         <div key={name}>
-          <div className="flex items-center text-left md:cursor-pointer group hover:scale-105 duration-200 text-iconInput">
-            <div className="flex items-center hover:text-primaryBlue">
+          <div className="flex items-center text-left md:cursor-pointer group hover:scale-105 duration-200">
+            <div
+              className={`flex items-center ${
+                currentPath === linkMenu ? "text-primaryBlue" : "text-iconInput"
+              }`}
+            >
               {icon}
               <Link to={linkMenu}>
-                <h1 className="py-5 px-2 cursor-pointer capitalize font-medium text-iconInput hover:text-primaryBlue">
+                <h1
+                  className={`py-5 px-2 cursor-pointer capitalize font-medium ${
+                    currentPath === linkMenu
+                      ? "text-primaryBlue"
+                      : "text-iconInput"
+                  }`}
+                >
                   {name}
                 </h1>
               </Link>
@@ -27,7 +40,11 @@ const Menu = () => {
                         {sublink.map(({ name, link, icon3 }) => (
                           <div
                             key={name}
-                            className="text-iconInput my-2.5 font-medium"
+                            className={`my-2.5 font-medium ${
+                              currentPath === link
+                                ? "text-primaryBlue"
+                                : "text-iconInput"
+                            }`}
                           >
                             <Link to={link} className="hover:text-primaryBlue">
                               <div className="flex items-center gap-2">

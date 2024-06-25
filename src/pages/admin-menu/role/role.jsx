@@ -3,26 +3,59 @@ import Admin from "./../admin/admin";
 import HeaderDashboard from "../../../components/admin-menu/headerdashboard/headerdashboard";
 import TableDashboard from "../../../components/admin-menu/tabledashboard/tabledashboard";
 import TitleDashboard from "../../../components/admin-menu/title/title";
-import { dataRole } from "../../../dummydata/admin-menu/role/datarole";
 import Modal from "../../../components/admin-menu/modal/modal";
-
 import TextInputComponent from "../../../components/auth/textinput";
+import { useAuth } from "../../../hooks/useauth";
+import axios from "axios";
+import { LuPencil } from "react-icons/lu";
 
 const RoleDashboard = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [roleData, setRoleData] = useState([]);
   const [newRole, setNewRole] = useState({ roleName: "", description: "" });
+  const { user } = useAuth();
 
   useEffect(() => {
-    document.title = "Aguna Edu | Dashboard User";
+    document.title = "Aguna Edu | Role Admin";
   }, []);
+
+  useEffect(() => {
+    const fetchRole = async () => {
+      try {
+        const response = await axios.get("/api/v1/admin/role", {
+          headers: {
+            Authorization: `Bearer ${user}`,
+          },
+        });
+
+        const rolesWithIcons = response.data.map((role) => ({
+          ...role,
+          icon: (
+            <div className="flex gap-2 cursor-pointer">
+              <LuPencil className="text-primaryBlue" />
+            </div>
+          ),
+        }));
+
+        setRoleData(rolesWithIcons);
+      } catch (error) {
+        console.error("Error fetching role", error);
+      }
+    };
+
+    if (user) {
+      fetchRole();
+    }
+  }, [user]);
 
   const columnsRole = [
     { header: "Aksi", field: "icon", truncate: 0 },
-    { header: "Nama", field: "role", truncate: 20 },
-    { header: "Jumlah Path", field: "jmlpath", truncate: 20 },
-    { header: "Jumlah Path Focus", field: "jmlpathfocus", truncate: 20 },
-    { header: "Jumlah Course", field: "jmlcourse", truncate: 20 },
-    { header: "Jumlah Siswa", field: "jmlsiswa", truncate: 20 },
+    { header: "ID Role", field: "role_id", truncate: 0 },
+    { header: "Nama", field: "role_name", truncate: 20 },
+    { header: "Jumlah Path", field: "total_path", truncate: 20 },
+    { header: "Jumlah Path Focus", field: "total_path_focus", truncate: 20 },
+    { header: "Jumlah Course", field: "total_course", truncate: 20 },
+    { header: "Jumlah Siswa", field: "total_student", truncate: 20 },
   ];
 
   const handleModalOpen = () => {
@@ -52,22 +85,23 @@ const RoleDashboard = () => {
           goto="/"
           buttonBack="Kembali"
           title="Role"
-          desc="Pengaturan Role "
+          desc="Pengaturan Role"
         />
         <div className="px-10 sm:px-20 md:px-40">
           <TitleDashboard
             title="Role"
-            desc="Jumlah Role : 3"
+            desc={`Jumlah Role : ${roleData.length}`}
             button="Tambah Role"
             onButtonClick={handleModalOpen}
           />
           <TableDashboard
             columns={columnsRole}
-            data={dataRole}
+            data={roleData}
             detailRoute={"/admin/role/detail"}
           />
         </div>
       </div>
+
       <Modal
         isVisible={isModalVisible}
         onClose={handleModalClose}

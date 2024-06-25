@@ -126,6 +126,17 @@ const DetailPathPage = () => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
   };
 
+  const formatPrice = (price) => {
+    if (price === 0) {
+      return "GRATIS";
+    } else {
+      return new Intl.NumberFormat("id-ID", {
+        style: "currency",
+        currency: "IDR",
+      }).format(price);
+    }
+  };
+
   useEffect(() => {
     if (focusPath && courseData) {
       document.title = `Aguna Edu | ${focusPath.pathFocusName} #${courseData.courseId}`;
@@ -217,7 +228,7 @@ const DetailPathPage = () => {
                 {!paymentConfirmed ? (
                   <>
                     <span className="text-primaryBlue text-2xl font-semibold">
-                      {courseData.price}
+                      {formatPrice(courseData.price)}
                     </span>
                     <button
                       className="bg-primaryBlue text-white rounded-lg px-5 py-2 w-[269px] h-[36px] items-center justify-center flex"
